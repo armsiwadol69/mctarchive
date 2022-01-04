@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Prompt:wght@300&display=swap');
+body{font-family: 'Prompt', sans-serif;}
+.card-font-1 {font-family: 'Kanit', sans-serif;};
+.mainjum {background:rgba(0,0,0,0);
+  background-size: cover;
+}
+.jumbotron_site {
+background-image: url(../img/GVector.png);
+background-size: contain !important;
+background-repeat : no-repeat;
+background-position : right;
+height: 100%;
+text-shadow: rgb(255, 255, 255) 1px 0px 0px, rgb(255, 255, 255) 0.540302px 0.841471px 0px, rgb(255, 255, 255) -0.416147px 0.909297px 0px, rgb(255, 255, 255) -0.989992px 0.14112px 0px, rgb(255, 255, 255) -0.653644px -0.756802px 0px, rgb(255, 255, 255) 0.283662px -0.958924px 0px, rgb(255, 255, 255) 0.96017px -0.279415px 0px;
+}
+.pdfobject-container{height: 100vh;}
+.video{max-width: auto;}
+.jumbotron_admin {
+background-image: url(../img/GVector.png);
+background-size: contain;
+background-repeat : no-repeat;
+background-position : right;
+text-shadow: rgb(255, 255, 255) 1px 0px 0px, rgb(255, 255, 255) 0.540302px 0.841471px 0px, rgb(255, 255, 255) -0.416147px 0.909297px 0px, rgb(255, 255, 255) -0.989992px 0.14112px 0px, rgb(255, 255, 255) -0.653644px -0.756802px 0px, rgb(255, 255, 255) 0.283662px -0.958924px 0px, rgb(255, 255, 255) 0.96017px -0.279415px 0px;
+height: 100%;}
+.no-text-outline{text-shadow:none !important;}
+.full-page{width: 100%;}
+
+.j-login{background-image: url(../img/login.png) !important;}
+.j-addtopic{background-image: url(../img/add.png) !important;}
+.j-edittopic{background-image: url(../img/edit.png) !important;}
+.j-search{background-image: url(../img/search.png) !important;}
+html{scroll-behavior: smooth;}
+body {
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,1) 38%, rgba(240,240,240,1) 100%);
+  background-size: 125%;
+	background-attachment: fixed;
+	animation: gradient 5s ease infinite;
+
+}
+
+.video-container {
+    overflow: hidden;
+    position: relative;
+    width:100%;
+}
+
+.video-container::after {
+    padding-top: 56.25%;
+    display: block;
+    content: '';
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.view_vid_si {
+    object-fit: contain;
+    max-height: 720px;
+}
+
+.alink_end{text-decoration: none;}
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #6f7275;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #212529;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #1c1f23;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 500px;
+    overflow-x: hidden;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;}

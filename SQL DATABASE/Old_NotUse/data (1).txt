@@ -1,0 +1,699 @@
+﻿/* INSERT QUERY NO: 1 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+1, 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'น้ำ 5 บาท', 'Name 5 Bath', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', 2560, 'วิชาเทคโนโลยีสื่อดิจิทัล', 1, 1, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 2 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+2, 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'น้ำ 5 บาท', 'Name 5 Bath', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', 2560, 'วิชาเทคโนโลยีสื่อดิจิทัล', 1, 1, '2021-06-12_17-46-35.mp4', 'EnquireStudentScore_2561_M6_00609284.pdf', 'Operation Pyrite - Jason Walsh ft. Alan Day.mp3'
+);
+
+/* INSERT QUERY NO: 3 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+3, 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'น้ำ 5 บาท', 'Name 5 Bath', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', 2560, 'วิชาเทคโนโลยีสื่อดิจิทัล', 1, 1, '2021-06-12_17-46-35.mp4', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 4 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+4, 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'น้ำ 5 บาท', 'Name 5 Bath', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', 2560, 'วิชาเทคโนโลยีสื่อดิจิทัล', 1, 1, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 5 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+5, 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'น้ำ 5 บาท', 'Name 5 Bath', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', 2560, 'วิชาเทคโนโลยีสื่อดิจิทัล', 1, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 6 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+6, 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'น้ำ 5 บาท', 'Name 5 Bath', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', 2560, 'วิชาเทคโนโลยีสื่อดิจิทัล', 1, 1, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 7 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+7, 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'น้ำ 5 บาท', 'Name 5 Bath', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', 2560, 'วิชาเทคโนโลยีสื่อดิจิทัล', 1, 1, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 8 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+8, 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'น้ำ 5 บาท', 'Name 5 Bath', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', 2560, 'วิชาเทคโนโลยีสื่อดิจิทัล', 1, 1, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 9 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+9, 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'น้ำ 5 บาท', 'Name 5 Bath', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', 2560, 'วิชาเทคโนโลยีสื่อดิจิทัล', 1, 1, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 10 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+10, 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'น้ำ 5 บาท', 'Name 5 Bath', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', 2560, 'วิชาเทคโนโลยีสื่อดิจิทัล', 2, 1, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 11 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+11, 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'น้ำ 5 บาท', 'Name 5 Bath', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', 2560, 'วิชาเทคโนโลยีสื่อดิจิทัล', 2, 1, '2021-06-12_17-46-35.mp4', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 12 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+12, 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'น้ำ 5 บาท', 'Name 5 Bath', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', 2560, 'วิชาเทคโนโลยีสื่อดิจิทัล', 2, 1, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 13 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+13, 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'น้ำ 5 บาท', 'Name 5 Bath', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', 2560, 'วิชาเทคโนโลยีสื่อดิจิทัล', 2, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 14 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+14, 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'น้ำ 5 บาท', 'Name 5 Bath', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', 2560, 'วิชาเทคโนโลยีสื่อดิจิทัล', 2, 1, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 15 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+15, 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'น้ำ 5 บาท', 'Name 5 Bath', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', 2560, 'วิชาเทคโนโลยีสื่อดิจิทัล', 2, 1, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 16 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+16, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 17 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+17, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 18 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+18, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 19 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+19, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 20 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+20, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 21 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+21, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 22 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+22, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 23 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+23, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 24 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+24, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 25 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+25, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 26 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+26, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 27 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+27, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 28 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+28, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 29 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+29, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 30 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+30, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 31 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+31, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 32 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+32, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 33 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+33, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2561, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 34 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+34, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'คิดชื่อไม่ออก', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2563, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 35 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+35, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 1', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2563, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 36 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+36, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 2', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2563, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 37 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+37, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 3', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2563, 'วิชาเทคโนโลยีการถ่ายภาพและภาพยนตร์', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 38 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+38, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 4', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2563, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 39 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+39, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 5', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2563, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 40 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+40, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 6', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2563, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 41 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+41, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 7', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2563, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 42 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+42, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 8', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2563, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 43 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+43, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 9', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2563, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 44 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+44, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 10', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2563, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 45 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+45, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 11', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2563, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 46 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+46, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 12', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2563, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 2, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 47 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+47, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 13', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2559, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 1, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 48 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+48, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 14', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2559, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 1, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 49 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+49, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 15', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2559, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 1, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 50 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+50, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 16', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2559, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 1, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 51 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+51, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 17', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2559, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 1, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 52 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+52, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 18', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2559, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 1, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 53 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+53, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 19', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2559, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 1, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 54 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+54, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 20', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2559, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 1, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 55 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+55, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 21', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2559, 'วิชาเทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง', 1, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 56 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+56, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 22', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2559, 'วิชาเทคโนโลยีมัลติมีเดีย', 1, 0, '2021-06-12_17-46-35.mp4', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 57 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+57, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 23', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2559, 'วิชาเทคโนโลยีมัลติมีเดีย', 1, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 58 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+58, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 24', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2559, 'วิชาเทคโนโลยีมัลติมีเดีย', 1, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 59 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+59, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', '', '', '', '', 'โครงการอะไรซักอย่าง 25', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2564, 'วิชาเทคโนโลยีมัลติมีเดีย', 1, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 60 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+60, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 26', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2564, 'วิชาเทคโนโลยีมัลติมีเดีย', 1, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 61 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+61, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 27', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2564, 'วิชาเทคโนโลยีมัลติมีเดีย', 1, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 62 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+62, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 28', '', 'ดร.จิรัฐ มัธยมนันทน์', 2564, 'วิชาเทคโนโลยีมัลติมีเดีย', 1, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 63 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+63, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 29', '', 'ดร.จิรัฐ มัธยมนันทน์', 2564, 'วิชาเทคโนโลยีมัลติมีเดีย', 1, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 64 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+64, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 30', '', 'ดร.จิรัฐ มัธยมนันทน์', 2564, 'วิชาเทคโนโลยีมัลติมีเดีย', 1, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 65 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+65, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 31', '', 'ดร.จิรัฐ มัธยมนันทน์', 2564, 'วิชาเทคโนโลยีมัลติมีเดีย', 1, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 66 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+66, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 32', '', 'ดร.จิรัฐ มัธยมนันทน์', 2564, 'วิชาเทคโนโลยีมัลติมีเดีย', 1, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 67 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+67, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 33', '', 'ดร.จิรัฐ มัธยมนันทน์', 2564, 'วิชาเทคโนโลยีมัลติมีเดีย', 2, 0, '', 'lel.pdf', 'Mixdown(2).mp3'
+);
+
+/* INSERT QUERY NO: 68 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+68, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 34', '', 'ดร.จิรัฐ มัธยมนันทน์', 2564, 'วิชาเทคโนโลยีมัลติมีเดีย', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 69 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+69, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 35', '', 'ดร.จิรัฐ มัธยมนันทน์', 2564, 'วิชาเทคโนโลยีมัลติมีเดีย', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 70 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+70, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 36', '', 'ดร.จิรัฐ มัธยมนันทน์', 2564, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 71 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+71, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 37', '', 'ดร.จิรัฐ มัธยมนันทน์', 2564, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 72 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+72, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 38', '', 'ดร.จิรัฐ มัธยมนันทน์', 2564, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 73 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+73, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 39', '', 'ดร.จิรัฐ มัธยมนันทน์', 2564, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 74 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+74, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 40', '', 'ดร.จิรัฐ มัธยมนันทน์', 2564, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 75 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+75, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 41', '', 'ดร.จิรัฐ มัธยมนันทน์', 2563, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 76 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+76, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 42', '', 'ดร.จิรัฐ มัธยมนันทน์', 2563, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 77 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+77, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 43', '', 'ดร.จิรัฐ มัธยมนันทน์', 2563, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 78 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+78, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 44', '', 'ดร.จิรัฐ มัธยมนันทน์', 2563, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 79 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+79, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 45', '', 'ดร.จิรัฐ มัธยมนันทน์', 2563, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 1, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 80 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+80, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', '', '', '', 'โครงการอะไรซักอย่าง 46', '', 'ดร.จิรัฐ มัธยมนันทน์', 2563, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 81 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+81, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', '', '', 'โครงการอะไรซักอย่าง 47', '', 'ผู้ช่วยศาสตราจารย์วรรณชนก สุนทร', 2563, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 82 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+82, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', 'ประยุทธ์ จันทร์โอชา', '', 'โครงการอะไรซักอย่าง 48', '', 'ผู้ช่วยศาสตราจารย์วรรณชนก สุนทร', 2563, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 83 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+83, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', 'ประยุทธ์ จันทร์โอชา', '', 'โครงการอะไรซักอย่าง 49', '', 'ผู้ช่วยศาสตราจารย์วรรณชนก สุนทร', 2563, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 84 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+84, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', 'ประยุทธ์ จันทร์โอชา', '', 'โครงการอะไรซักอย่าง 50', '', 'ผู้ช่วยศาสตราจารย์วรรณชนก สุนทร', 2563, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 85 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+85, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', 'ประยุทธ์ จันทร์โอชา', '', 'โครงการอะไรซักอย่าง 51', '', 'ผู้ช่วยศาสตราจารย์วรรณชนก สุนทร', 2563, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 86 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+86, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', 'ประยุทธ์ จันทร์โอชา', '', 'โครงการอะไรซักอย่าง 52', '', 'ผู้ช่วยศาสตราจารย์วรรณชนก สุนทร', 2563, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 87 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+87, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', 'ประยุทธ์ จันทร์โอชา', '', 'โครงการอะไรซักอย่าง 53', '', 'ผู้ช่วยศาสตราจารย์วรรณชนก สุนทร', 2563, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 88 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+88, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', 'ประยุทธ์ จันทร์โอชา', 'ทักษิณ ชินวัตร', 'โครงการอะไรซักอย่าง 54', '', 'อาจารย์ธีรศานต์ ไหลหลั่ง', 2563, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 89 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+89, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', 'ประยุทธ์ จันทร์โอชา', 'ทักษิณ ชินวัตร', 'โครงการอะไรซักอย่าง 55', '', 'อาจารย์ธีรศานต์ ไหลหลั่ง', 2563, 'วิชาเทคโนโลยีการโฆษณาและประชาสัมพันธ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 90 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+90, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', 'ประยุทธ์ จันทร์โอชา', 'ทักษิณ ชินวัตร', 'โครงการอะไรซักอย่าง 56', '', 'อาจารย์ธีรศานต์ ไหลหลั่ง', 2562, 'เทคโนโลยีการพิมพ์ดิจิทัลและบรรจุภัณฑ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 91 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+91, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', 'ประยุทธ์ จันทร์โอชา', 'ทักษิณ ชินวัตร', 'โครงการอะไรซักอย่าง 57', '', 'อาจารย์ธีรศานต์ ไหลหลั่ง', 2562, 'เทคโนโลยีการพิมพ์ดิจิทัลและบรรจุภัณฑ์', 1, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 92 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+92, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', 'ประยุทธ์ จันทร์โอชา', 'ทักษิณ ชินวัตร', 'โครงการอะไรซักอย่าง 58', '', 'อาจารย์ธีรศานต์ ไหลหลั่ง', 2562, 'เทคโนโลยีการพิมพ์ดิจิทัลและบรรจุภัณฑ์', 1, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 93 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+93, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', 'ประยุทธ์ จันทร์โอชา', 'ทักษิณ ชินวัตร', 'โครงการอะไรซักอย่าง 59', '', 'อาจารย์ธีรศานต์ ไหลหลั่ง', 2562, 'เทคโนโลยีการพิมพ์ดิจิทัลและบรรจุภัณฑ์', 1, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 94 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+94, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', 'ประยุทธ์ จันทร์โอชา', 'ทักษิณ ชินวัตร', 'โครงการอะไรซักอย่าง 60', '', 'อาจารย์ธีรศานต์ ไหลหลั่ง', 2562, 'เทคโนโลยีการพิมพ์ดิจิทัลและบรรจุภัณฑ์', 1, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 95 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+95, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', 'ประยุทธ์ จันทร์โอชา', 'ทักษิณ ชินวัตร', 'โครงการอะไรซักอย่าง 61', '', 'อาจารย์ธีรศานต์ ไหลหลั่ง', 2562, 'เทคโนโลยีการพิมพ์ดิจิทัลและบรรจุภัณฑ์', 1, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 96 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+96, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', 'ประยุทธ์ จันทร์โอชา', 'ทักษิณ ชินวัตร', 'โครงการอะไรซักอย่าง 62', '', 'อาจารย์ธีรศานต์ ไหลหลั่ง', 2562, 'เทคโนโลยีการพิมพ์ดิจิทัลและบรรจุภัณฑ์', 1, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 97 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+97, 'อิทธิพัทธ์ สายสอาด', 'ประยุทธ์ จันทร์โอชา', 'ชวน หลีกภัย', 'ประวิตร วงษ์สุวรรณ', '', 'ทักษิณ ชินวัตร', 'โครงการอะไรซักอย่าง 63', '', 'อาจารย์ธีรศานต์ ไหลหลั่ง', 2562, 'เทคโนโลยีการพิมพ์ดิจิทัลและบรรจุภัณฑ์', 2, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 98 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+98, 'อภิสิทธิ์ เวชชาชีวะ', 'ทักษิณ ชินวัตร', '', '', '', '', 'โครงการอะไรซักอย่าง 64', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2562, 'เทคโนโลยีการพิมพ์ดิจิทัลและบรรจุภัณฑ์', 1, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 99 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+99, 'อภิสิทธิ์ เวชชาชีวะ', 'ทักษิณ ชินวัตร', '', '', '', '', 'โครงการอะไรซักอย่าง 65', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2562, 'เทคโนโลยีการพิมพ์ดิจิทัลและบรรจุภัณฑ์', 1, 0, '', 'lel.pdf', ''
+);
+
+/* INSERT QUERY NO: 100 */
+INSERT INTO mctarchive(id, std1, std2, std3, std4, std5, std6, thainame, engname, teacher, sec, branch, type_doc, website, video, pdf, audio)
+VALUES
+(
+100, 'อภิสิทธิ์ เวชชาชีวะ', 'ทักษิณ ชินวัตร', '', '', '', '', 'โครงการอะไรซักอย่าง 66', '', 'อาจารย์ชิรพงษ์ ญานุชิตร', 2562, 'เทคโนโลยีการพิมพ์ดิจิทัลและบรรจุภัณฑ์', 1, 0, '', 'lel.pdf', ''
+);
