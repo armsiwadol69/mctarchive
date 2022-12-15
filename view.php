@@ -19,14 +19,18 @@ if (isset($_GET["preview"]) AND $_GET["preview"] == "1") {
   }else {
     // code...
   }
-  $sql = "SELECT * FROM mctarchive_pre LEFT JOIN teacher ON mctarchive.teacher = teacher.teacher_id LEFT JOIN branch ON mctarchive.branch = branch.branch_id 
-  LEFT JOIN login ON mctarchive.add_by = login.user_id WHERE system_id = '$id'";
-}else {
-  $sql = "SELECT * FROM mctarchive
+  $sql = "SELECT * FROM mctarchive_pre
   LEFT JOIN teacher AS mT
   ON mctarchive.teacher = mT.teacher_id
   LEFT JOIN teacher AS COT
   ON mctarchive.co_teacher = COT.teacher_id
+  LEFT JOIN branch ON mctarchive.branch = branch.branch_id
+  LEFT JOIN login ON mctarchive.add_by = login.user_id
+  WHERE system_id = '$id'";
+}else {
+  $sql = "SELECT * FROM mctarchive
+  LEFT JOIN teacher AS mT
+  ON mctarchive.teacher = mT.teacher_id
   LEFT JOIN branch ON mctarchive.branch = branch.branch_id
   LEFT JOIN login ON mctarchive.add_by = login.user_id
   WHERE system_id = '$id'";
