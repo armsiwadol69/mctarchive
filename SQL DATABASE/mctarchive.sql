@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Dec 23, 2021 at 06:03 AM
--- Server version: 10.5.12-MariaDB-cll-lve
--- PHP Version: 7.2.34
+-- Host: 127.0.0.1
+-- Generation Time: Dec 15, 2022 at 12:49 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `u584979650_mctarchive`
+-- Database: `mctarchive`
 --
 
 -- --------------------------------------------------------
@@ -29,15 +28,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `branch` (
-  `no` int(3) NOT NULL,
-  `branch` varchar(100) NOT NULL
+  `branch_id` int(10) NOT NULL,
+  `branchName` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `branch`
 --
 
-INSERT INTO `branch` (`no`, `branch`) VALUES
+INSERT INTO `branch` (`branch_id`, `branchName`) VALUES
 (1, 'เทคโนโลยีการถ่ายภาพและภาพยนตร์'),
 (2, 'เทคโนโลยีการโทรทัศน์และวิทยุกระจายเสียง'),
 (3, 'เทคโนโลยีสื่อดิจิทัล'),
@@ -52,6 +51,7 @@ INSERT INTO `branch` (`no`, `branch`) VALUES
 --
 
 CREATE TABLE `login` (
+  `user_id` int(10) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `level` varchar(10) NOT NULL,
@@ -62,12 +62,13 @@ CREATE TABLE `login` (
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`username`, `password`, `level`, `name`) VALUES
-('admin', 'admin', 'ADMIN', 'แอดมิน'),
-('armsiwadol69', 'armsiwadol69', 'USER', 'armsiwadol69'),
-('meenthaisub123', 'meenthaisub123', 'ADMIN', 'มีม'),
-('pure3000thb', 'pure3000thb', 'ADMIN', 'เพียว'),
-('yaimakmak', 'yaimakmak', 'USER', 'Prayut Chan-o-cha');
+INSERT INTO `login` (`user_id`, `username`, `password`, `level`, `name`) VALUES
+(1, 'meenthaisub123', 'meenthaisub123', 'ADMIN', 'มีม'),
+(2, 'nut1', 'MQ==', 'ADMIN', 'หำน้อย'),
+(3, 'pure3000thb', 'pure3000thb', 'ADMIN', 'เพียว'),
+(4, 'yaimakmak', 'yaimakmak', 'USER', 'Prayut Chan-o-cha'),
+(6969, 'armsiwadol69', 'armsiwadol69', 'USER', 'armsiwadol69'),
+(42069, 'admin', 'YWRtaW4=', 'ADMIN', 'แอดมิน');
 
 -- --------------------------------------------------------
 
@@ -76,18 +77,20 @@ INSERT INTO `login` (`username`, `password`, `level`, `name`) VALUES
 --
 
 CREATE TABLE `mctarchive` (
+  `system_id` int(10) NOT NULL COMMENT 'system ref ID of thesis',
   `id` varchar(10) NOT NULL,
   `std1` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `std2` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `std3` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  `std4` varchar(100) NOT NULL,
-  `std5` varchar(100) NOT NULL,
-  `std6` varchar(100) NOT NULL,
+  `std4` varchar(100) DEFAULT NULL,
+  `std5` varchar(100) DEFAULT NULL,
+  `std6` varchar(100) DEFAULT NULL,
   `thainame` varchar(300) CHARACTER SET utf8 DEFAULT NULL,
   `engname` varchar(300) CHARACTER SET utf8 DEFAULT NULL,
-  `teacher` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `teacher` int(10) DEFAULT NULL,
+  `co_teacher` int(10) DEFAULT NULL,
   `sec` varchar(4) CHARACTER SET utf8 DEFAULT NULL,
-  `branch` varchar(100) NOT NULL,
+  `branch` int(10) DEFAULT NULL,
   `type_doc` varchar(100) NOT NULL,
   `website` int(1) DEFAULT 0,
   `video` varchar(200) DEFAULT NULL,
@@ -95,50 +98,9 @@ CREATE TABLE `mctarchive` (
   `audio` varchar(200) DEFAULT NULL,
   `yt_link` varchar(100) DEFAULT NULL,
   `site_url` varchar(100) DEFAULT NULL,
-  `add_by` varchar(100) DEFAULT 'ADMIN',
+  `add_by` int(10) DEFAULT NULL,
   `add_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `mctarchive`
---
-
-INSERT INTO `mctarchive` (`id`, `std1`, `std2`, `std3`, `std4`, `std5`, `std6`, `thainame`, `engname`, `teacher`, `sec`, `branch`, `type_doc`, `website`, `video`, `pdf`, `audio`, `yt_link`, `site_url`, `add_by`, `add_date`) VALUES
-('CHIN69', 'ไม่บอก', '', '', '', '', '', 'วิธีการทำให้ชินฉลาด', 'How to make CHIN hab more INT', 'งานวิจัยอาจารย์', '2564', 'เทคโนโลยีสื่อดิจิทัล', '2', 0, '', 'CHIN69_1667953211.pdf', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://youtu.be/dQw4w9WgXcQ', 'แอดมิน', '2021-06-20 14:16:59'),
-('D58001', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 1', 'Sample 1', 'ผู้ช่วยศาสตราจารย์วรรณชนก สุนทร', '2558', 'เทคโนโลยีสื่อดิจิทัล', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('D58002', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 2', 'Sample 2', 'ผู้ช่วยศาสตราจารย์วรรณชนก สุนทร', '2558', 'เทคโนโลยีสื่อดิจิทัล', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('D58003', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 3', 'Sample 3', 'ผศ.ดร.กัญญาณัฐ เปลวเฟื่อง', '2558', 'เทคโนโลยีสื่อดิจิทัล', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('D58004', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 4', 'Sample 4', 'ผศ.ดร.กัญญาณัฐ เปลวเฟื่อง', '2558', 'เทคโนโลยีสื่อดิจิทัล', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('D58005', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 5', 'Sample 5', 'อาจารย์ชิรพงษ์ ญานุชิตร', '2558', 'เทคโนโลยีสื่อดิจิทัล', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('D58006', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 6', 'Sample 6', 'อาจารย์ชิรพงษ์ ญานุชิตร', '2558', 'เทคโนโลยีสื่อดิจิทัล', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('D58007', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 7', 'Sample 7', 'อาจารย์ธีรศานต์ ไหลหลั่ง', '2558', 'เทคโนโลยีสื่อดิจิทัล', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('D58008', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 8', 'Sample 8', 'อาจารย์ธีรศานต์ ไหลหลั่ง', '2558', 'เทคโนโลยีสื่อดิจิทัล', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('D58009', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 9', 'Sample 9', 'อาจารย์ธีรศานต์ ไหลหลั่ง', '2558', 'เทคโนโลยีสื่อดิจิทัล', '2', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('D58010', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 10', 'Sample 10', 'อาจารย์ธีรศานต์ ไหลหลั่ง', '2558', 'เทคโนโลยีสื่อดิจิทัล', '2', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('D69001', 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'เขียนโปรแกรมพัฒนา Web Application เพื่อแสดงผลงานหัวข้อโปรเจครุ่น DM68-60 ทั้งส่วนของ Back-End, Front-End Web Application', 'Develop Web Application Back-End&Front-End to Archive DM\'s Projects', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', '2564', 'เทคโนโลยีสื่อดิจิทัล', '1', 0, 'D69001_1046614147.mp4', 'D69001_1543794355.pdf', 'D69001_1046614147.mp3', 'https://www.youtube.com/embed/NxELvV-V24k', 'http://dmarchive.yongsue.com/', 'แอดมิน', '2021-06-18 17:25:27'),
-('D69002', 'ศิวดล มะลิซ้อน', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', 'วิธีการหุงข้าวให้กินได้', 'She don\'t love you btw.', 'งานวิจัยอาจารย์', '2560', 'เทคโนโลยีมัลติมีเดีย', '2', 0, '', 'D69002_1361704207.pdf', '', 'https://www.youtube.com/embed/bNagYg_YGbU', 'http://dmarchive.yongsue.com/', 'แอดมิน', '2021-06-18 21:05:53'),
-('M10520', 'น้ำ 5 บาท ', 'น้ำ 5 บาท ', 'น้ำ 5 บาท ', 'น้ำ 5 บาท ', 'น้ำ 5 บาท ', 'น้ำ 5 บาท ', 'เผาลงสู่พื้น', 'Brun me to the ground', 'อาจารย์ชิรพงษ์ ญานุชิตร', '2564', 'เทคโนโลยีการถ่ายภาพและภาพยนตร์', '1', NULL, 'M10520_1698618038.mp4', 'M10520_1698618038.pdf', 'M10520_1698618038.mp3', 'https://www.youtube.com/embed/Wx08V5jPEwg', 'https://www.youtube.com/watch?v=Wx08V5jPEwg', 'จอนห์', '2021-06-16 20:37:26'),
-('M6401', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 11', 'Sample 11', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6402', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 12', 'Sample 12', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6403', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 13', 'Sample 13', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6404', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 14', 'Sample 14', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6405', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 15', 'Sample 15', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6406', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 16', 'Sample 16', 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6407', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 17', 'Sample 17', 'ดร.จิรัฐ มัธยมนันทน์', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6408', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 18', 'Sample 18', 'ดร.จิรัฐ มัธยมนันทน์', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6409', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 19', 'Sample 19', 'ดร.จิรัฐ มัธยมนันทน์', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6410', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 20', 'Sample 20', 'ดร.จิรัฐ มัธยมนันทน์', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6411', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 21', 'Sample 21', 'ดร.จิรัฐ มัธยมนันทน์', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6412', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 22', 'Sample 22', 'อาจารย์ศักดา ส่งเจริญ', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6413', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 23', 'Sample 23', 'อาจารย์ศักดา ส่งเจริญ', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6414', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 24', 'Sample 24', 'อาจารย์ศักดา ส่งเจริญ', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6415', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 25', 'Sample 25', 'อาจารย์ศักดา ส่งเจริญ', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6416', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 26', 'Sample 26', 'อาจารย์ศักดา ส่งเจริญ', '2564', 'เทคโนโลยีมัลติมีเดีย', '1', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6417', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 27', 'Sample 27', 'ไม่มี', '2564', 'เทคโนโลยีมัลติมีเดีย', '2', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6418', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 28', 'Sample 28', 'ไม่มี', '2564', 'เทคโนโลยีมัลติมีเดีย', '2', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('M6419', 'นักศึกษา 1', 'นักศึกษา 2', 'นักศึกษา 3', 'นักศึกษา 4', 'นักศึกษา 5', 'นักศึกษา 6', 'ตัวอย่าง 29', 'Sample 29', 'ไม่มี', '2564', 'เทคโนโลยีมัลติมีเดีย', '2', 0, '', '', '', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'ตัวอย่าง', '2021-06-17 19:30:01'),
-('P58002', 'นางสาวณิชาภัทร พรหมศร', 'นางสาวปุณยนุช ตันติเดชามงคล', '', '', '', '', 'วิธีการนอนให้ครบ 8 ชั่วโมง', 'She don\'t care about u.', 'อาจารย์ธีรศานต์ ไหลหลั่ง', '2558', 'เทคโนโลยีการถ่ายภาพและภาพยนตร์', '1', NULL, '', 'P58002_508906420.pdf', '', '', '', 'แอดมิน', '2021-06-18 15:51:56'),
-('TV69', 'ศิวดล มะลิซ้อน', '', '', '', '', '', 'การทอดไก่ให้อร่อย', 'How to make she love U', 'ผู้ช่วยศาสตราจารย์วรรณชนก สุนทร', '2558', 'เทคโนโลยีการโฆษณาและประชาสัมพันธ์', '1', NULL, '', 'TV69_1238413572.pdf', '', 'https://www.youtube.com/embed/ZjNUJUgyoOw', 'http://dmarchive.yongsue.com/', 'จอนห์', '2021-06-18 12:31:59');
 
 -- --------------------------------------------------------
 
@@ -202,25 +164,25 @@ INSERT INTO `setting` (`var`, `setting`) VALUES
 --
 
 CREATE TABLE `teacher` (
-  `no` int(3) NOT NULL,
-  `name` varchar(100) NOT NULL,
+  `teacher_id` int(10) NOT NULL,
+  `teacherName` varchar(100) NOT NULL,
   `date` date NOT NULL DEFAULT current_timestamp(),
-  `branch` varchar(100) NOT NULL
+  `branch` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `teacher`
 --
 
-INSERT INTO `teacher` (`no`, `name`, `date`, `branch`) VALUES
-(1, 'ดร.จิรัฐ มัธยมนันทน์', '2021-04-21', 'วิชาเทคโนโลยีสื่อดิจิทัล'),
-(2, 'ผศ.ดร.กัญญาณัฐ เปลวเฟื่อง', '2021-04-21', 'วิชาเทคโนโลยีสื่อดิจิทัล'),
-(3, 'ผู้ช่วยศาสตราจารย์วรรณชนก สุนทร', '2021-04-21', 'วิชาเทคโนโลยีสื่อดิจิทัล'),
-(4, 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', '2021-04-21', 'วิชาเทคโนโลยีสื่อดิจิทัล'),
-(5, 'อาจารย์ชิรพงษ์ ญานุชิตร', '2021-04-21', 'วิชาเทคโนโลยีสื่อดิจิทัล'),
-(6, 'อาจารย์ธีรศานต์ ไหลหลั่ง', '2021-04-21', 'วิชาเทคโนโลยีสื่อดิจิทัล'),
-(7, 'อาจารย์ศักดา ส่งเจริญ', '2021-04-23', 'วิชาเทคโนโลยีสื่อดิจิทัล'),
-(13, 'งานวิจัยอาจารย์', '2021-06-16', '');
+INSERT INTO `teacher` (`teacher_id`, `teacherName`, `date`, `branch`) VALUES
+(1, 'ดร.จิรัฐ มัธยมนันทน์', '2021-04-21', 3),
+(2, 'ผศ.ดร.กัญญาณัฐ เปลวเฟื่อง', '2021-04-21', 3),
+(3, 'ผู้ช่วยศาสตราจารย์วรรณชนก สุนทร', '2021-04-21', 3),
+(4, 'ผู้ช่วยศาสตราจารย์สุพรรณิการ์ ย่องซื่อ', '2021-04-21', 3),
+(5, 'อาจารย์ชิรพงษ์ ญานุชิตร', '2021-04-21', 3),
+(6, 'อาจารย์ธีรศานต์ ไหลหลั่ง', '2021-04-21', 3),
+(7, 'อาจารย์ศักดา ส่งเจริญ', '2021-04-23', 3),
+(13, 'งานวิจัยอาจารย์', '2021-06-16', NULL);
 
 -- --------------------------------------------------------
 
@@ -244,7 +206,9 @@ INSERT INTO `year` (`year`, `date`) VALUES
 ('2561', '2021-04-23 01:08:03'),
 ('2562', '2021-04-23 01:08:05'),
 ('2563', '2021-04-22 18:51:12'),
-('2564', '2021-04-26 11:10:42');
+('2564', '2021-04-26 11:10:42'),
+('2565', '2022-12-15 14:03:58'),
+('2566', '2022-12-15 14:04:32');
 
 --
 -- Indexes for dumped tables
@@ -254,19 +218,23 @@ INSERT INTO `year` (`year`, `date`) VALUES
 -- Indexes for table `branch`
 --
 ALTER TABLE `branch`
-  ADD PRIMARY KEY (`no`);
+  ADD PRIMARY KEY (`branch_id`);
 
 --
 -- Indexes for table `login`
 --
 ALTER TABLE `login`
-  ADD PRIMARY KEY (`username`);
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- Indexes for table `mctarchive`
 --
 ALTER TABLE `mctarchive`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`system_id`),
+  ADD KEY `branch` (`branch`),
+  ADD KEY `main_teacher` (`teacher`),
+  ADD KEY `co_teacher` (`co_teacher`),
+  ADD KEY `c_user` (`add_by`);
 
 --
 -- Indexes for table `mctarchive_pre`
@@ -284,7 +252,8 @@ ALTER TABLE `setting`
 -- Indexes for table `teacher`
 --
 ALTER TABLE `teacher`
-  ADD PRIMARY KEY (`no`);
+  ADD PRIMARY KEY (`teacher_id`),
+  ADD KEY `branch_idT` (`branch`);
 
 --
 -- Indexes for table `year`
@@ -300,13 +269,32 @@ ALTER TABLE `year`
 -- AUTO_INCREMENT for table `branch`
 --
 ALTER TABLE `branch`
-  MODIFY `no` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `branch_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `no` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `teacher_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `mctarchive`
+--
+ALTER TABLE `mctarchive`
+  ADD CONSTRAINT `branch` FOREIGN KEY (`branch`) REFERENCES `branch` (`branch_id`),
+  ADD CONSTRAINT `c_user` FOREIGN KEY (`add_by`) REFERENCES `login` (`user_id`),
+  ADD CONSTRAINT `co_teacher` FOREIGN KEY (`co_teacher`) REFERENCES `teacher` (`teacher_id`),
+  ADD CONSTRAINT `main_teacher` FOREIGN KEY (`teacher`) REFERENCES `teacher` (`teacher_id`);
+
+--
+-- Constraints for table `teacher`
+--
+ALTER TABLE `teacher`
+  ADD CONSTRAINT `branch_idT` FOREIGN KEY (`branch`) REFERENCES `branch` (`branch_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
