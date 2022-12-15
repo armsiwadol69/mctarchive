@@ -1,11 +1,11 @@
 <?php
 $sql_allyear = "SELECT * FROM year ORDER BY year ";
 $sql_allyearshow = mysqli_query($conn, $sql_allyear);
-$sql_teacher = "SELECT * FROM teacher ORDER BY name ASC";
+$sql_teacher = "SELECT * FROM teacher LEFT JOIN branch ON teacher.branch = branch.branch_id ORDER BY teacher_id ASC";
 $result_teacher = mysqli_query($conn, $sql_teacher);
-$sql_username = "SELECT * FROM login ORDER BY username ASC";
+$sql_username = "SELECT * FROM login ORDER BY user_id ASC";
 $result_username = mysqli_query($conn, $sql_username);
-$sql_branch = "SELECT * FROM branch ORDER BY no ASC";
+$sql_branch = "SELECT * FROM branch ORDER BY branch_id ASC";
 $result_branch = mysqli_query($conn, $sql_branch);
 
 $sql_setting = "SELECT setting FROM setting WHERE var = 'free2uplaod'";
@@ -109,9 +109,9 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
             if ($name_username["level"] == "ADMIN") {
               echo '<td class="text-primary">ผู้ดูแลระบบ</td>';
             }else {
-              echo '<td class="text-secondary">ผู้ใช้งานทั่วไป</td>';
+              echo '<td class="text-secondary">ผู้เพิ่มข้อมูล</td>';
             }
-            echo "<td>" . '<a type="button" class="btn btn-danger" href="del_ty.php?username='.$name_username["username"].'"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+            echo "<td>" . '<a type="button" class="btn btn-danger" href="del_ty.php?username='.$name_username["user_id"].'"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
         }; ?>
       </table>
       </div>
@@ -134,7 +134,7 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
               <label for="name">ระดับ<span class="text-danger">*</span></label>
               <select type="text" class="form-control form-control form-select" name="level" value="" required>
               <option value="ADMIN">ผู้ดูแลระบบ</option>
-              <option value="USER">ผู้ใช้งานทั่วไป</option>
+              <option value="USER">ผู้เพิ่มข้อมูล</option>
               </select>
             </div>
           </div>
@@ -166,9 +166,9 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
           <?php
           $result_teacher2 = mysqli_query($conn, $sql_teacher);
           while($name_teacher2 = mysqli_fetch_array($result_teacher2)) {
-            echo '<tr><td>'.$name_teacher2["name"].'</td>';
-            echo '<td>'.$name_teacher2["branch"].'</td>';
-            echo "<td>" . '<a type="button" class="btn btn-danger" href="del_ty.php?teacher='.$name_teacher2["name"].'"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+            echo '<tr><td>'.$name_teacher2["teacherName"].'</td>';
+            echo '<td>'.$name_teacher2["branchName"].'</td>';
+            echo "<td>" . '<a type="button" class="btn btn-danger" href="del_ty.php?teacher='.$name_teacher2["teacher_id"].'"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
         }; ?>
       </table>
       </div>
@@ -184,10 +184,10 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
               <select type="text" class="form-control form-select" name="branch" value="" required>
               <option value="">เลือก..</option>
               <?php
-              $sql_allbranch = "SELECT * FROM branch ORDER BY no ASC";
+              $sql_allbranch = "SELECT * FROM branch ORDER BY branch_id ASC";
               $result_allbranch = mysqli_query($conn, $sql_allbranch);
               while($row5_branch = mysqli_fetch_array($result_allbranch)) {
-              echo '<option>'.$row5_branch["branch"].'</option>';
+              echo '<option value="'.$row5_branch["branch_id"].'">'.$row5_branch["branchName"].'</option>';
               };
                      ?>
             </select>
@@ -221,8 +221,8 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
           <?php
           $result_branch = mysqli_query($conn, $sql_branch);
           while($name_branch = mysqli_fetch_array($result_branch)) {
-            echo '<tr><td>'.$name_branch["branch"].'</td>';
-            echo "<td>" . '<a type="button" class="btn btn-danger" href="del_ty.php?branch='.$name_branch["branch"].'"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+            echo '<tr><td>'.$name_branch["branchName"].'</td>';
+            echo "<td>" . '<a type="button" class="btn btn-danger" href="del_ty.php?branch='.$name_branch["branch_id"].'"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
         }; ?>
       </table>
       </div>

@@ -1,8 +1,10 @@
 <?php
 session_start();
-if (isset($_SESSION["level"]) == 0 AND $_SESSION["level"] !== "ADMIN" OR $_SESSION["level"] !== "USER") {
-  Header("Location: index.php?login=notlogin");
-  exit(0);
+if (isset($_SESSION["level"]) == 0) {
+  if ($_SESSION["level"] !== "ADMIN" OR $_SESSION["level"] !== "USER") {
+    Header("Location: index.php?login=notlogin");
+    exit(0);
+  }
 }
 
 //////////////////////////////////////////////
@@ -30,7 +32,7 @@ if (isset($_GET["year"]) OR empty($_GET["year"]) == 0) {
   }
 }elseif (isset($_GET["teacher"]) OR empty($_GET["teacher"]) == 0) {
   $teacher = mysqli_real_escape_string($conn,$_GET["teacher"]);
-  $sql = "DELETE FROM teacher WHERE name = '$teacher'";
+  $sql = "DELETE FROM teacher WHERE teacher_id = '$teacher'";
   $query = mysqli_query($conn,$sql);
   if ($query == 1 AND empty($_GET["teacher"]) == 0) {
     Header("Location: dashboard.php?del_teacher=1");
@@ -39,7 +41,7 @@ if (isset($_GET["year"]) OR empty($_GET["year"]) == 0) {
   }
 }elseif (isset($_GET["username"]) OR empty($_GET["username"]) == 0) {
   $username = mysqli_real_escape_string($conn,$_GET["username"]);
-  $sql = "DELETE FROM login WHERE username = '$username'";
+  $sql = "DELETE FROM login WHERE user_id = '$username'";
   $query = mysqli_query($conn,$sql);
   if ($query == 1 AND empty($_GET["username"]) == 0) {
     Header("Location: dashboard.php?del_admin=1");
@@ -48,7 +50,7 @@ if (isset($_GET["year"]) OR empty($_GET["year"]) == 0) {
   }
 }elseif (isset($_GET["branch"]) OR empty($_GET["branch"]) == 0) {
   $branch = mysqli_real_escape_string($conn,$_GET["branch"]);
-  $sql = "DELETE FROM branch WHERE branch = '$branch'";
+  $sql = "DELETE FROM branch WHERE branch_id = '$branch'";
   $query = mysqli_query($conn,$sql);
   if ($query == 1 AND empty($_GET["branch"]) == 0) {
     Header("Location: dashboard.php?del_branch=1");
