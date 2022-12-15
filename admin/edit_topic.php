@@ -27,9 +27,9 @@ include '../conn.php';
 $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
 
 if (isset($_GET["preview"])) {
-  $sql = "SELECT * FROM mctarchive_pre WHERE id = '$id'";
+  $sql = "SELECT * FROM mctarchive_pre WHERE system_id = '$id'";
 }else {
-  $sql = "SELECT * FROM mctarchive WHERE id = '$id'";
+  $sql = "SELECT * FROM mctarchive WHERE system_id = '$id'";
 }
 
 

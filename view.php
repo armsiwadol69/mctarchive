@@ -18,23 +18,30 @@ if (isset($_GET["preview"]) AND $_GET["preview"] == "1") {
     header('location: admin/index.php?login=notlogin');
   }else {
     // code...
-  }
-  $sql = "SELECT * FROM mctarchive_pre
-  LEFT JOIN teacher AS mT
-  ON mctarchive.teacher = mT.teacher_id
-  LEFT JOIN teacher AS COT
-  ON mctarchive.co_teacher = COT.teacher_id
-  LEFT JOIN branch ON mctarchive.branch = branch.branch_id
-  LEFT JOIN login ON mctarchive.add_by = login.user_id
-  WHERE system_id = '$id'";
-}else {
+    $sql = "SELECT * FROM mctarchive_pre
+    LEFT JOIN teacher AS mT
+    ON mctarchive_pre.teacher = mT.teacher_id
+    LEFT JOIN branch ON mctarchive_pre.branch = branch.branch_id
+    LEFT JOIN login ON mctarchive_pre.add_by = login.user_id
+    WHERE system_id = '$id'";
+   }
+}
+
+if(!isset($_GET["preview"])){
   $sql = "SELECT * FROM mctarchive
   LEFT JOIN teacher AS mT
   ON mctarchive.teacher = mT.teacher_id
   LEFT JOIN branch ON mctarchive.branch = branch.branch_id
   LEFT JOIN login ON mctarchive.add_by = login.user_id
   WHERE system_id = '$id'";
+
 }
+
+
+  
+  
+
+
 
 
 $query = mysqli_query($conn,$sql) or die("error");
@@ -64,6 +71,7 @@ $result = mysqli_fetch_array($query,MYSQLI_ASSOC);
  //echo $id;
  include'navbar.php';
 
+  
  if (empty($result)) {
    if (isset($_GET["preview"]) AND $_GET["preview"] == "1") {
      header("Location: admin/index.php");

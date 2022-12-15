@@ -34,7 +34,7 @@ echo $_POST["teacher"];
 
 
 
-$sql = "INSERT INTO teacher(name,branch)
+$sql = "INSERT INTO teacher(teacherName,branch)
 VALUES('$username','$t_branch')";
 $query = mysqli_query($conn,$sql);
 

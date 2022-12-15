@@ -228,10 +228,10 @@ $total_pages_pre = ceil($row_cnt_page_pre / $no_of_records_per_page_pre);
                 echo "<td>" .$all["branch"] .   "</td> ";
                 echo "<td>" .$all["sec"] .   "</td> ";
                 echo "<td>" .$all["add_by"] .   "</td> ";
-                echo "<td>" . '<a type="button" class="btn btn-info" target="_blank" href="../view.php?preview=1&id='.$all["id"].'"><i class="bi bi-eye"></i></a>' .   "</td> ";
-                echo "<td>" . '<a type="button" class="btn btn-success '.$permission.'" href="change_status.php?preview=1&id='.$all["id"].'#displayed"><i class="bi bi-arrow-left-right"></i>' .   "</td> ";
-                echo "<td>" . '<a type="button" class="btn btn-warning" href="edit_topic.php?preview=1&id='.$all["id"].'"><i class="bi bi-pencil-square"></i></a>' .   "</td> ";
-                echo "<td>" . '<a type="button" class="btn btn-danger" href="del_topic.php?preview=1&idtodel='.$all["id"].'"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+                echo "<td>" . '<a type="button" class="btn btn-info" target="_blank" href="../view.php?preview=1&id='.$all["system_id"].'"><i class="bi bi-eye"></i></a>' .   "</td> ";
+                echo "<td>" . '<a type="button" class="btn btn-success '.$permission.'" href="change_status.php?preview=1&id='.$all["system_id"].'#displayed"><i class="bi bi-arrow-left-right"></i>' .   "</td> ";
+                echo "<td>" . '<a type="button" class="btn btn-warning" href="edit_topic.php?preview=1&id='.$all["system_id"].'"><i class="bi bi-pencil-square"></i></a>' .   "</td> ";
+                echo "<td>" . '<a type="button" class="btn btn-danger" href="del_topic.php?preview=1&idtodel='.$all["system_id"].'"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
                 };
                 ?>
      </table>
