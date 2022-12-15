@@ -26,6 +26,8 @@ if (time() - $_SESSION["timeout"] > 900) {
 
 ////
 include '../conn.php';
+$userID = $_SESSION["user_id"];
+
 $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
 
 /////
@@ -41,9 +43,11 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
 //echo $new_id;
 
 $id = mysqli_real_escape_string($conn,$_POST["id"]);
+
+$system_id = mysqli_real_escape_string($conn,$_POST["system_id"]);
 $numrand = (mt_rand());
 
-$id_path = $id;
+$id_path = mysqli_real_escape_string($conn,$_POST["system_id"]);
 
 $mypath= "../storage/".$id_path.'/';
 $mypathtodel= "../storage/".$id_path;
@@ -83,7 +87,7 @@ if (empty($_FILES["file_video"]['name']) == 1) {
   $file_video = NULL;
 }else {
   $v_type = strrchr($_FILES['file_video']['name'],".");
-  $v_newname = $id.'_'.$numrand.$v_type;
+  $v_newname = $system_id.'_'.$numrand.$v_type;
   $file_video = $v_newname;
   echo "$file_video";
 }
@@ -92,7 +96,7 @@ if (empty($_FILES["audio"]['name']) == 1) {
   $file_audio = NULL;
 }else {
   $a_type = strrchr($_FILES['audio']['name'],".");
-  $a_newname = $id.'_'.$numrand.$a_type;
+  $a_newname = $system_id.'_'.$numrand.$a_type;
   $file_audio = $a_newname;
   echo "$file_audio";
 }
@@ -101,7 +105,7 @@ if (empty($_FILES["file_pdf"]['name']) == 1) {
   $file_pdf = NULL;
 }else {
   $pdf_type = strrchr($_FILES['file_pdf']['name'],".");
-  $pdf_newname = $id.'_'.$numrand.$pdf_type;
+  $pdf_newname = $system_id.'_'.$numrand.$pdf_type;
   $file_pdf = $pdf_newname;
   echo "$file_pdf";
 }
@@ -128,6 +132,7 @@ if ($_POST["type_doc"] == "1") {
 }
 
 ///debug
+echo $_POST["system_id"];
 echo $_POST["thainame"];
 echo $_POST["engname"];
 echo $_POST["std1"];
@@ -136,15 +141,20 @@ echo $_POST["std3"];
 echo $_POST["std4"];
 echo $_POST["std5"];
 echo $_POST["std6"];
+echo "@@@@@@";
 echo $_POST["teacher"];
+echo "@@@@@@";
 echo $_POST["year"];
+echo "@@@@@@";
 echo $_POST["branch"];
+echo "@@@@@@";
 echo $file_video;
 echo $file_audio;
-echo $website;
+//echo $website;
 //exit(0);
-/// make it easy
+// make it easy
 
+$system_id = mysqli_real_escape_string($conn,$_POST["system_id"]);
 $thainame = mysqli_real_escape_string($conn,$_POST["thainame"]);
 $engname = mysqli_real_escape_string($conn,$_POST["engname"]);
 $std1 = mysqli_real_escape_string($conn,$_POST["std1"]);
@@ -154,7 +164,7 @@ $branch = mysqli_real_escape_string($conn,$_POST["branch"]);
 $video = mysqli_real_escape_string($conn,$file_video);
 $pdf = mysqli_real_escape_string($conn,$file_pdf);
 $audio = mysqli_real_escape_string($conn,$file_audio);
-$add_by = mysqli_real_escape_string($conn,$_SESSION["name"]);
+$add_by = mysqli_real_escape_string($conn,$_SESSION["user_id"]);
 $yt_link = mysqli_real_escape_string($conn,$_POST["yt_link"]);
 $site_url = mysqli_real_escape_string($conn,$_POST["site_url"]);
 ///
@@ -176,7 +186,7 @@ if (isset($_FILES['file_pdf']["name"]) == 1) {
 }
 if (isset($_FILES['file_video']["name"]) == 1) {
   move_uploaded_file($_FILES["file_video"]["tmp_name"],$mypath.$v_newname);
-  echo $_FILES['file_pdf']['name'];
+  echo $_FILES['file_video']['name'];
   $vid_upload = 1;
 }
 if (isset($_FILES['audio']["name"]) == 1) {
@@ -186,16 +196,18 @@ if (isset($_FILES['audio']["name"]) == 1) {
 }
 
 if ($_POST["skip_pass"] == "1") {
-  $sql_addtopic = "INSERT INTO mctarchive(id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,sec,branch,video,pdf,audio,type_doc,add_by,yt_link,site_url)
-  VALUES('$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$year','$branch','$video','$pdf','$audio','$type_doc','$add_by','$yt_link','$site_url')";
+  $sql_addtopic = "INSERT INTO mctarchive(system_id,id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,sec,branch,video,pdf,audio,type_doc,add_by,yt_link,site_url)
+  VALUES('$system_id','$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$year','$branch','$video','$pdf','$audio','$type_doc','$add_by','$yt_link','$site_url')";
 }else {
-  $sql_addtopic = "INSERT INTO mctarchive_pre(id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,sec,branch,video,pdf,audio,type_doc,add_by,yt_link,site_url)
-  VALUES('$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$year','$branch','$video','$pdf','$audio','$type_doc','$add_by','$yt_link','$site_url')";
+  $sql_addtopic = "INSERT INTO mctarchive_pre(system_id,id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,sec,branch,video,pdf,audio,type_doc,add_by,yt_link,site_url)
+  VALUES('$system_id','$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$year','$branch','$video','$pdf','$audio','$type_doc','$add_by','$yt_link','$site_url')";
 }
 
+echo  $sql_addtopic;
 
  $query_addtopic = mysqli_query($conn,$sql_addtopic);
  echo $query_addtopic;
+ 
 
 
 if ($query_addtopic == 1 AND $pdf_upload == 1) {

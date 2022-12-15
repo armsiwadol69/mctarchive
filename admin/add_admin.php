@@ -22,7 +22,7 @@ if (time() - $_SESSION["timeout"] > 900) {
 }
 //////////////////////////////////////////////
 $username = mysqli_real_escape_string($conn,$_POST["username"]);
-$password = mysqli_real_escape_string($conn,$_POST["password"]);
+$password = mysqli_real_escape_string($conn,base64_encode($_POST["password"]));
 $name = mysqli_real_escape_string($conn,$_POST["name"]);
 if ($_POST["level"] == "ADMIN") {
   $level = "ADMIN";

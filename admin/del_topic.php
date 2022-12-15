@@ -32,9 +32,9 @@ if (isset($_GET["preview"]) AND $_GET["preview"] == "1") {
   if ($_SESSION["level"] !== "ADMIN" OR $_SESSION["level"] == "USER") {
     header('location: admin/index.php');
   }
-  $sql = "DELETE FROM mctarchive_pre WHERE id = '$id'";
+  $sql = "DELETE FROM mctarchive_pre WHERE system_id = '$id'";
 }else {
-  $sql = "DELETE FROM mctarchive WHERE id = '$id'";
+  $sql = "DELETE FROM mctarchive WHERE system_id = '$id'";
 }
 
 //$sql = "DELETE FROM mctarchive WHERE id = '$id'";

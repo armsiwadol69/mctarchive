@@ -111,7 +111,7 @@ $total_pages_pre = ceil($row_cnt_page_pre / $no_of_records_per_page_pre);
           if($_SESSION["level"] !== "ADMIN"){ $permission = " disabled";}else {
             $permission = "";
           };
-          $sql_all = "SELECT * FROM mctarchive ORDER BY add_date ASC LIMIT $offset, $no_of_records_per_page";
+          $sql_all = "SELECT * FROM mctarchive ORDER BY add_date DESC LIMIT $offset, $no_of_records_per_page";
           $query = mysqli_query($conn,$sql_all);
           $result_all = mysqli_query($conn, $sql_all);
                 while($all = mysqli_fetch_array($result_all)) {
@@ -124,10 +124,10 @@ $total_pages_pre = ceil($row_cnt_page_pre / $no_of_records_per_page_pre);
                   echo "<td>วิจัยอาจารย์</td>";}
                 echo "<td>" .$all["branch"] .   "</td> ";
                 echo "<td>" .$all["sec"] .   "</td> ";
-                echo "<td>" . '<a type="button" class="btn btn-info" target="_blank" href="../view.php?id='.$all["id"].'"><i class="bi bi-eye"></i></a>' .   "</td> ";
-                echo "<td>" . '<a type="button" class="btn btn-success'.$permission.'" href="change_status.php?id='.$all["id"].'#preview"><i class="bi bi-arrow-left-right"></i></a>' .   "</td> ";
-                echo "<td>" . '<a type="button" class="btn btn-warning'.$permission.'" href="edit_topic.php?id='.$all["id"].'"><i class="bi bi-pencil-square"></i></a>' .   "</td> ";
-                echo "<td>" . '<a type="button" class="btn btn-danger'.$permission.'" href="del_topic.php?idtodel='.$all["id"].'"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+                echo "<td>" . '<a type="button" class="btn btn-info" target="_blank" href="../view.php?id='.$all["system_id"].'"><i class="bi bi-eye"></i></a>' .   "</td> ";
+                echo "<td>" . '<a type="button" class="btn btn-success'.$permission.'" href="change_status.php?id='.$all["system_id"].'#preview"><i class="bi bi-arrow-left-right"></i></a>' .   "</td> ";
+                echo "<td>" . '<a type="button" class="btn btn-warning'.$permission.'" href="edit_topic.php?id='.$all["system_id"].'"><i class="bi bi-pencil-square"></i></a>' .   "</td> ";
+                echo "<td>" . '<a type="button" class="btn btn-danger'.$permission.'" href="del_topic.php?idtodel='.$all["system_id"].'"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
                 };
                 ?>
      </table>
