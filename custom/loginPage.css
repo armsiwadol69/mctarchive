@@ -1,0 +1,106 @@
+.noBorder {
+    border-radius: 0% !important;
+    border: none !important;
+    outline: none !important;
+}
+
+.loginLeftImage {
+    /* background-image: url('../img/realTipco.jpg'); */
+    background-color: rgba(0, 0, 0, 0);
+    /* background-repeat: no-repeat;
+    background-size: cover;
+    animation: bgMove 55s linear infinite; */
+}
+
+.loginRightBackground {
+    background: rgba(0,0,0,0.3);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.btn_login {
+    background: rgb(42, 0, 255);
+    background: linear-gradient(90deg, rgba(42, 0, 255, 1) 0%, rgba(0, 255, 238, 1) 100%);
+    background-size: 400% 400%;
+
+    -webkit-animation: xmas_btn_ani 8s ease infinite;
+    -o-animation: xmas_btn_ani 8s ease infinite;
+    animation: xmas_btn_ani 8s ease infinite;
+    transition: 6s;
+}
+
+.btn_login:hover {
+    background: rgb(58, 145, 80);
+    background: linear-gradient(90deg, rgba(58, 145, 80, 1) 0%, rgba(110, 184, 179, 1) 100%);
+    background-size: 400% 400%;
+    -webkit-animation: xmas_btn_ani 6s ease infinite;
+    -o-animation: xmas_btn_ani 6s ease infinite;
+    animation: xmas_btn_ani 6s ease infinite;
+}
+
+.background-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+@keyframes bgMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@-webkit-keyframes xmas_btn_ani {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-o-keyframes xmas_btn_ani {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@keyframes xmas_btn_ani {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}

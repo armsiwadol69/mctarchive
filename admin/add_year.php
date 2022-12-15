@@ -1,8 +1,10 @@
 <?php
 session_start();
-if (isset($_SESSION["level"]) == 0 AND $_SESSION["level"] !== "ADMIN" OR $_SESSION["level"] !== "USER") {
-  Header("Location: index.php?login=notlogin");
-  exit(0);
+if (isset($_SESSION["level"]) == 0) {
+  if ($_SESSION["level"] !== "ADMIN" OR $_SESSION["level"] !== "USER") {
+    Header("Location: index.php?login=notlogin");
+    exit(0);
+  }
 }
 
 

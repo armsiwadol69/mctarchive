@@ -68,7 +68,8 @@
       $total_pages = ceil($row_cnt / $no_of_records_per_page);
 
 
-      $sql_all = "SELECT * FROM mctarchive ORDER BY add_date DESC LIMIT $offset, $no_of_records_per_page ";
+      $sql_all = "SELECT * FROM mctarchive LEFT JOIN teacher AS mainTeacher ON mctarchive.teacher = mainTeacher.teacher_id LEFT JOIN branch ON mctarchive.branch = branch.branch_id
+        ORDER BY add_date DESC LIMIT $offset, $no_of_records_per_page ";
 
       //$sql_all = "SELECT * FROM mctarchive ORDER BY id ASC";
       $query = mysqli_query($conn,$sql_all);
@@ -133,13 +134,22 @@
       </div>
     </div>
     </div>
-<?php include'footer.php'; ?>
+    <?php include 'footer.php'; ?>
    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
     <script type="text/javascript" src="bootstrap5\js\bootstrap.min.js"></script>
     <script type="text/javascript" src="custom\tooltips.js"></script>
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
+    <script type="text/javascript">
+     $(document).ready(function() {
+         if ($.cookie('pop') == null) {
+             $('#show1Visit').modal('show');
+             $.cookie('pop', '1');
+         }
+     });
+    </script>
   </body>
 </html>
 <!-- Developed By SiWDOL M. -->

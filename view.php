@@ -19,9 +19,17 @@ if (isset($_GET["preview"]) AND $_GET["preview"] == "1") {
   }else {
     // code...
   }
-  $sql = "SELECT * FROM mctarchive_pre WHERE id = '$id'";
+  $sql = "SELECT * FROM mctarchive_pre LEFT JOIN teacher ON mctarchive.teacher = teacher.teacher_id LEFT JOIN branch ON mctarchive.branch = branch.branch_id 
+  LEFT JOIN login ON mctarchive.add_by = login.user_id WHERE system_id = '$id'";
 }else {
-  $sql = "SELECT * FROM mctarchive WHERE id = '$id'";
+  $sql = "SELECT * FROM mctarchive
+  LEFT JOIN teacher AS mT
+  ON mctarchive.teacher = mT.teacher_id
+  LEFT JOIN teacher AS COT
+  ON mctarchive.co_teacher = COT.teacher_id
+  LEFT JOIN branch ON mctarchive.branch = branch.branch_id
+  LEFT JOIN login ON mctarchive.add_by = login.user_id
+  WHERE system_id = '$id'";
 }
 
 
@@ -108,7 +116,8 @@ $result = mysqli_fetch_array($query,MYSQLI_ASSOC);
      <hr>
      <?php
      if ($result["type_doc"] == "1") {
-       echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษา :</strong> '.$result["teacher"].'</h4>';
+       echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษา :</strong> '.$result["teacherName"].'</h4>';
+       echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษา :</strong> '.$result["teacherName"].'</h4>';
        echo '<h4 class="card-text"><strong>ประเภท :</strong> ปริญญานิพนธ์นักศึกษา</h4>';
      }else {
        echo '<h4 class="card-text"><strong>ประเภท :</strong> วิจัยอาจารย์</h4>';
@@ -139,7 +148,7 @@ $result = mysqli_fetch_array($query,MYSQLI_ASSOC);
        if (empty($result["video"]) == false) {
          echo "<hr>";
          echo '<h4><i class="bi bi-film"></i> วิดีโอ</h4>';
-         echo '<video class="w-100 view_vid_si" src="storage\\'.$result["id"].'\\'.$result["video"].'"controls muted controlsList="nodownload"> </video>';
+         echo '<video class="w-100 view_vid_si" src="storage\\'.$result["system_id"].'\\'.$result["video"].'"controls muted controlsList="nodownload"> </video>';
        }
        ?>
        <?php
@@ -157,12 +166,12 @@ $result = mysqli_fetch_array($query,MYSQLI_ASSOC);
        if (empty($result["audio"]) == false) {
          echo "<hr>";
          echo '<h4><i class="bi bi-file-music"></i> เสียง</h4>';
-         echo '<audio class="w-100" src="storage\\'.$result["id"].'\\'.$result["audio"].'"controls controlsList="nodownload"> </audio>';
+         echo '<audio class="w-100" src="storage\\'.$result["system_id"].'\\'.$result["audio"].'"controls controlsList="nodownload"> </audio>';
 
          }
         if (empty($result["add_by"] == false)) {
           echo "<hr>";
-          echo '<h7>'.'เพิ่มข้อมูลโดย : '.$result["add_by"].' เมื่อ : '.$result["add_date"].'</h7>';
+          echo '<h7>'.'เพิ่มข้อมูลโดย : '.$result["name"].' เมื่อ : '.$result["add_date"].'</h7>';
        }
        ?>
        </div>

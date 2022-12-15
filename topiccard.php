@@ -29,12 +29,12 @@ while($all = mysqli_fetch_array($result_all)) {
   }
   echo '<hr class="mt-auto">';
   if ($all["type_doc"] == "1") {
-    echo '<p class="card-text">อาจารย์ที่ปรึกษา : '.$all["teacher"].'</p>';
+    echo '<p class="card-text">อาจารย์ที่ปรึกษา : '.$all["teacherName"].'</p>';
     echo '<p class="card-text">ประเภท : ปริญญานิพนธ์นักศึกษา</p>';
   }else {
     echo '<p class="card-text">ประเภท : วิจัยอาจารย์</p>';
   }
-  echo '<p class="card-text">สาขา : '.$all["branch"].'</p>';
+  echo '<p class="card-text">สาขา : '.$all["branchName"].'</p>';
   echo '<p class="card-text">ปีการศึกษา : '.$all["sec"].'</p>';
   echo '<h6 class="card-text">เนื้อหา : ';
   if (empty($all["pdf"] == false)) {
@@ -53,7 +53,7 @@ while($all = mysqli_fetch_array($result_all)) {
     echo ' <i class="bi bi-youtube" data-bs-toggle="tooltip" data-bs-placement="top" title="Youtube"></i>';
   };
   echo '</h6>';
-  echo '<a href="view.php?id='.$all["id"].'" class="btn btn-success mt-1">รายละเอียด</a>';
+  echo '<a href="view.php?id='.$all["system_id"].'" class="btn btn-success mt-1">รายละเอียด</a>';
   echo '</div>';
   echo '</div>';
   echo '</div>';

@@ -34,7 +34,7 @@
         $sql_teacher = "SELECT * FROM teacher ORDER BY branch ASC";
         $result_teacher = mysqli_query($conn, $sql_teacher);
         while($name_teacher = mysqli_fetch_array($result_teacher)) {
-        echo '<li><a class="dropdown-item" href="filter.php?teacher='.$name_teacher["name"].'">'.$name_teacher["name"].'   ('.$name_teacher["branch"].')'.'</a></li>';
+        echo '<li><a class="dropdown-item" href="filter.php?teacher='.$name_teacher["teacher_id"].'">'.$name_teacher["teacherName"].'   ('.$name_teacher["branch"].')'.'</a></li>';
         };
          ?>
        </ul>
@@ -54,10 +54,10 @@
        </a>
        <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown4">
         <?php
-        $sql_branch = "SELECT * FROM branch ORDER BY no ASC";
+        $sql_branch = "SELECT * FROM branch ORDER BY branch_id  ASC";
         $result_branch = mysqli_query($conn, $sql_branch);
         while($name_branch = mysqli_fetch_array($result_branch)) {
-        echo '<li><a class="dropdown-item" href="filter.php?branch='.$name_branch["branch"].'">'.$name_branch["branch"].'</a></li>';
+        echo '<li><a class="dropdown-item" href="filter.php?branch='.$name_branch["branch_id"].'">'.$name_branch["branchName"].'</a></li>';
         };
          ?>
        </ul>
@@ -68,6 +68,8 @@
        </a>
        <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown4">
         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#how2use">วิธีการใช้งาน</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#show1Visit">โปรดทราบ</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="admin\index.php">หน้าผู้ดูแลระบบ</a></li>
        </ul>
@@ -102,3 +104,21 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="show1Visit" tabindex="-1" aria-labelledby="show1Visit" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-xl text-danger">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="show1Visit">Alert!</h5>
+          </div>
+          <div class="modal-body text-center">
+            <h1>This web application is still under development.<br>
+                There may be some errors or problems in use.<br>
+                Please pretend you've never seen it.</h1>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn w-100 btn-primary" data-bs-dismiss="modal">I understand.</button>
+          </div>
+        </div>
+      </div>
+    </div>
