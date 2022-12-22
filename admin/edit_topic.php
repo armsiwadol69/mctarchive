@@ -9,7 +9,7 @@ if (isset($_SESSION["level"]) == 0) {
 }
 
 //////////////////////////////////////////////
-if (time() - $_SESSION["timeout"] > 900) {
+if (time() - $_SESSION["timeout"] > 3600) {
   unset($_SESSION["username"],$_SESSION["level"],$_SESSION["timeout"]);
   session_destroy();
   Header("Location: index.php?login=afk");
@@ -250,6 +250,7 @@ if (empty($result_display)) {
     </div>
      <script type="text/javascript" src="..\bootstrap5\js\bootstrap.min.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+     <script type="text/javascript" src="..\custom\delConf.js"></script>
      <script type="text/javascript" src="..\custom\tooltips.js"></script>
    </body>
  </html>

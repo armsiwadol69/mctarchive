@@ -12,7 +12,7 @@ if (isset($_POST["username"]) == 0 OR empty($_POST["username"]) == 1 OR empty($_
 include '../conn.php';
 $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
 //////////////////////////////////////////////
-if (time() - $_SESSION["timeout"] > 900) {
+if (time() - $_SESSION["timeout"] > 3600) {
   unset($_SESSION["username"],$_SESSION["level"],$_SESSION["timeout"]);
   session_destroy();
   Header("Location: index.php?login=afk");

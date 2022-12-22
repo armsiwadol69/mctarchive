@@ -6,6 +6,7 @@
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="bootstrap5\css\bootstrap.min.css">
     <link rel="stylesheet" href="custom\sicustom.css">
+    <link rel="stylesheet" href="custom\loginPage.css">
     <link rel="stylesheet" href="custom\aos.css">
     <script type="text/javascript" src="custom\aos.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
@@ -68,7 +69,10 @@
       $total_pages = ceil($row_cnt / $no_of_records_per_page);
 
 
-      $sql_all = "SELECT * FROM mctarchive LEFT JOIN teacher AS mainTeacher ON mctarchive.teacher = mainTeacher.teacher_id LEFT JOIN branch ON mctarchive.branch = branch.branch_id
+      $sql_all = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn FROM mctarchive
+      LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
+      LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
+      LEFT JOIN branch ON mctarchive.branch = branch.branch_id
         ORDER BY add_date DESC LIMIT $offset, $no_of_records_per_page ";
 
       //$sql_all = "SELECT * FROM mctarchive ORDER BY id ASC";

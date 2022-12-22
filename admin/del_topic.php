@@ -6,7 +6,7 @@ if (isset($_SESSION["level"]) == 0 AND ($_SESSION["level"] !== "ADMIN" OR $_SESS
 }
 
 //////////////////////////////////////////////
-if (time() - $_SESSION["timeout"] > 900) {
+if (time() - $_SESSION["timeout"] > 3600) {
   unset($_SESSION["username"],$_SESSION["level"],$_SESSION["timeout"]);
   session_destroy();
   Header("Location: index.php?login=afk");
