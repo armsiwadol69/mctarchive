@@ -10,7 +10,7 @@ if (isset($_SESSION["level"]) == 0) {
 }
 
 //////////////////////////////////////////////
-if (time() - $_SESSION["timeout"] > 900) {
+if (time() - $_SESSION["timeout"] > 3600) {
   unset($_SESSION["username"],$_SESSION["level"],$_SESSION["timeout"]);
   session_destroy();
   Header("Location: index.php?login=afk");
@@ -38,8 +38,8 @@ if (isset($_GET["preview"])) {
     $taget_table_del = "mctarchive";
   }
 
-$sql = "INSERT INTO $taget_table SELECT * FROM $taget_table_del WHERE id = '$id'";
-$sql_del = "DELETE FROM $taget_table_del WHERE id = '$id'";
+$sql = "INSERT INTO $taget_table SELECT * FROM $taget_table_del WHERE system_id = '$id'";
+$sql_del = "DELETE FROM $taget_table_del WHERE system_id = '$id'";
 
 $query_cs = mysqli_query($conn,$sql);
 $query_del = mysqli_query($conn,$sql_del);

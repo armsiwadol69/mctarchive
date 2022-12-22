@@ -9,7 +9,7 @@ if (isset($_SESSION["level"]) == 0) {
 }
 
 //////////////////////////////////////////////
-if (time() - $_SESSION["timeout"] > 900) {
+if (time() - $_SESSION["timeout"] > 3600) {
   unset($_SESSION["username"],$_SESSION["level"],$_SESSION["timeout"]);
   session_destroy();
   Header("Location: index.php?login=afk");
@@ -58,6 +58,12 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
 
                 </div>
             </div>
+            <div class="col-12">
+                <div class="alert alert-info w-100 shadow-sm" role="alert">
+                   ข้อแนะนำ : ตรวจสอบชื่อของอาจารย์ที่ปรึกษาก่อนว่ามีในระบบหรือไม่ จึงกรอกข้อมูล หากไม่พบ ให้เพิ่มแล้วรีโหลดหน้าเว็บเพื่อเพิ่มข้อมูล <br>
+                   สามารถค้นหาชื่ออาจารย์ได้ในช่อง "อาจารย์ที่ปรึกษา" เพื่อตรวจสอบได้
+                </div>
+            </div>
         </div>
 
         <?php include 'modal.php'; ?>
@@ -70,16 +76,16 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
 
                         <form method="post" action="upload_topic.php" enctype="multipart/form-data">
                             <div class="row">
-                                <div class="col-3 mt-1">
+                                <div class="col-lg-4 col-sm-4 mt-1">
                                     <label for="text">System ID</label>
                                     <input type="text" class="form-control" name="system_id"
                                         value="<?php echo time();?>" maxlength="10" required readonly>
                                 </div>
-                                <div class="col-9 mt-1">
+                                <div class="col-lg-8 col-sm-8 mt-1">
                                     <label for="text">รหัสประจําเล่ม, รหัสริญญานิพนธ์และงานวิจัย<span
                                             class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="id" placeholder="ID" maxlength="69"
-                                        required>
+                                    <input type="text" class="form-control" name="id"
+                                        placeholder="รหัสประจําเล่มข้างสัน" maxlength="69" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" required>
                                 </div>
                                 <div class="col-12 mt-1">
                                     <label for="text">ชื่อภาษาไทย<span class="text-danger">*</span></label>
@@ -95,7 +101,8 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                             <div class="row">
                                 <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
                                     <label for="text">ผู้วิจัย 1<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="std1" placeholder="" required>
+                                    <input type="text" class="form-control" name="std1" placeholder="(ต้องกรอก)"
+                                        required>
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
                                     <label for="text">ผู้วิจัย 2</label>
@@ -119,21 +126,25 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12 mt-1">
-                                    <label for="text">Youtube URL</span></label>
-                                    <input type="text" class="form-control" name="yt_link"
-                                        placeholder="https://www.youtube.com/embed/VideoID">
-                                </div>
-                                <div class="col-12 mt-1">
-                                    <label for="text">Website URL</span></label>
-                                    <input type="text" class="form-control" name="site_url" placeholder="Website URL">
-                                </div>
                                 <div class="col-lg-4 col-md-4 col-sm-8 mt-1">
                                     <label for="text">อาจารย์ที่ปรึกษา<span class="text-danger">*</span></label>
                                     <select name="teacher" id="teacher_sb" class="form-select" required="true">
                                         <option value="0">เลือก...</option>
                                         <?php
-      $sql_allid = "SELECT * FROM teacher ORDER BY teacher_id  ASC";
+      $sql_allid = "SELECT * FROM teacher WHERE teacher_id != 0 ORDER BY teacher_id ASC";
+      $result_allid = mysqli_query($conn, $sql_allid);
+      while($row2 = mysqli_fetch_array($result_allid)) {
+      echo '<option value="'.$row2["teacher_id"].'">'.$row2["teacherName"].'      (ID: '.$row2["teacher_id"].')'.'</option>';
+      };
+             ?>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-8 mt-1">
+                                    <label for="text">อาจารย์ที่ปรึกษาร่วม</span></label>
+                                    <select name="co_teacher" id="teacher_sb2" class="form-select">
+                                        <option value="0">ไม่มี</option>
+                                        <?php
+      $sql_allid = "SELECT * FROM teacher WHERE teacher_id != 0 ORDER BY teacher_id ASC";
       $result_allid = mysqli_query($conn, $sql_allid);
       while($row2 = mysqli_fetch_array($result_allid)) {
       echo '<option value="'.$row2["teacher_id"].'">'.$row2["teacherName"].'      ('.$row2["teacher_id"].')'.'</option>';
@@ -168,18 +179,27 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
              ?>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                    <label class="form-label" for="customFile">เอกสาร .pdf<span
+                                    <label class="text" for="customFile">เอกสาร .pdf<span
                                             class="text-danger">*</span></label>
                                     <input type="file" class="form-control" name="file_pdf" id="file_pdf"
                                         accept="application/pdf" required="true" />
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                    <label class="form-label" for="customFile">วีดีโอผลงาน </label>
+                                    <label class="text" for="customFile">วีดีโอผลงาน</label>
                                     <input type="file" class="form-control" name="file_video" id="file_video"
                                         accept=".mp4" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 mt-1">
+                                    <label for="text">Youtube Video</span></label>
+                                    <input type="text" class="form-control" name="yt_link"
+                                        placeholder="https://www.youtube.com/embed/VideoID">
+                                </div>
+                                <div class="col-12 mt-1">
+                                    <label for="text">Website URL</span></label>
+                                    <input type="text" class="form-control" name="site_url" placeholder="Website URL">
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
                                     <label class="form-label" for="customFile">ไฟล์เสียง</label>
@@ -204,7 +224,7 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                                     <label for="text">ข้ามการตรวจสอบ</label>
                                     <select name="skip_pass" class="form-control form-select mt-2">
                                         <option value="0">ไม่ข้าม</option>
-                                        <option value="1">ข้าม</option>
+                                        <option value="1" selected>ข้าม (แสดงผลทันที)</option>
                                     </select>
                                 </div>
                             </div>
@@ -252,12 +272,14 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
         integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous">
     </script>
+    <script type="text/javascript" src="..\custom\delConf.js"></script>
     <script type="text/javascript" src="..\custom\tooltips.js"></script>
     <script>
     const config = {
         search: true, // Toggle search feature. Default: false
     }
     dselect(document.querySelector('#teacher_sb'), config)
+    dselect(document.querySelector('#teacher_sb2'), config)
     dselect(document.querySelector('#branch_sb'), config)
     </script>
 </body>

@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (isset($_SESSION["level"]) == 1) {
-  if ($_SESSION["level"] == "ADMIN" OR $_SESSION["level"] == "USER") {
-    Header("Location: dashboard.php");}
-}
+include 'commonf.php';
+
+isLogin();
+
 include '../conn.php';
 ?>
 

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
 <div class="container-fluid">
  <a class="navbar-brand" href="index.php"><img src="favicon.png" class="d-inline-block align-top" width="30" height="30" alt=""> MCT Library</a>
  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
         $sql_teacher = "SELECT * FROM teacher ORDER BY branch ASC";
         $result_teacher = mysqli_query($conn, $sql_teacher);
         while($name_teacher = mysqli_fetch_array($result_teacher)) {
-        echo '<li><a class="dropdown-item" href="filter.php?teacher='.$name_teacher["teacher_id"].'">'.$name_teacher["teacherName"].'   ('.$name_teacher["branch"].')'.'</a></li>';
+        echo '<li><a class="dropdown-item" href="filter.php?teacher='.$name_teacher["teacher_id"].'&tn='.$name_teacher["teacherName"].'">'.$name_teacher["teacherName"].'   ('.$name_teacher["branch"].')'.'</a></li>';
         };
          ?>
        </ul>
@@ -57,7 +57,7 @@
         $sql_branch = "SELECT * FROM branch ORDER BY branch_id  ASC";
         $result_branch = mysqli_query($conn, $sql_branch);
         while($name_branch = mysqli_fetch_array($result_branch)) {
-        echo '<li><a class="dropdown-item" href="filter.php?branch='.$name_branch["branch_id"].'">'.$name_branch["branchName"].'</a></li>';
+        echo '<li><a class="dropdown-item" href="filter.php?branch='.$name_branch["branch_id"].'&bn='.$name_branch["branchName"].'">'.$name_branch["branchName"].'</a></li>';
         };
          ?>
        </ul>
@@ -106,15 +106,22 @@
 </div>
 
 <div class="modal fade" id="show1Visit" tabindex="-1" aria-labelledby="show1Visit" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-xl text-danger">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="show1Visit">Alert!</h5>
+            <h5 class="modal-title text-danger" id="show1Visit">Alert!</h5>
           </div>
-          <div class="modal-body text-center">
-            <h1>This web application is still under development.<br>
+          <div class="modal-body">
+            <p class="text-danger">This web application is still under development.<br>
                 There may be some errors or problems in use.<br>
-                Please pretend you've never seen it.</h1>
+                Please pretend you've never seen it.
+            <p>
+            <hr>
+            <h5>Changelog</h5>
+            <p><span class="fw-bold">2.1.0β</span>: Fixed filter can not use. Fixed search can not use. More Shadow. New Data Table in Dashboard. Fixed DataTable Display only 20. Fixed sql error in information display.</p>
+            <p>2.0.2β : Support Associate advisor select add new thesis. Fixed some bugs.</p>
+            <p>2.0.1β : New Table Structure. Fixed some bugs.</p>
+            <p>2.0.0β : Support for faculty level use. New Login Page.</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn w-100 btn-primary" data-bs-dismiss="modal">I understand.</button>

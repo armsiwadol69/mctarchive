@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12 w-100">
-    <div class="card full-page shadow-sm">
+    <div class="card full-page shadow">
 <div class="card-body">
 <div class="row d-flex">
  <div class="col-lg-10 col-md-8 col-sm-12 my-2">
@@ -23,10 +23,10 @@
 ?>
 <li><a class="dropdown-item disabled">สาขา</a></li>
  <?php
- $sql_branch = "SELECT * FROM branch ORDER BY no ASC";
+ $sql_branch = "SELECT * FROM branch ORDER BY branch_id ASC";
  $result_branch = mysqli_query($conn, $sql_branch);
  while($name_branch = mysqli_fetch_array($result_branch)) {
- echo '<li><a class="dropdown-item" href="filter.php?branch='.$name_branch["branch"].'">'.$name_branch["branch"].'</a></li>';
+ echo '<li><a class="dropdown-item" href="filter.php?branch='.$name_branch["branch_id"].'&bn='.$name_branch["branchName"].'">'.$name_branch["branchName"].'</a></li>';
  };
   ?>
 <hr>

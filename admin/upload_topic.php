@@ -10,7 +10,7 @@ if (isset($_SESSION["level"]) == 0) {
 }
 
 //////////////////////////////////////////////
-if (time() - $_SESSION["timeout"] > 900) {
+if (time() - $_SESSION["timeout"] > 3600) {
   unset($_SESSION["username"],$_SESSION["level"],$_SESSION["timeout"]);
   session_destroy();
   Header("Location: index.php?login=afk");
@@ -143,6 +143,7 @@ echo $_POST["std5"];
 echo $_POST["std6"];
 echo "@@@@@@";
 echo $_POST["teacher"];
+echo $_POST["co_teacher"];
 echo "@@@@@@";
 echo $_POST["year"];
 echo "@@@@@@";
@@ -159,6 +160,7 @@ $thainame = mysqli_real_escape_string($conn,$_POST["thainame"]);
 $engname = mysqli_real_escape_string($conn,$_POST["engname"]);
 $std1 = mysqli_real_escape_string($conn,$_POST["std1"]);
 $teacher = mysqli_real_escape_string($conn,$_POST["teacher"]);
+$co_teacher = mysqli_real_escape_string($conn,$_POST["co_teacher"]);
 $year = mysqli_real_escape_string($conn,$_POST["year"]);
 $branch = mysqli_real_escape_string($conn,$_POST["branch"]);
 $video = mysqli_real_escape_string($conn,$file_video);
@@ -196,12 +198,13 @@ if (isset($_FILES['audio']["name"]) == 1) {
 }
 
 if ($_POST["skip_pass"] == "1") {
-  $sql_addtopic = "INSERT INTO mctarchive(system_id,id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,sec,branch,video,pdf,audio,type_doc,add_by,yt_link,site_url)
-  VALUES('$system_id','$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$year','$branch','$video','$pdf','$audio','$type_doc','$add_by','$yt_link','$site_url')";
+  $sql_addtopic = "INSERT INTO mctarchive(system_id,id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,co_teacher,sec,branch,video,pdf,audio,type_doc,add_by,yt_link,site_url)
+  VALUES('$system_id','$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$co_teacher','$year','$branch','$video','$pdf','$audio','$type_doc','$add_by','$yt_link','$site_url')";
 }else {
-  $sql_addtopic = "INSERT INTO mctarchive_pre(system_id,id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,sec,branch,video,pdf,audio,type_doc,add_by,yt_link,site_url)
-  VALUES('$system_id','$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$year','$branch','$video','$pdf','$audio','$type_doc','$add_by','$yt_link','$site_url')";
+  $sql_addtopic = "INSERT INTO mctarchive_pre(system_id,id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,co_teacher,sec,branch,video,pdf,audio,type_doc,add_by,yt_link,site_url)
+  VALUES('$system_id','$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$co_teacher','$year','$branch','$video','$pdf','$audio','$type_doc','$add_by','$yt_link','$site_url')";
 }
+
 
 echo  $sql_addtopic;
 

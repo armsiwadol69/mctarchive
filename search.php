@@ -37,6 +37,7 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="bootstrap5\css\bootstrap.min.css">
     <link rel="stylesheet" href="custom\sicustom.css">
+    <link rel="stylesheet" href="custom\loginPage.css">
     <link rel="stylesheet" href="custom\aos.css">
     <script type="text/javascript" src="custom\aos.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
@@ -50,7 +51,7 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
  <?php
  include'navbar.php';
  $search_es = mysqli_real_escape_string($conn,$_POST["search"]);
- $sql_search = "SELECT * FROM mctarchive WHERE id LIKE '%{$search_es}%' OR std1 LIKE '%{$search_es}%' OR std2 LIKE '%{$search_es}%' OR std3 LIKE '%{$search_es}%' OR std4 LIKE '%{$search_es}%' OR std5 LIKE '%{$search_es}%'
+ $sql_search = "SELECT * FROM mctarchive LEFT JOIN teacher AS mainTeacher ON mctarchive.teacher = mainTeacher.teacher_id LEFT JOIN branch ON mctarchive.branch = branch.branch_id WHERE id LIKE '%{$search_es}%' OR std1 LIKE '%{$search_es}%' OR std2 LIKE '%{$search_es}%' OR std3 LIKE '%{$search_es}%' OR std4 LIKE '%{$search_es}%' OR std5 LIKE '%{$search_es}%'
  OR std4 LIKE '%{$search_es}%' OR std5 LIKE '%{$search_es}%' OR std6 LIKE '%{$search_es}%' OR thainame LIKE '%{$search_es}%' OR engname LIKE '%{$search_es}%' OR teacher LIKE '%{$search_es}%' OR sec LIKE '%{$search_es}%' ORDER BY id ASC";
  $query = mysqli_query($conn,$sql_search);
  $result_all = mysqli_query($conn, $sql_search);

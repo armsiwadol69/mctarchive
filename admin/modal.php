@@ -1,11 +1,11 @@
 <?php
 $sql_allyear = "SELECT * FROM year ORDER BY year ";
 $sql_allyearshow = mysqli_query($conn, $sql_allyear);
-$sql_teacher = "SELECT * FROM teacher LEFT JOIN branch ON teacher.branch = branch.branch_id ORDER BY teacher_id ASC";
+$sql_teacher = "SELECT * FROM teacher LEFT JOIN branch ON teacher.branch = branch.branch_id WHERE teacher_id != 0 ORDER BY teacher_id ASC";
 $result_teacher = mysqli_query($conn, $sql_teacher);
 $sql_username = "SELECT * FROM login ORDER BY user_id ASC";
 $result_username = mysqli_query($conn, $sql_username);
-$sql_branch = "SELECT * FROM branch ORDER BY branch_id ASC";
+$sql_branch = "SELECT * FROM branch WHERE branch_id != 0 ORDER BY branch_id ASC";
 $result_branch = mysqli_query($conn, $sql_branch);
 
 $sql_setting = "SELECT setting FROM setting WHERE var = 'free2uplaod'";
@@ -54,7 +54,7 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="table-responsive">
+          <div class="table-responsive" style="max-height : 50vh;overflow-y: auto;">
           <table class="table text-dark table-hover table-striped mx-auto my-auto w-100 align-middle text-center">
                        <tr>
                        <td>ปีการศึกษาที่มีอยู่</td>
@@ -64,7 +64,7 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
           $sql_allyearshow = mysqli_query($conn, $sql_allyear);
           while($yaer_sec = mysqli_fetch_array($sql_allyearshow)) {
           echo '<tr><td>'.$yaer_sec["year"].'</td>';
-          echo "<td>" . '<a type="button" class="btn btn-danger" href="del_ty.php?year='.$yaer_sec["year"].'"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+          echo "<td>" . '<a type="button" class="btn btn-danger" onclick="delYear('.$yaer_sec["year"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
         }; ?>
       </table>
       </div>
@@ -111,7 +111,7 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
             }else {
               echo '<td class="text-secondary">ผู้เพิ่มข้อมูล</td>';
             }
-            echo "<td>" . '<a type="button" class="btn btn-danger" href="del_ty.php?username='.$name_username["user_id"].'"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+            echo "<td>" . '<a type="button" class="btn btn-danger" onclick="delUser('.$name_username["user_id"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
         }; ?>
       </table>
       </div>
@@ -149,15 +149,15 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
     </div>
 
     <div class="modal fade" id="add_teacher" tabindex="-1" role="dialog" aria-labelledby="changlog" aria-hidden="true" >
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="add_teacher"><i class="bi bi-file-earmark-person"></i> เพิ่ม/ลบ ชื่ออาจารย์ที่ปรึกษา</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="table-responsive">
-          <table class="table text-dark table-hover table-striped mx-auto my-auto w-100 align-middle text-center">
+          <div class="table-responsive" style="max-height : 50vh;overflow-y: auto;">
+          <table class="table text-dark table-hover table-striped mx-auto my-auto align-middle text-center">
                        <tr>
                        <td>ชื่ออาจารย์ที่ปรึกษา</td>
                        <td>สาขา</td>
@@ -168,7 +168,7 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
           while($name_teacher2 = mysqli_fetch_array($result_teacher2)) {
             echo '<tr><td>'.$name_teacher2["teacherName"].'</td>';
             echo '<td>'.$name_teacher2["branchName"].'</td>';
-            echo "<td>" . '<a type="button" class="btn btn-danger" href="del_ty.php?teacher='.$name_teacher2["teacher_id"].'"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+            echo "<td>" . '<a type="button" class="btn btn-danger" onclick="delTeacher('.$name_teacher2["teacher_id"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
         }; ?>
       </table>
       </div>
@@ -222,7 +222,7 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
           $result_branch = mysqli_query($conn, $sql_branch);
           while($name_branch = mysqli_fetch_array($result_branch)) {
             echo '<tr><td>'.$name_branch["branchName"].'</td>';
-            echo "<td>" . '<a type="button" class="btn btn-danger" href="del_ty.php?branch='.$name_branch["branch_id"].'"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+            echo "<td>" . '<a type="button" class="btn btn-danger" onclick="delBranch('.$name_branch["branch_id"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
         }; ?>
       </table>
       </div>
@@ -259,7 +259,7 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
           <div class="modal-body">
        <h6>หากไม่ขึ้น ให้สลับ Tab</h6>
       <object class="rounded" style="height:69vh;" data="..\storage\etc\how2admin.pdf" type="application/pdf" width="100%">
-      <p>อุปกรณ์ของคุณไม่รองรับการดูไฟล์ .pdf <a href="">คลิกที่นี้เพื่อดูหรือดาวน์โหลด!</a></p>
+      <p>อุปกรณ์ของคุณไม่รองรับการดูไฟล์ .pdf <a href="..\storage\etc\how2admin.pdf">คลิกที่นี้เพื่อดูหรือดาวน์โหลด!</a></p>
      </object>
 
           </div>

@@ -97,6 +97,10 @@ body {
     overflow-x: hidden;
 }
 
+table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, table.dataTable tfoot td {
+  text-align: center !important;
+}
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -106,3 +110,4 @@ body {
 	}
 	100% {
 		background-position: 0% 50%;}
+  }

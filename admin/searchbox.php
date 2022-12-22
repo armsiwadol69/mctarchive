@@ -24,10 +24,10 @@
 ?>
 <li><a class="dropdown-item disabled">สาขา</a></li>
  <?php
- $sql_branch = "SELECT * FROM branch ORDER BY no ASC";
+ $sql_branch = "SELECT * FROM branch ORDER BY branch_id ASC";
  $result_branch = mysqli_query($conn, $sql_branch);
  while($name_branch = mysqli_fetch_array($result_branch)) {
- echo '<li><a class="dropdown-item" target="_black" href="../filter.php?branch='.$name_branch["branch"].'">'.$name_branch["branch"].'</a></li>';
+ echo '<li><a class="dropdown-item" target="_black" href="../filter.php?branch='.$name_branch["branchName"].'">'.$name_branch["branchName"].'</a></li>';
  };
   ?>
 <hr>

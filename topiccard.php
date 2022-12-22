@@ -1,7 +1,7 @@
 <?php
 while($all = mysqli_fetch_array($result_all)) {
   echo '<div class="col-sm-12 col-md-6 col-lg-4 mt-3">';
-  echo '<div class="card w-100 h-100 card-font-1 shadow-sm" data-aos="fade-up" data-aos-duration="690">';
+  echo '<div class="card w-100 h-100 card-font-1 shadow" data-aos="fade-up" data-aos-duration="690">';
   echo '<div class="card-header">';
   echo 'ID : '.$all["id"];
   echo '</div>';
@@ -29,7 +29,10 @@ while($all = mysqli_fetch_array($result_all)) {
   }
   echo '<hr class="mt-auto">';
   if ($all["type_doc"] == "1") {
-    echo '<p class="card-text">อาจารย์ที่ปรึกษา : '.$all["teacherName"].'</p>';
+    echo '<p class="card-text">อาจารย์ที่ปรึกษา : '.$all["mainTn"].'</p>';
+    if(!empty($all["co_teacher"])){
+    echo '<p class="card-text">อาจารย์ที่ปรึกษาร่วม : '.$all["coTn"].'</p>';
+    }
     echo '<p class="card-text">ประเภท : ปริญญานิพนธ์นักศึกษา</p>';
   }else {
     echo '<p class="card-text">ประเภท : วิจัยอาจารย์</p>';
@@ -53,7 +56,7 @@ while($all = mysqli_fetch_array($result_all)) {
     echo ' <i class="bi bi-youtube" data-bs-toggle="tooltip" data-bs-placement="top" title="Youtube"></i>';
   };
   echo '</h6>';
-  echo '<a href="view.php?id='.$all["system_id"].'" class="btn btn-success mt-1">รายละเอียด</a>';
+  echo '<a href="view.php?id='.$all["system_id"].'" class="btn btn_clickToView text-white mt-1">รายละเอียด</a>';
   echo '</div>';
   echo '</div>';
   echo '</div>';

@@ -18,19 +18,19 @@ if (isset($_GET["preview"]) AND $_GET["preview"] == "1") {
     header('location: admin/index.php?login=notlogin');
   }else {
     // code...
-    $sql = "SELECT * FROM mctarchive_pre
-    LEFT JOIN teacher AS mT
-    ON mctarchive_pre.teacher = mT.teacher_id
-    LEFT JOIN branch ON mctarchive_pre.branch = branch.branch_id
-    LEFT JOIN login ON mctarchive_pre.add_by = login.user_id
+    $sql = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn FROM mctarchive_pre
+    LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
+    LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
+    LEFT JOIN branch ON mctarchive.branch = branch.branch_id
+    LEFT JOIN login ON mctarchive.add_by = login.user_id
     WHERE system_id = '$id'";
    }
 }
 
 if(!isset($_GET["preview"])){
-  $sql = "SELECT * FROM mctarchive
-  LEFT JOIN teacher AS mT
-  ON mctarchive.teacher = mT.teacher_id
+  $sql = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn FROM mctarchive
+  LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
+  LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
   LEFT JOIN branch ON mctarchive.branch = branch.branch_id
   LEFT JOIN login ON mctarchive.add_by = login.user_id
   WHERE system_id = '$id'";
@@ -128,8 +128,10 @@ $result = mysqli_fetch_array($query,MYSQLI_ASSOC);
      <hr>
      <?php
      if ($result["type_doc"] == "1") {
-       echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษา :</strong> '.$result["teacherName"].'</h4>';
-       echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษา :</strong> '.$result["teacherName"].'</h4>';
+       echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษา :</strong> '.$result["mainTn"].'</h4>';
+       if($result["co_teacher"] != "0"){
+        echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษาร่วม :</strong> '.$result["coTn"].'</h4>';
+       }else{}
        echo '<h4 class="card-text"><strong>ประเภท :</strong> ปริญญานิพนธ์นักศึกษา</h4>';
      }else {
        echo '<h4 class="card-text"><strong>ประเภท :</strong> วิจัยอาจารย์</h4>';
