@@ -36,7 +36,7 @@ include '../conn.php';
 </head>
 
 <body>
-    <video id="bgVid" class="background-video" autoplay loop muted>
+    <video id="bgVid" class="background-video" autoplay loop>
         <source src="../img/loginVidBG_3c.mp4" type="video/mp4">
     </video>
 
@@ -44,10 +44,9 @@ include '../conn.php';
         <div class="row no-gutters">
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 d-none d-sm-none d-md-none d-lg-none d-xl-block">
                 <div class="card noBorder loginLeftImage w-100 vh-100">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="mt-auto ml-3 text-white"
-                            style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.7));">Copyright &copy; 2022
-                            &mdash; SiWADOL</h5>
+                    <div class="card-body d-flex flex-column p-0">
+                        <h5 class="mt-auto mx-3 text-white"
+                            style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.7));">MCT Achive System Version <?php echo $c_version;?> | SiWADOL X MCT Library <button class="btn btn-outline-info" onclick="turnUpVol();"><i class="bi bi-music-note-beamed"></i></button></h5>
                     </div>
                 </div>
             </div>
@@ -114,15 +113,14 @@ include '../conn.php';
                                     elseif ($status == "afk") {
                                       echo '
                                       <div class="alert alert-warning w-100 shadow-sm" role="alert">
-                                      ออกจากระบบอัตโนมัติเนื่องจากไม่มีการเคลื่อนไหวนานกว่า 15 นาที
+                                      ออกจากระบบอัตโนมัติเนื่องจากไม่มีการใช้งานนานกว่า 60 นาที
                                       </div>
                                       ';
                                     }
                                     ?>
                                     <div class="mt-2 text-center d-block d-sm-block d-md-block d-lg-block d-xl-none">
                                         <h6 class="mt-3 text-dark"
-                                            style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));">Copyright
-                                            &copy; 2022 &mdash; SiWADOL</h6>
+                                            style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));">MCT Achive System Version <?php echo $c_version;?> | SiWADOL X MCT Library <button class="btn btn-outline-info" onclick="turnUpVol();"><i class="bi bi-music-note-beamed"></i></button></h6>
                                     </div>
                                 </div>
                         </form>
@@ -134,13 +132,19 @@ include '../conn.php';
 
     </div>
 
-   
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script>
     var vid = document.getElementById("bgVid");
-    vid.volume = 0.2;
-    vid.play()
+    vid.volume = 0;
+    vid.play();
+    
+    function turnUpVol(){
+        vid.removeAttribute("muted");
+        vid.volume = 0.2;
+    }
 
     </script>
+    
 </body>
 
 </html>

@@ -67,3 +67,14 @@ function delDataOfTopic(system_id) {
       //text = "You canceled!";
     }
   }
+
+//check and onetime click to upload and save data
+  function checkForm(form){
+    //
+    // check form input values
+    //
+  
+    form.submit_button.disabled = true;
+    form.submit_button.value = "กำลังอัพโหลดและบันทึกข้อมูลโปรดรอซักครู่...";
+    return true;
+  }
