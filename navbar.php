@@ -118,7 +118,8 @@
             <p>
             <hr>
             <h5>Changelog</h5>
-            <p><span class="fw-bold">2.1.0β</span>: Fixed filter can not use. Fixed search can not use. More Shadow. New Data Table in Dashboard. Fixed DataTable Display only 20. Fixed sql error in information display.</p>
+            <p><span class="fw-bold">2.2.0β</span>: Auto Watermark (MCT Logo) On Uplaod PDF Doc. One time submit data. Fixed Teacher Name Conflict Display when have coop Teacher. works.zip now can be Upload.</p>
+            <p>2.1.0β</span>: Fixed filter can not use. Fixed search can not use. More Shadow. New Data Table in Dashboard. Fixed DataTable Display only 20. Fixed sql error in information display.</p>
             <p>2.0.2β : Support Associate advisor select add new thesis. Fixed some bugs.</p>
             <p>2.0.1β : New Table Structure. Fixed some bugs.</p>
             <p>2.0.0β : Support for faculty level use. New Login Page.</p>

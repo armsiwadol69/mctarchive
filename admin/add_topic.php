@@ -60,8 +60,11 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
             </div>
             <div class="col-12">
                 <div class="alert alert-info w-100 shadow-sm" role="alert">
-                   ข้อแนะนำ : ตรวจสอบชื่อของอาจารย์ที่ปรึกษาก่อนว่ามีในระบบหรือไม่ จึงกรอกข้อมูล หากไม่พบ ให้เพิ่มแล้วรีโหลดหน้าเว็บเพื่อเพิ่มข้อมูล <br>
-                   สามารถค้นหาชื่ออาจารย์ได้ในช่อง "อาจารย์ที่ปรึกษา" เพื่อตรวจสอบได้
+                    ข้อแนะนำ : ตรวจสอบชื่อของอาจารย์ที่ปรึกษาก่อนว่ามีในระบบหรือไม่ จึงกรอกข้อมูล หากไม่พบ
+                    ให้เพิ่มแล้วรีโหลดหน้าเว็บเพื่อเพิ่มข้อมูล <br>
+                    สามารถค้นหาชื่ออาจารย์ได้ในช่อง "อาจารย์ที่ปรึกษา" เพื่อตรวจสอบได้
+                    <hr>
+                   <h6>ข้อแนะนำ 2 : หากมีไฟล์ผลงานหรือไฟล์ใดๆก็ตาม ในการบันทึกข้อมูลแต่ละครั้งไฟล์ทั้งหมดที่จะอัพโหลดไปด้วย <span class="badge bg-warning text-dark">ห้ามเกิน 24 GB</span> ต่อครั้ง</h6>
                 </div>
             </div>
         </div>
@@ -74,18 +77,20 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                     <h4 class="card-header">เพิ่มข้อมูล ปริญญานิพนธ์/งานวิจัย</h4>
                     <div class="card-body">
 
-                        <form method="post" action="upload_topic.php" enctype="multipart/form-data">
+                        <form method="post" action="upload_topic.php" enctype="multipart/form-data" onsubmit="return checkForm(this);">
                             <div class="row">
                                 <div class="col-lg-4 col-sm-4 mt-1">
                                     <label for="text">System ID</label>
-                                    <input type="text" class="form-control" name="system_id"
+                                    <input type="text" class="form-control disabled" name="system_id"
                                         value="<?php echo time();?>" maxlength="10" required readonly>
                                 </div>
                                 <div class="col-lg-8 col-sm-8 mt-1">
                                     <label for="text">รหัสประจําเล่ม, รหัสริญญานิพนธ์และงานวิจัย<span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="id"
-                                        placeholder="รหัสประจําเล่มข้างสัน" maxlength="69" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" required>
+                                        placeholder="รหัสประจําเล่มข้างสัน" maxlength="69"
+                                        oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"
+                                        required>
                                 </div>
                                 <div class="col-12 mt-1">
                                     <label for="text">ชื่อภาษาไทย<span class="text-danger">*</span></label>
@@ -180,6 +185,13 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                                     </select>
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
+                                    <label for="text">ประเภท<span class="text-danger">*</span></label>
+                                    <select name="type_doc" class="form-control form-select">
+                                        <option value="1" selected>ปริญญานิพนธ์นักศึกษา</option>
+                                        <option value="2">วิจัยอาจารย์</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
                                     <label class="text" for="customFile">เอกสาร .pdf<span
                                             class="text-danger">*</span></label>
                                     <input type="file" class="form-control" name="file_pdf" id="file_pdf"
@@ -190,19 +202,22 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                                     <input type="file" class="form-control" name="file_video" id="file_video"
                                         accept=".mp4" />
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 mt-1">
+                                <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
+                                    <label class="text" for="customFile">ไฟล์ผลงานอื่นๆ (.Zip)</label>
+                                    <input type="file" class="form-control" name="file_zip" id="file_zip"
+                                        accept=".zip" />
+                                </div>
+                                <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
                                     <label for="text">Youtube Video</span></label>
                                     <input type="text" class="form-control" name="yt_link"
                                         placeholder="https://www.youtube.com/embed/VideoID">
                                 </div>
-                                <div class="col-12 mt-1">
+                                <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
                                     <label for="text">Website URL</span></label>
                                     <input type="text" class="form-control" name="site_url" placeholder="Website URL">
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                    <label class="form-label" for="customFile">ไฟล์เสียง</label>
+                                    <label class="text" for="customFile">ไฟล์เสียง</label>
                                     <input type="file" class="form-control" name="audio" id="audio" accept="audio/*" />
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12 mt-1" hidden>
@@ -211,18 +226,11 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                                         <option value="0" selected>ไม่ใช่</option>
                                         <option value="1">ใช่</option>
                                     </select>
-                                </div>
-                                <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                    <label for="text">ประเภท<span class="text-danger">*</span></label>
-                                    <select name="type_doc" class="form-control form-select mt-2">
-                                        <option value="1" selected>ปริญญานิพนธ์นักศึกษา</option>
-                                        <option value="2">วิจัยอาจารย์</option>
-                                    </select>
-                                </div>
+                                </div>                               
                                 <div class="col-lg-4 col-md-12 col-sm-12 mt-1"
                                     <?php if ($_SESSION["level"] !== "ADMIN") {echo "hidden";} ?>>
                                     <label for="text">ข้ามการตรวจสอบ</label>
-                                    <select name="skip_pass" class="form-control form-select mt-2">
+                                    <select name="skip_pass" class="form-control form-select">
                                         <option value="0">ไม่ข้าม</option>
                                         <option value="1" selected>ข้าม (แสดงผลทันที)</option>
                                     </select>
@@ -232,7 +240,7 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                             </div>
                             <div class="modal fade" id="add_topic" tabindex="-1" role="dialog"
                                 aria-labelledby="changlog" aria-hidden="true">
-                                <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                                <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="add_topic"><i class="bi bi-file-plus"></i>
@@ -244,9 +252,9 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                                             <h4>ยืนยันการเพิ่มปริญญานิพนธ์/งานวิจัย</h4>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">ยกเลิก</button>
-                                            <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                                            
+                                                <input type="submit" class="btn btn-primary text-white" id="btnSubmit" value="ยืนยัน และ บันทึกข้อมูล" name="submit_button">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                                         </div>
                                     </div>
                                 </div>
@@ -272,7 +280,9 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
         integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="..\custom\delConf.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js"
+        integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="..\custom\delConf.js?v=2"></script>
     <script type="text/javascript" src="..\custom\tooltips.js"></script>
     <script>
     const config = {
