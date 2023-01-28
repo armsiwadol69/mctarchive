@@ -103,13 +103,15 @@ echo $file_video;
 echo $website; */
 
 /// make it easy
-$id = mysqli_real_escape_string($conn,$_POST["id"]);
+$system_id = mysqli_real_escape_string($conn,$_POST["system_id"]);
 $numrand = (mt_rand());
 
+$thainame = mysqli_real_escape_string($conn,$_POST["thainame"]);
 $thainame = mysqli_real_escape_string($conn,$_POST["thainame"]);
 $engname = mysqli_real_escape_string($conn,$_POST["engname"]);
 $std1 = mysqli_real_escape_string($conn,$_POST["std1"]);
 $teacher = mysqli_real_escape_string($conn,$_POST["teacher"]);
+$co_teacher = mysqli_real_escape_string($conn,$_POST["co_teacher"]);
 $year = mysqli_real_escape_string($conn,$_POST["year"]);
 $branch = mysqli_real_escape_string($conn,$_POST["branch"]);
 $yt_link = mysqli_real_escape_string($conn,$_POST["yt_link"]);
@@ -217,6 +219,7 @@ if (empty($_FILES['audio']["name"]) == 0) {
 
 
 $sql_update = "UPDATE $taget_table SET
+                 id = '$id',
                  std1 = '$std1',
                  std2 = '$std2',
                  std3 = '$std3',
@@ -226,12 +229,17 @@ $sql_update = "UPDATE $taget_table SET
                  thainame = '$thainame',
                  engname = '$engname',
                  teacher = '$teacher',
+                 co_teacher = '$co_teacher',
                  sec = '$year',
                  branch = '$branch',
                  type_doc = '$type_doc',
                  yt_link = '$yt_link',
                  site_url = '$site_url'
-                 WHERE id = '$id'";
+                 WHERE system_id = '$system_id'";
+
+echo $sql_update;
+
+
 $query_updatetopic = mysqli_query($conn,$sql_update);
 
 echo $query_updatetopic;

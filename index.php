@@ -1,3 +1,8 @@
+<?php
+include 'commonfPub.php';
+$json_data = readSettingJSON2MainPage();
+extract($json_data);
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -11,9 +16,9 @@
     <script type="text/javascript" src="custom\aos.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     <meta charset="utf-8">
-    <title>ระบบสืบค้นปริญญานิพนธ์และงานวิจัย คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี</title>
-    <meta property="og:title" content="ระบบสืบค้นปริญญานิพนธ์และงานวิจัย คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี" />
-    <meta property="og:description" content="ระบบสืบค้นปริญญานิพนธ์และงานวิจัย คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี"/>
+    <title><?php echo $v_websiteName.' '.$v_subName?></title>
+    <meta property="og:title" content="<?php echo $v_websiteName.' '.$v_subName?>" />
+    <meta property="og:description" content="<?php echo $v_websiteName.' '.$v_subName?>"/>
     <meta property="og:image" content="favicon.png" />
   </head>
   <body>
@@ -27,8 +32,8 @@
      <div class="row">
       <div class="col-12">
         <div class="jumbotron jumbotron_site mainjum mainvector mt-4">
-  <h2 class="display-5">ระบบสืบค้นปริญญานิพนธ์และงานวิจัย</h2>
-  <p class="lead">คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี</p>
+  <h2 class="display-5"><?php echo $v_websiteName;?></h2>
+  <p class="lead"><?php echo $v_subName;?></p>
   <hr class="my-4" style="max-width:70%" >
   <h4 class="">มีปริญญานิพนธ์และงานวิจัยที่ถูกจัดเก็บเป็นจำนวน <span class="badge bg-dark text-while no-text-outline"> <?php echo "$row_cnt"; ?></span> รายการ</h4>
 </div>

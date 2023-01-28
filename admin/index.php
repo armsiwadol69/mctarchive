@@ -1,4 +1,5 @@
 <?php
+Header("Location: ../adminside");
 session_start();
 include 'commonf.php';
 

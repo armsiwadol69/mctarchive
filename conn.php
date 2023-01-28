@@ -4,7 +4,7 @@ $userName = "root";              //Username
 $userPassword = "";          //Passworld
 $dbName = "mctarchive";          //Database Name
 
-$c_version = "2.2.0β";
+$c_version = "2.5.0R";
 
  ?>
 <!-- Developed By SiWDOL M. -->

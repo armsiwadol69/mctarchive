@@ -1,4 +1,9 @@
 <?php
+
+include 'commonfPub.php';
+$json_data = readSettingJSON2MainPage();
+extract($json_data);
+
 ob_start();
 $search = strval($_POST["search"]) ;
 if (empty($search) == 1) {
@@ -42,16 +47,19 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
     <script type="text/javascript" src="custom\aos.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     <meta charset="utf-8">
-    <title>ค้นหา : <?php echo "$search"; ?> | ระบบสืบค้นปริญญานิพนธ์และงานวิจัย คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี</title>
-    <meta property="og:title" content="ค้นหา : <?php echo "$search"; ?> | ระบบสืบค้นปริญญานิพนธ์และงานวิจัย คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี" />
-    <meta property="og:description" content="ระบบสืบค้นปริญญานิพนธ์และงานวิจัย คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี"/>
+    <title>ค้นหา : <?php echo "$search"; ?> | <?php echo $v_websiteName.' '.$v_subName?></title>
+    <meta property="og:title" content="ค้นหา : <?php echo "$search"; ?> | <?php echo $v_websiteName.' '.$v_subName?>" />
+    <meta property="og:description" content="<?php echo $v_websiteName.' '.$v_subName?>"/>
     <meta property="og:image" content="favicon.png" />
   </head>
   <body>
  <?php
  include'navbar.php';
  $search_es = mysqli_real_escape_string($conn,$_POST["search"]);
- $sql_search = "SELECT * FROM mctarchive LEFT JOIN teacher AS mainTeacher ON mctarchive.teacher = mainTeacher.teacher_id LEFT JOIN branch ON mctarchive.branch = branch.branch_id WHERE id LIKE '%{$search_es}%' OR std1 LIKE '%{$search_es}%' OR std2 LIKE '%{$search_es}%' OR std3 LIKE '%{$search_es}%' OR std4 LIKE '%{$search_es}%' OR std5 LIKE '%{$search_es}%'
+ $sql_search = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn FROM mctarchive
+ LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
+ LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
+ LEFT JOIN branch ON mctarchive.branch = branch.branch_id WHERE id LIKE '%{$search_es}%' OR std1 LIKE '%{$search_es}%' OR std2 LIKE '%{$search_es}%' OR std3 LIKE '%{$search_es}%' OR std4 LIKE '%{$search_es}%' OR std5 LIKE '%{$search_es}%'
  OR std4 LIKE '%{$search_es}%' OR std5 LIKE '%{$search_es}%' OR std6 LIKE '%{$search_es}%' OR thainame LIKE '%{$search_es}%' OR engname LIKE '%{$search_es}%' OR teacher LIKE '%{$search_es}%' OR sec LIKE '%{$search_es}%' ORDER BY id ASC";
  $query = mysqli_query($conn,$sql_search);
  $result_all = mysqli_query($conn, $sql_search);
@@ -62,8 +70,8 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
      <div class="row">
       <div class="col-12">
         <div class="jumbotron jumbotron_site mainjum mainvector j-search mt-5">
-  <h2 class="display-5">ระบบสืบค้นปริญญานิพนธ์และงานวิจัย</h2>
-  <p class="lead">คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี</p>
+  <h2 class="display-5"><?php echo $v_websiteName;?></h2>
+  <p class="lead"><?php echo $v_subName;?></p>
   <hr class="my-4" style="max-width:70%" >
   <h2><i class="bi bi-search"></i> ระบบค้นหา : ค้นหาด้วยคำว่า "<?php echo$search; ?>"</h2>
   <h4 class="">จำนวนผลการค้นหาที่พบ <span class="badge bg-dark text-while no-text-outline"> <?php echo "$row_cnt"; ?></span> รายการ</h4>

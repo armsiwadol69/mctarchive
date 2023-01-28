@@ -1,10 +1,10 @@
 <?php
 ////
-
+ob_start();
 
 ////
 include 'conn.php';
-$conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
+include 'adminside/commonf.php';
 
 $sql_setting = "SELECT * FROM setting WHERE var = 'free2uplaod'";
 $query_setting = mysqli_query($conn,$sql_setting);
@@ -12,6 +12,8 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
 if ($result_setting['setting'] == "0") {
   header('location: index.php');
 }
+
+$conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
 
 /////
 //$sql_find_id = "SELECT id FROM mctarchive ORDER BY id DESC LIMIT 1";
@@ -26,9 +28,11 @@ if ($result_setting['setting'] == "0") {
 //echo $new_id;
 
 $id = mysqli_real_escape_string($conn,$_POST["id"]);
+
+$system_id = mysqli_real_escape_string($conn,$_POST["system_id"]);
 $numrand = (mt_rand());
 
-$id_path = $id;
+$id_path = mysqli_real_escape_string($conn,$_POST["system_id"]);
 
 $mypath= "storage/".$id_path.'/';
 $mypathtodel= "storage/".$id_path;
@@ -64,11 +68,11 @@ if (empty($_POST["std6"]) == 1) {
   $std6 = mysqli_real_escape_string($conn,$_POST["std6"]);
 }
 
-if (empty($_FILES["file_video"]['name']) == 1) {
+if (empty($_FILES["file_video"]['name'])) {
   $file_video = NULL;
 }else {
   $v_type = strrchr($_FILES['file_video']['name'],".");
-  $v_newname = $id.'_'.$numrand.$v_type;
+  $v_newname = $system_id.'_'.$numrand.$v_type;
   $file_video = $v_newname;
   echo "$file_video";
 }
@@ -77,7 +81,7 @@ if (empty($_FILES["audio"]['name']) == 1) {
   $file_audio = NULL;
 }else {
   $a_type = strrchr($_FILES['audio']['name'],".");
-  $a_newname = $id.'_'.$numrand.$a_type;
+  $a_newname = $system_id.'_'.$numrand.$a_type;
   $file_audio = $a_newname;
   echo "$file_audio";
 }
@@ -86,9 +90,18 @@ if (empty($_FILES["file_pdf"]['name']) == 1) {
   $file_pdf = NULL;
 }else {
   $pdf_type = strrchr($_FILES['file_pdf']['name'],".");
-  $pdf_newname = $id.'_'.$numrand.$pdf_type;
+  $pdf_newname = $system_id.'_'.$numrand.$pdf_type;
   $file_pdf = $pdf_newname;
   echo "$file_pdf";
+}
+
+if (empty($_FILES["file_zip"]['name']) == 1) {
+  $file_zip = NULL;
+}else {
+  $file_zip = strrchr($_FILES['file_zip']['name'],".");
+  $zip_newname = $system_id.'_'.$numrand.$file_zip;
+  $file_zip = $zip_newname;
+  echo "$file_zip";
 }
 ////
 
@@ -113,6 +126,7 @@ if ($_POST["type_doc"] == "1") {
 }
 
 ///debug
+echo $_POST["system_id"];
 echo $_POST["thainame"];
 echo $_POST["engname"];
 echo $_POST["std1"];
@@ -121,25 +135,33 @@ echo $_POST["std3"];
 echo $_POST["std4"];
 echo $_POST["std5"];
 echo $_POST["std6"];
+echo "@@@@@@";
 echo $_POST["teacher"];
+echo $_POST["co_teacher"];
+echo "@@@@@@";
 echo $_POST["year"];
+echo "@@@@@@";
 echo $_POST["branch"];
+echo "@@@@@@";
 echo $file_video;
 echo $file_audio;
-echo $website;
+//echo $website;
 //exit(0);
-/// make it easy
+// make it easy
 
+$system_id = mysqli_real_escape_string($conn,$_POST["system_id"]);
 $thainame = mysqli_real_escape_string($conn,$_POST["thainame"]);
 $engname = mysqli_real_escape_string($conn,$_POST["engname"]);
 $std1 = mysqli_real_escape_string($conn,$_POST["std1"]);
 $teacher = mysqli_real_escape_string($conn,$_POST["teacher"]);
+$co_teacher = mysqli_real_escape_string($conn,$_POST["co_teacher"]);
 $year = mysqli_real_escape_string($conn,$_POST["year"]);
 $branch = mysqli_real_escape_string($conn,$_POST["branch"]);
 $video = mysqli_real_escape_string($conn,$file_video);
+$fileZip = mysqli_real_escape_string($conn,$file_zip);
 $pdf = mysqli_real_escape_string($conn,$file_pdf);
 $audio = mysqli_real_escape_string($conn,$file_audio);
-$add_by = mysqli_real_escape_string($conn,$_POST["add_by"]);
+$add_by = mysqli_real_escape_string($conn,$_SESSION["user_id"]);
 $yt_link = mysqli_real_escape_string($conn,$_POST["yt_link"]);
 $site_url = mysqli_real_escape_string($conn,$_POST["site_url"]);
 ///
@@ -155,13 +177,13 @@ if (!file_exists($mypath)) {
 
 
 if (isset($_FILES['file_pdf']["name"]) == 1) {
-  move_uploaded_file($_FILES["file_pdf"]["tmp_name"],$mypath.$file_pdf);
+  move_uploaded_file($_FILES["file_pdf"]["tmp_name"],$mypath."old_".$file_pdf);
   echo $_FILES['file_pdf']['name'];
   $pdf_upload = 1;
 }
 if (isset($_FILES['file_video']["name"]) == 1) {
   move_uploaded_file($_FILES["file_video"]["tmp_name"],$mypath.$v_newname);
-  echo $_FILES['file_pdf']['name'];
+  echo $_FILES['file_video']['name'];
   $vid_upload = 1;
 }
 if (isset($_FILES['audio']["name"]) == 1) {
@@ -170,14 +192,100 @@ if (isset($_FILES['audio']["name"]) == 1) {
   $audio_upload = 1;
 }
 
+if (isset($_FILES['file_zip']["name"]) == 1) {
+  move_uploaded_file($_FILES["file_zip"]["tmp_name"],$mypath.$file_zip);
+  echo $_FILES['file_zip']['name'];
+  $zip_upload = 1;
+}
 
-$sql_addtopic = "INSERT INTO mctarchive_pre(id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,sec,branch,video,pdf,audio,type_doc,add_by,yt_link,site_url)
-VALUES('$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$year','$branch','$video','$pdf','$audio','$type_doc','$add_by','$yt_link','$site_url')";
+$IDisExitst = checkRecordExists($_POST["skip_pass"],$id);
+
+if($IDisExitst){
+  $id = $id.'-'.$system_id;
+  echo "-".$id."-";
+}
+
+
+
+$sql_addtopic = "INSERT INTO mctarchive_pre(system_id,id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,co_teacher,sec,branch,video,pdf,fileZip,audio,type_doc,add_by,yt_link,site_url)
+VALUES('$system_id','$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$co_teacher','$year','$branch','$video','$pdf','$fileZip','$audio','$type_doc','8008','$yt_link','$site_url')";
+
+
+echo  $sql_addtopic;
+//wartermark on PDF AUTO
+ob_start();
+$old_file = 'storage/'.$system_id.'/old_'.$file_pdf; 
+$file = 'storage/'.$system_id.'/'.$file_pdf; 
+
+use setasign\Fpdi\Fpdi;
+require_once('custom/fpdf/fpdf.php');
+require_once('custom/fpdi/autoload.php');
+
+
+//The PDF version that you want to convert
+//the file into.
+$pdfVersion = "1.4";
+
+//The path that you want to save the new
+//file to
+$newFile = $file;
+
+//The path of the file that you want
+//to convert
+$currentFile = $old_file;
+
+//Create the GhostScript command
+$gsCmd = "GSWIN64 -sDEVICE=pdfwrite -dCompatibilityLevel=$pdfVersion -dNOPAUSE -dBATCH -sOutputFile=$newFile $currentFile";
+
+//Run it using PHP's exec function.
+exec($gsCmd);
+
+unlink($old_file);
+
+
+// Source file and watermark config 
+
+echo $file;
+$text_image = 'img/watermarkMCT.png'; 
+ 
+// Set source PDF file 
+$pdf = new Fpdi(); 
+if(file_exists("./".$file)){ 
+    $pagecount = $pdf->setSourceFile($file); 
+}else{ 
+    die('Source PDF not found!'); 
+} 
+ 
+// Add watermark image to PDF pages 
+for($i=1;$i<=$pagecount;$i++){ 
+    $tpl = $pdf->importPage($i); 
+    $size = $pdf->getTemplateSize($tpl); 
+    $pdf->addPage(); 
+    $pdf->useTemplate($tpl, 1, 1, $size['width'], $size['height'], TRUE); 
+     
+    //Put the watermark 
+    $xxx_final = ($size['width']-165); 
+    $yyy_final = ($size['height']-220); 
+    $pdf->Image($text_image, $xxx_final, $yyy_final, 0, 0, 'png'); 
+} 
+ 
+
+
+$pdfWarmarkOutput = strval('storage/'.$system_id.'/'.$file_pdf); 
+
+echo $pdfWarmarkOutput;
+
+$pdf->Output('F', $pdfWarmarkOutput);
+
+
+
+//End watermark on PDF
 
 
 
  $query_addtopic = mysqli_query($conn,$sql_addtopic);
  echo $query_addtopic;
+ 
 
 
 if ($query_addtopic == 1 AND $pdf_upload == 1) {
@@ -209,6 +317,6 @@ if ($query_addtopic == 1 AND $pdf_upload == 1) {
   }
   Header("Location: index.php?add=0");
 }
-
+ob_end_flush();
  ?>
 <!-- Developed By SiWDOL M. -->

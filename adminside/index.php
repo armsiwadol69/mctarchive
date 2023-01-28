@@ -1,9 +1,11 @@
 <?php
 session_start();
-if (isset($_SESSION["level"]) == 1) {
-  if ($_SESSION["level"] == "ADMIN" OR $_SESSION["level"] == "USER") {
-    Header("Location: dashboard.php");}
-}
+include 'commonf.php';
+$json_data = readSettingJSON2MainPage();
+extract($json_data);
+
+isLogin();
+
 include '../conn.php';
 ?>
 
@@ -20,7 +22,7 @@ include '../conn.php';
     <link rel="stylesheet" href="..\bootstrap5\css\bootstrap.min.css">
     <link rel="stylesheet" href="..\custom\sicustom.css">
     <link rel="stylesheet" href="..\custom\aos.css">
-    <link rel="stylesheet" href="..\custom\loginPage.css">
+    <link rel="stylesheet" href="..\custom\loginPage.css?v=1.1">
     <script type="text/javascript" src="..\custom\aos.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 
@@ -36,29 +38,30 @@ include '../conn.php';
 </head>
 
 <body>
-    <video id="bgVid" class="background-video" autoplay loop muted>
-        <source src="../img/loginVidBG_3c.mp4" type="video/mp4">
+    <video id="bgVid" class="background-video" autoplay loop>
+        <source src="../img/pv4_t.mp4" type="video/mp4">
     </video>
 
     <div class="container-fluid px-0">
         <div class="row no-gutters">
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 d-none d-sm-none d-md-none d-lg-none d-xl-block">
                 <div class="card noBorder loginLeftImage w-100 vh-100">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="mt-auto ml-3 text-white"
-                            style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.7));">Copyright &copy; 2022
-                            &mdash; SiWADOL</h5>
+                    <div class="card-body d-flex flex-column p-0">
+                        <h5 class="mt-auto mx-3 text-white"
+                            style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.7));"><?php echo $shortNameEng; ?> Version <?php echo $c_version;?> | SiWADOL X MCT Library <button class="btn btn-outline-info" onclick="turnUpVol();"><i class="bi bi-music-note-beamed"></i></button></h5>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 p-0">
                 <div class="card noBorder loginRightBackground w-100 vh-100">
                     <div class="card-body d-flex align-items-center">
                         <form method="POST" action="login.php">
                             <div class="row d-flex justify-content-center">
-                                <div class="col-12 d-flex justify-content-center">
+                                <div class="col-12 d-flex flex-column justify-content-center text-white text-center">
+                                <h1 class="d-flex display-4 justify-content-center fw-bold"><?php echo $v_websiteName; ?></h1>
+                                <h4 class="d-flex justify-content-center fw-bold"><?php echo $v_subName; ?></h5>
                                     <img class="img-fluid" style=" filter: drop-shadow(7px 7px 7px rgba(0, 0, 0, 0.5));"
-                                        src="../img/Blue_Archive_logo_JP.png" alt="">
+                                        src="../img/Blue_Archive_logo_JP.png" alt="" hidden>
                                 </div>
                                 <div class="col-0 col-xl-3 offest-3"></div>
                                 <div class="col-8 col-md-8 col-xl-6 offest-3">
@@ -114,15 +117,14 @@ include '../conn.php';
                                     elseif ($status == "afk") {
                                       echo '
                                       <div class="alert alert-warning w-100 shadow-sm" role="alert">
-                                      ออกจากระบบอัตโนมัติเนื่องจากไม่มีการเคลื่อนไหวนานกว่า 15 นาที
+                                      ออกจากระบบอัตโนมัติเนื่องจากไม่มีการใช้งานนานกว่า 60 นาที
                                       </div>
                                       ';
                                     }
                                     ?>
                                     <div class="mt-2 text-center d-block d-sm-block d-md-block d-lg-block d-xl-none">
                                         <h6 class="mt-3 text-dark"
-                                            style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));">Copyright
-                                            &copy; 2022 &mdash; SiWADOL</h6>
+                                            style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));"><?php echo $shortNameEng; ?> Version <?php echo $c_version;?> | SiWADOL X MCT Library <button class="btn btn-outline-info" onclick="turnUpVol();"><i class="bi bi-music-note-beamed"></i></button></h6>
                                     </div>
                                 </div>
                         </form>
@@ -134,13 +136,19 @@ include '../conn.php';
 
     </div>
 
-   
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script>
     var vid = document.getElementById("bgVid");
-    vid.volume = 0.2;
-    vid.play()
+    vid.volume = 0;
+    vid.play();
+    
+    function turnUpVol(){
+        vid.removeAttribute("muted");
+        vid.volume = 0.1;
+    }
 
     </script>
+    
 </body>
 
 </html>

@@ -1,4 +1,7 @@
 <?php
+include 'commonfPub.php';
+$json_data = readSettingJSON2MainPage();
+extract($json_data);
 
 include 'conn.php';
 $conn = mysqli_connect($serverName, $userName, $userPassword, $dbName);
@@ -90,9 +93,9 @@ $total_pages = ceil($row_cnt / $no_of_records_per_page);
     <meta charset="utf-8">
     <title>ระบบสืบค้นปริญญานิพนธ์และงานวิจัย คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรีี</title>
     <meta property="og:title"
-        content="<?php echo "$taget_to_find"; ?> | ระบบสืบค้นปริญญานิพนธ์และงานวิจัย คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี" />
+        content="<?php echo "$taget_to_find"; ?> | <?php echo $v_websiteName.' '.$v_subName?>" />
     <meta property="og:description"
-        content="ระบบสืบค้นปริญญานิพนธ์และงานวิจัย คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรีี" />
+        content="<?php echo $v_websiteName.' '.$v_subName?>" />
     <meta property="og:image" content="favicon.png" />
 </head>
 
@@ -105,8 +108,8 @@ include 'navbar.php';
         <div class="row">
             <div class="col-12">
                 <div class="jumbotron jumbotron_site mainjum mainvector mt-5">
-                    <h2 class="display-5">ระบบสืบค้นปริญญานิพนธ์และงานวิจัย</h2>
-                    <p class="lead">คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี</p>
+                    <h2 class="display-5"><?php echo $v_websiteName;?></h2>
+                    <p class="lead"><?php echo $v_subName;?></p>
                     <hr class="my-4" style="max-width:70%">
                     <h2><i class="bi bi-filter-square"></i> แสดงผลเฉพาะ<?php echo $taget_to_find; ?></h2>
                     <h4 class="">จำนวนรายการที่ตรงตามเงื่อนไข <span class="badge bg-dark text-while no-text-outline">
