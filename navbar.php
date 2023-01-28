@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
 <div class="container-fluid">
- <a class="navbar-brand" href="index.php"><img src="favicon.png" class="d-inline-block align-top" width="30" height="30" alt=""> MCT Library</a>
+ <a class="navbar-brand" href="index.php"><img src="favicon.png" class="d-inline-block align-top" width="30" height="30" alt=""> <?php echo $shortNameEng;?></a>
  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
    <span class="navbar-toggler-icon"></span>
  </button>
@@ -17,7 +17,7 @@
          <?php
          include 'conn.php';
          $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
-         $sql_allyear = "SELECT * FROM year ORDER BY year ";
+         $sql_allyear = "SELECT * FROM year ORDER BY year DESC";
          $sql_allyearshow = mysqli_query($conn, $sql_allyear);
          while($yaer_sec = mysqli_fetch_array($sql_allyearshow)) {
          echo '<li><a class="dropdown-item" href="filter.php?year='.$yaer_sec["year"].'">'.$yaer_sec["year"].'</a></li>';
@@ -71,7 +71,7 @@
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#show1Visit">โปรดทราบ</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="admin\index.php">หน้าผู้ดูแลระบบ</a></li>
+        <li><a class="dropdown-item" href="adminside\index.php">หน้าผู้ดูแลระบบ</a></li>
        </ul>
      </li>
    </ul>
@@ -118,7 +118,9 @@
             <p>
             <hr>
             <h5>Changelog</h5>
-            <p><span class="fw-bold">2.2.0β</span>: Auto Watermark (MCT Logo) On Uplaod PDF Doc. One time submit data. Fixed Teacher Name Conflict Display when have coop Teacher. works.zip now can be Upload.</p>
+            <p><span class="fw-bold">2.4.0β</span>: Lots of new things.</p>
+            <p>2.3.0β : ReDesign Dashboard.</p>
+            <p>2.2.0β: Auto Watermark (MCT Logo) On Uplaod PDF Doc. One time submit data. Fixed Teacher Name Conflict Display when have coop Teacher. works.zip now can be Upload.</p>
             <p>2.1.0β</span>: Fixed filter can not use. Fixed search can not use. More Shadow. New Data Table in Dashboard. Fixed DataTable Display only 20. Fixed sql error in information display.</p>
             <p>2.0.2β : Support Associate advisor select add new thesis. Fixed some bugs.</p>
             <p>2.0.1β : New Table Structure. Fixed some bugs.</p>

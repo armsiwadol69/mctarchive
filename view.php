@@ -6,6 +6,9 @@ if (empty($id) == true) {
     header("location: index.php");
     exit(0);
 }
+include 'commonfPub.php';
+$json_data = readSettingJSON2MainPage();
+extract($json_data);
 
 include 'conn.php';
 $conn = mysqli_connect($serverName, $userName, $userPassword, $dbName);
@@ -15,15 +18,7 @@ if (isset($_GET["preview"]) and $_GET["preview"] == "1") {
 
     if (!isset($_SESSION["level"]) and ($_SESSION["level"] !== "ADMIN" or $_SESSION["level"] !== "USER")) {
         header('location: admin/index.php?login=notlogin');
-    } else {
-        // code...
-        $sql = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn FROM mctarchive_pre
-    LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
-    LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
-    LEFT JOIN branch ON mctarchive.branch = branch.branch_id
-    LEFT JOIN login ON mctarchive.add_by = login.user_id
-    WHERE system_id = '$id'";
-    }
+    } 
 }
 
 if (!isset($_GET["preview"])) {
@@ -33,7 +28,13 @@ if (!isset($_GET["preview"])) {
   LEFT JOIN branch ON mctarchive.branch = branch.branch_id
   LEFT JOIN login ON mctarchive.add_by = login.user_id
   WHERE system_id = '$id'";
-
+}else{
+    $sql = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn FROM mctarchive_pre
+  LEFT JOIN teacher AS mT ON mctarchive_pre.teacher = mT.teacher_id
+  LEFT JOIN teacher AS cT ON mctarchive_pre.co_teacher = cT.teacher_id
+  LEFT JOIN branch ON mctarchive_pre.branch = branch.branch_id
+  LEFT JOIN login ON mctarchive_pre.add_by = login.user_id
+  WHERE system_id = '$id'";
 }
 
 $query = mysqli_query($conn, $sql) or die("error");
@@ -56,12 +57,10 @@ $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     <meta charset="utf-8">
-    <title><?php ?><?php echo $result["thainame"]; ?> | ระบบสืบค้นปริญญานิพนธ์และงานวิจัย คณะเทคโนโลยีสื่อสารมวลชน
-        มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี</title>
+    <title><?php ?><?php echo $result["thainame"]; ?> | <?php echo $v_websiteName.' '.$v_subName?></title>
     <meta property="og:title"
-        content="<?php echo $result["thainame"]; ?> | ระบบสืบค้นปริญญานิพนธ์และงานวิจัย คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี" />
-    <meta property="og:description"
-        content="ระบบสืบค้นปริญญานิพนธ์และงานวิจัย คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี" />
+        content="<?php echo $result["thainame"]; ?> | <?php echo $v_websiteName.' '.$v_subName?>" />
+    <meta property="og:description" content="<?php echo $v_websiteName.' '.$v_subName?>" />
     <meta property="og:image" content="favicon.png" />
 </head>
 
@@ -85,8 +84,8 @@ if (empty($result)) {
         <div class="row">
             <div class="col-12">
                 <div class="jumbotron jumbotron_site mainjum mainvector mt-5">
-                    <h2 class="display-5">ระบบสืบค้นปริญญานิพนธ์และงานวิจัย</h2>
-                    <p class="lead">คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี</p>
+                    <h2 class="display-5"><?php echo $v_websiteName;?></h2>
+                    <p class="lead"><?php echo $v_subName;?></p>
                     <hr class="my-4" style="max-width:70%">
                 </div>
             </div>
@@ -126,6 +125,8 @@ if (empty($result["std6"] == false)) {
 }
 ?>
                         <hr>
+                        <h4 class="card-text"><strong><i class="bi bi-view-list"></i> สาขา :</strong>
+                            <?php echo $result["branchName"]?></h4>
                         <?php
 if ($result["type_doc"] == "1") {
     echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษา :</strong> ' . $result["mainTn"] . '</h4>';

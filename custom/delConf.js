@@ -47,6 +47,37 @@ function delDataOfTopic(system_id) {
       //text = "You canceled!";
     }
   }
+
+  function delVideoFile(system_id,fileName) {
+    let text = "ยืนยันการลบไฟล์วีดีโอของหัวข้อนี้หรือไม่?\nเมื่อลบแล้วจะไม่สามารถกู้คืนได้\n"+"|"+system_id+"|"+fileName;
+    if (confirm(text) == true) {
+      text = "You pressed OK!";
+      window.location = href="del_ty.php?videoFileSys="+system_id+"&fileName="+fileName;
+    } else {
+      //text = "You canceled!";
+    }
+  }
+
+  function delAudio(system_id,fileName) {
+    let text = "ยืนยันการลบไฟล์เสียงของหัวข้อนี้หรือไม่?\nเมื่อลบแล้วจะไม่สามารถกู้คืนได้\n"+"|"+system_id+"|"+fileName;
+    if (confirm(text) == true) {
+      text = "You pressed OK!";
+      window.location = href="del_ty.php?AudioFileSys="+system_id+"&fileName="+fileName;
+    } else {
+      //text = "You canceled!";
+    }
+  }
+
+  function delZipFile(system_id,fileName) {
+    let text = "ยืนยันการลบไฟล์ .Zip ของหัวข้อนี้หรือไม่?\nเมื่อลบแล้วจะไม่สามารถกู้คืนได้\n"+"|"+system_id+"|"+fileName;
+    if (confirm(text) == true) {
+      text = "You pressed OK!";
+      window.location = href="del_ty.php?ZipFileSys="+system_id+"&fileName="+fileName;
+    } else {
+      //text = "You canceled!";
+    }
+  }
+
   //To Hide
   function changeStatus2C(t_system_id) {
     let text = "คุณแน่ใจที่จะเปลี่ยนสถานะการแสดงผลข้อมูลนี้หรือไม่?";
@@ -78,3 +109,6 @@ function delDataOfTopic(system_id) {
     form.submit_button.value = "กำลังอัพโหลดและบันทึกข้อมูลโปรดรอซักครู่...";
     return true;
   }
+
+  //del alert
+  
