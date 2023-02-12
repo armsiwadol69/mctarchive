@@ -46,6 +46,13 @@ if (isset($_GET["add_teacher"]) == 1) {
        </div>
        '
         ;
+    } elseif ($teacher_set_ok == "4") {
+        echo '
+       <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
+       บันทึกการแก้ไขข้อมูลอาจารย์ที่ปรึกษาเรียบร้อย
+       </div>
+       '
+        ;
     }
 }
 

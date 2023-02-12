@@ -1,7 +1,7 @@
 <?php
-$sql_allyear = "SELECT * FROM year ORDER BY year ";
+$sql_allyear = "SELECT * FROM year ORDER BY year DESC";
 $sql_allyearshow = mysqli_query($conn, $sql_allyear);
-$sql_teacher = "SELECT * FROM teacher LEFT JOIN branch ON teacher.branch = branch.branch_id WHERE teacher_id != 0 ORDER BY teacher_id ASC";
+$sql_teacher = "SELECT * FROM teacher LEFT JOIN branch ON teacher.branch = branch.branch_id WHERE teacher_id != 0 ORDER BY CONVERT(teacherName USING tis620) ASC";
 $result_teacher = mysqli_query($conn, $sql_teacher);
 $sql_username = "SELECT * FROM login ORDER BY user_id ASC";
 $result_username = mysqli_query($conn, $sql_username);
@@ -25,7 +25,7 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
                     <table
                         class="table text-dark table-hover table-striped mx-auto my-auto w-100 align-middle text-center">
                         <tr>
-                            <td>ปีการศึกษาที่มีอยู่</td>
+                            <td>ปีการศึกษา</td>
                             <td>ลบ</td>
                         </tr>
                         <?php
@@ -124,46 +124,59 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
             </div>
             <div class="modal-body">
                 <div class="table-responsive" style="max-height : 50vh;overflow-y: auto;">
-                    <table class="table text-dark table-hover table-striped mx-auto my-auto align-middle text-center">
-                        <tr>
-                            <td>ชื่ออาจารย์ที่ปรึกษา</td>
-                            <td>สาขา</td>
-                            <td>ลบ</td>
-                        </tr>
-                        <?php
+                <table
+                                            class="table text-dark table-hover table-striped mx-auto my-auto align-middle text-center">
+                                            <tr>
+                                                <td>คำนำหน้า</td>
+                                                <td>ชื่ออาจารย์ที่ปรึกษา</td>
+                                                <td>สาขา</td>
+                                                <td>แก้ไข</td>
+                                                <td>ลบ</td>
+                                            </tr>
+                                            <?php
           $result_teacher2 = mysqli_query($conn, $sql_teacher);
           while($name_teacher2 = mysqli_fetch_array($result_teacher2)) {
-            echo '<tr><td>'.$name_teacher2["teacherName"].'</td>';
+            echo '<tr><td>'.$name_teacher2["nameTitle"].'</td>';
+            echo '<td>'.$name_teacher2["teacherName"].'</td>';
             echo '<td>'.$name_teacher2["branchName"].'</td>';
+            echo "<td>" . '<a type="button" class="btn btn-warning"  href="teacher.php?edit=1&Tid='.$name_teacher2["teacher_id"].'""><i class="bi bi-pencil"></i></a>' .   "</td> ";
             echo "<td>" . '<a type="button" class="btn btn-danger" onclick="delTeacher('.$name_teacher2["teacher_id"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
         }; ?>
-                    </table>
+                                        </table>
                 </div>
                 <hr>
                 <form method="post" action="add_teacher.php" onsubmit="return checkForm(this);">
-                    <div class="form-row">
-                        <div class="form-group col-12">
-                            <label for="name">ชื่ออาจารย์<span class="text-danger">*</span>์</label>
-                            <input type="text" class="form-control" name="teacher" value="" required>
-                        </div>
-                        <div class="form-group col-12">
-                            <label for="name">สาขา<span class="text-danger">*</span></label>
-                            <select type="text" class="form-control form-select" name="branch" value="" required>
-                                <option value="">เลือก..</option>
-                                <?php
+                                        <div class="row gap-0">
+                                            <div class="col-xl-4 col-sm-12">
+                                                <label for="name">คำนำหน้า<span class="text-danger">*</span>์</label>
+                                                <input type="text" class="form-control" name="nameTitle" value=""
+                                                    required>
+                                            </div>
+                                            <div class="col-xl-8 col-sm-12">
+                                                <label for="name">ชื่ออาจารย์<span class="text-danger">*</span>์</label>
+                                                <input type="text" class="form-control" name="teacher" value=""
+                                                    required>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="name">สาขา<span class="text-danger">*</span></label>
+                                                <select type="text" class="form-control form-select" name="branch"
+                                                    value="" required>
+                                                    <option value="">เลือก..</option>
+                                                    <?php
               $sql_allbranch = "SELECT * FROM branch ORDER BY branch_id ASC";
               $result_allbranch = mysqli_query($conn, $sql_allbranch);
               while($row5_branch = mysqli_fetch_array($result_allbranch)) {
               echo '<option value="'.$row5_branch["branch_id"].'">'.$row5_branch["branchName"].'</option>';
               };
                      ?>
-                            </select>
-                        </div>
-                    </div>
+                                                </select>
+                                            </div>
+                                        </div>
 
-                    <br>
-                    <input type="submit" class="btn btn-primary btn-block w-100" value="เพิ่มชื่ออาจารย์ที่ปรึกษา" id="btnSubmitTeacher">
-                </form>
+                                        <br>
+                                        <input type="submit" class="btn btn-primary btn-block w-100"
+                                            value="เพิ่มชื่ออาจารย์ที่ปรึกษา" id="btnSubmitTeacher">
+                                    </form>
             </div>
         </div>
     </div>
@@ -173,7 +186,7 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="add_teacher"><i class="bi bi-file-earmark-person"></i> เพิ่ม/ลบ สาขา</h5>
+                <h5 class="modal-title" id="add_teacher"><i class="bi bi-list-stars"></i> เพิ่ม/ลบ สาขา</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

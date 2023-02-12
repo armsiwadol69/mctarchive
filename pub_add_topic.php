@@ -69,7 +69,7 @@ if ($result_setting['setting'] == "0") {
                                                 value="<?php echo time();?>" maxlength="10" required readonly>
                                         </div>
                                         <div class="col-lg-8 col-sm-8 mt-1">
-                                            <label for="text">รหัสประจําเล่ม, รหัสริญญานิพนธ์และงานวิจัย<span
+                                            <label for="text">รหัสประจําเล่ม, รหัสปริญญานิพนธ์และงานวิจัย<span
                                                     class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="id"
                                                 placeholder="รหัสประจําเล่มข้างสัน" maxlength="69"
@@ -252,7 +252,7 @@ if ($result_setting['setting'] == "0") {
                                         data-bs-toggle="modal" data-bs-target="#add_topic"><i
                                             class="bi bi-file-plus"></i> เพิ่มข้อมูล</button>
                                     <a type="button" class="btn btn-block btn-secondary w-100 mt-2"
-                                        href="dashboard.php"><i class="bi bi-arrow-bar-left"></i> กลับหน้าหลัก</a>
+                                        href="index.php"><i class="bi bi-arrow-bar-left"></i> กลับหน้าหลัก</a>
                                 </form>
 
 

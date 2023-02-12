@@ -9,7 +9,7 @@
      <li class="nav-item">
        <a class="nav-link active" aria-current="page" href="index.php">หน้าหลัก</a>
      </li>
-     <li class="nav-item dropdown">
+     <li class="nav-item dropdown" hidden>
        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         ปีการศึกษา
        </a>
@@ -25,36 +25,36 @@
                 ?>
        </ul>
      </li>
-     <li class="nav-item dropdown">
+     <li class="nav-item dropdown" hidden>
        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         อาจารย์ที่ปรึกษา
        </a>
        <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown2">
         <?php
-        $sql_teacher = "SELECT * FROM teacher ORDER BY branch ASC";
+        $sql_teacher = "SELECT * FROM teacher WHERE teacher_id != '0' ORDER BY teacherName ASC";
         $result_teacher = mysqli_query($conn, $sql_teacher);
         while($name_teacher = mysqli_fetch_array($result_teacher)) {
-        echo '<li><a class="dropdown-item" href="filter.php?teacher='.$name_teacher["teacher_id"].'&tn='.$name_teacher["teacherName"].'">'.$name_teacher["teacherName"].'   ('.$name_teacher["branch"].')'.'</a></li>';
+        echo '<li><a class="dropdown-item" href="filter.php?teacher='.$name_teacher["teacher_id"].'&tn='.$name_teacher["teacherName"].'">'.$name_teacher["teacherName"].'</a></li>';
         };
          ?>
        </ul>
      </li>
-     <li class="nav-item dropdown">
-       <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+     <li class="nav-item dropdown" hidden>
+       <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         ประเภท
        </a>
        <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown3">
         <li><a class="dropdown-item" href="filter.php?type_doc=1">ปริญญานิพนธ์นักศึกษา</a></li>
-        <li><a class="dropdown-item" href="filter.php?type_doc=2">วิจัยอาจารย์</a></li>
+        <li><a class="dropdown-item" href="filter.php?type_doc=2">งานวิจัยอาจารย์</a></li>
        </ul>
      </li>
-     <li class="nav-item dropdown">
-       <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+     <li class="nav-item dropdown" hidden>
+       <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         สาขา
        </a>
        <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown4">
         <?php
-        $sql_branch = "SELECT * FROM branch ORDER BY branch_id  ASC";
+        $sql_branch = "SELECT * FROM branch WHERE branch_id != '0' ORDER BY branch_id  ASC";
         $result_branch = mysqli_query($conn, $sql_branch);
         while($name_branch = mysqli_fetch_array($result_branch)) {
         echo '<li><a class="dropdown-item" href="filter.php?branch='.$name_branch["branch_id"].'&bn='.$name_branch["branchName"].'">'.$name_branch["branchName"].'</a></li>';
@@ -63,20 +63,20 @@
        </ul>
      </li>
      <li class="nav-item dropdown">
-       <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+       <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         วิธีใช้งานและอื่นๆ
        </a>
-       <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown4">
+       <ul class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown5">
         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#how2use">วิธีการใช้งาน</a></li>
-        <li><hr class="dropdown-divider"></li>
+        <!-- <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#show1Visit">โปรดทราบ</a></li>
-        <li><hr class="dropdown-divider"></li>
+        <li><hr class="dropdown-divider"></li> -->
         <li><a class="dropdown-item" href="adminside\index.php">หน้าผู้ดูแลระบบ</a></li>
        </ul>
      </li>
    </ul>
-   <form class="d-flex" method="post" action="search.php">
-     <input class="form-control me-2" type="search" name="search" placeholder="ID,ชื่อ,นามสกุล,ปีการศึกษา,อาจารย์ที่ปรึกษา" aria-label="Search">
+   <form class="d-flex" method="GET" action="search.php">
+     <input class="form-control me-2" type="search" name="search" placeholder="รหัสประจำเล่ม,ชื่อหรือนามสกุล ผู้ศึกษา" aria-label="Search">
      <button class="btn btn-outline-dark" type="submit"><i class="bi bi-search"></i></button>
    </form>
  </div>
@@ -118,10 +118,13 @@
             <p>
             <hr>
             <h5>Changelog</h5>
-            <p><span class="fw-bold">2.4.0β</span>: Lots of new things.</p>
+            <span class="fw-bold">2.5.2R</span>: LINE Notify Supported. Fixed some bugs. Fixed .PDF Viewer not work in iOS Devices. Fixed Login page button Error.</p>
+            <p>2.5.1R : fixed some bugs.</p>
+            <p>2.5.0R : Lots of new things. fixed some bugs.</p>
+            <p>2.4.0β : fixed some bugs.</p>
             <p>2.3.0β : ReDesign Dashboard.</p>
-            <p>2.2.0β: Auto Watermark (MCT Logo) On Uplaod PDF Doc. One time submit data. Fixed Teacher Name Conflict Display when have coop Teacher. works.zip now can be Upload.</p>
-            <p>2.1.0β</span>: Fixed filter can not use. Fixed search can not use. More Shadow. New Data Table in Dashboard. Fixed DataTable Display only 20. Fixed sql error in information display.</p>
+            <p>2.2.0β : Auto Watermark (MCT Logo) On Uplaod PDF Doc. One time submit data. Fixed Teacher Name Conflict Display when have coop Teacher. works.zip now can be Upload.</p>
+            <p>2.1.0β : Fixed filter can not use. Fixed search can not use. More Shadow. New Data Table in Dashboard. Fixed DataTable Display only 20. Fixed sql error in information display.</p>
             <p>2.0.2β : Support Associate advisor select add new thesis. Fixed some bugs.</p>
             <p>2.0.1β : New Table Structure. Fixed some bugs.</p>
             <p>2.0.0β : Support for faculty level use. New Login Page.</p>

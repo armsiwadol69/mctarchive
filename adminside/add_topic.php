@@ -45,32 +45,33 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
     ?>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar-->
-        <div class="border-end bg-dark text-white text-center" id="sidebar-wrapper">
-            <div class="sidebar-heading border-bottom bg-dark mt-3"><a class="navbar-brand" href="dashboard.php"><img
+        <div class="border-end bg-dark text-white" id="sidebar-wrapper">
+            <div class="sidebar-heading border-bottom bg-dark mt-3 text-center"><a class="navbar-brand" href="dashboard.php"><img
                         src="../favicon.png" class="d-inline-block align-top" width="25" height="25" alt=""> <?php echo $shortNameEng?></a></div>
             <div class="list-group list-group-flush mt-3">
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4 active"
                     href="dashboard.php"><i class="bi bi-table"></i> รายการแสดงผลทั้งหมด</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
-                    href="dashboard.php"> <i class="bi bi-table"></i> รายการรอการตรวจสอบ</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center pe-none"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4 active"
+                    href="dashboard.php?viewPreview=1"> <i class="bi bi-table"></i> รายการรอการตรวจสอบ</a>
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4 pe-none"
                     href="add_topic.php"><i class="bi bi-file-plus"></i> เพิ่มข้อมูลปริญญานิพนธ์<br>งานวิจัย</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4 active"
                     data-bs-toggle="modal" data-bs-target="#add_teacher" href="#"><i class="bi bi-file-person"></i>
                     จัดการรายชื่ออาจารย์</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
-                    data-bs-toggle="modal" data-bs-target="#add_year" href="#"><i class="bi bi-file-plus"></i>
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4 active"
+                    data-bs-toggle="modal" data-bs-target="#add_year" href="#"><i class="bi bi-calendar-event"></i>
                     จัดการปีการศึกษา</a>
-                <a class="list-group-item list-group-item-action p-4 text-center <?php onlySadmin();?>"
-                    data-bs-toggle="modal" data-bs-target="#add_branch" href="#"><i class="bi bi-list-stars"></i>
+                <a class="list-group-item list-group-item-action p-4 <?php onlySadmin();?>" data-bs-toggle="modal"
+                    data-bs-target="#add_branch" href="#"><i class="bi bi-list-stars"></i>
                     จัดการรายชื่อสาขา</a>
-                <a class="list-group-item list-group-item-action p-4 text-center <?php onlySadmin();?>"
-                    data-bs-toggle="modal" data-bs-target="#add_admin" href="#"><i class="bi bi-file-plus"></i>
+                <a class="list-group-item list-group-item-action p-4 <?php onlySadmin();?>" data-bs-toggle="modal"
+                    data-bs-target="#add_admin" href="#"><i class="bi bi-file-plus"></i>
                     จัดการบัญชีผู้ใช้งาน</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active <?php onlySadmin();?>"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4  active <?php onlySadmin();?>"
                     href="setting.php"><i class="bi bi-gear"></i> ตั้งค่า</a>
-                <a class="list-group-item list-group-item-action list-group-item-secondary p-1 mt-5 text-center active">VERSION
-                    : <?php echo $c_version;?></a>
+                <a
+                    class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-5 text-center active">VERSION
+                    : <?php echo $c_version; ?></a>
                 <a class="list-group-item list-group-item-action list-group-item-danger p-1 mt-5 text-center active"
                     href="logout.php">ออกจากระบบ</a>
             </div>
@@ -121,6 +122,7 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                             ข้อแนะนำ : ตรวจสอบชื่อของอาจารย์ที่ปรึกษาก่อนว่ามีในระบบหรือไม่ จึงกรอกข้อมูล หากไม่พบ
                             ให้เพิ่มแล้วรีโหลดหน้าเว็บเพื่อเพิ่มข้อมูล <br>
                             สามารถค้นหาชื่ออาจารย์ได้ในช่อง "อาจารย์ที่ปรึกษา" เพื่อตรวจสอบได้
+                            <span class="fw-bold">ไม่ต้องใส่คำนำหน้าตอนค้นหา</span>
                             <hr>
                             <h6>ข้อแนะนำ 2 : หากมีไฟล์ผลงานหรือไฟล์ใดๆก็ตาม
                                 ในการบันทึกข้อมูลแต่ละครั้งไฟล์ทั้งหมดที่จะอัพโหลดไปด้วย <span
@@ -141,7 +143,7 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                                                 value="<?php echo time();?>" maxlength="10" required readonly>
                                         </div>
                                         <div class="col-lg-8 col-sm-8 mt-1">
-                                            <label for="text">รหัสประจําเล่ม, รหัสริญญานิพนธ์และงานวิจัย<span
+                                            <label for="text">รหัสประจําเล่ม, รหัสปริญญานิพนธ์และงานวิจัย<span
                                                     class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="id"
                                                 placeholder="รหัสประจําเล่มข้างสัน" maxlength="69"
@@ -192,10 +194,10 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                                             <select name="teacher" id="teacher_sb" class="form-select" required="true">
                                                 <option value="0">เลือก...</option>
                                                 <?php
-      $sql_allid = "SELECT * FROM teacher WHERE teacher_id != 0 ORDER BY teacher_id ASC";
+      $sql_allid = "SELECT * FROM teacher WHERE teacher_id != 0 ORDER BY CONVERT(teacherName USING tis620) ASC";
       $result_allid = mysqli_query($conn, $sql_allid);
       while($row2 = mysqli_fetch_array($result_allid)) {
-      echo '<option value="'.$row2["teacher_id"].'">'.$row2["teacherName"].'      (ID: '.$row2["teacher_id"].')'.'</option>';
+      echo '<option value="'.$row2["teacher_id"].'">'.$row2["teacherName"].'</option>';
       };
              ?>
                                             </select>
@@ -205,10 +207,10 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                                             <select name="co_teacher" id="teacher_sb2" class="form-select">
                                                 <option value="0">ไม่มี</option>
                                                 <?php
-      $sql_allid = "SELECT * FROM teacher WHERE teacher_id != 0 ORDER BY teacher_id ASC";
+      $sql_allid = "SELECT * FROM teacher WHERE teacher_id != 0 ORDER BY CONVERT(teacherName USING tis620) ASC";
       $result_allid = mysqli_query($conn, $sql_allid);
       while($row2 = mysqli_fetch_array($result_allid)) {
-      echo '<option value="'.$row2["teacher_id"].'">'.$row2["teacherName"].'      ('.$row2["teacher_id"].')'.'</option>';
+      echo '<option value="'.$row2["teacher_id"].'">'.$row2["teacherName"].'</option>';
       };
              ?>
                                             </select>
@@ -363,10 +365,10 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
     $(document).ready(function() {
 
         window.setTimeout(function() {
-            $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
                 $(this).remove();
             });
-        }, 4200);
+        }, 10000);
 
     });
 

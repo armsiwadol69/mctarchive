@@ -12,60 +12,78 @@ if (isset($_GET["page"]) and !empty($_GET["page"])) {
     $page_default = 1;
 }
 
+if(isset($_GET["hmedia"])){
+   $hmedia = $_GET["hmedia"];
+}else{
+   $_GET["hmedia"] = NULL;
+}
+
 $no_of_records_per_page = 12;
 $offset = ($page_default - 1) * $no_of_records_per_page;
 
 if (isset($_GET["year"]) == 1 and empty($_GET["year"]) == 0) {
     $taget_s = $_GET["year"];
-    $sql_search = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn FROM mctarchive
+    $sql_search = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn , cT.nameTitle AS TcoTn , mT.nameTitle AS TmainTn FROM mctarchive
     LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
     LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
-    LEFT JOIN branch ON mctarchive.branch = branch.branch_id WHERE sec LIKE '$taget_s' ORDER BY add_date ASC LIMIT $offset, $no_of_records_per_page";
-    $sql_search_2all = "SELECT system_id FROM mctarchive WHERE sec LIKE '$taget_s' ORDER BY add_date ASC ";
+    LEFT JOIN branch ON mctarchive.branch = branch.branch_id WHERE sec LIKE '$taget_s' ORDER BY sec DESC LIMIT $offset, $no_of_records_per_page";
+    $sql_search_2all = "SELECT system_id FROM mctarchive WHERE sec LIKE '$taget_s' ORDER BY sec DESC ";
     $taget_to_find = 'ปีการศึกษา : ' . $taget_s;
     $taget_nextpage = "?year=" . "$taget_s";
 
 } elseif (isset($_GET["teacher"]) == 1 and empty($_GET["teacher"]) == 0) {
     $taget_s = $_GET["teacher"];
     $taget_n = $_GET["tn"];
-    $sql_search = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn FROM mctarchive
+    $sql_search = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn , cT.nameTitle AS TcoTn , mT.nameTitle AS TmainTn FROM mctarchive
     LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
     LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
     LEFT JOIN branch ON mctarchive.branch = branch.branch_id
-    WHERE teacher = '$taget_s' ORDER BY add_date ASC LIMIT $offset, $no_of_records_per_page";
+    WHERE teacher = '$taget_s' ORDER BY sec DESC LIMIT $offset, $no_of_records_per_page";
     $sql_search_2all = "SELECT system_id FROM mctarchive WHERE teacher = '$taget_s' ORDER BY teacher ASC";
     $taget_to_find = 'หัวข้อที่เกี่ยวกับที่ปรึกษา : ' . $taget_n;
-    $taget_nextpage = "?teacher=" . "$taget_s";
+    $taget_nextpage = "?teacher=" . "$taget_s" . "&tn=" . $taget_n;
 } elseif (isset($_GET["branch"]) == 1 and empty($_GET["branch"]) == 0) {
     $taget_s = $_GET["branch"];
     $taget_n = $_GET["bn"];
-    $sql_search = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn FROM mctarchive
+    $sql_search = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn , cT.nameTitle AS TcoTn , mT.nameTitle AS TmainTn FROM mctarchive
     LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
     LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
     LEFT JOIN branch ON mctarchive.branch = branch.branch_id
-    WHERE mctarchive.branch = '$taget_s' ORDER BY add_date ASC LIMIT $offset, $no_of_records_per_page";
-    $sql_search_2all = "SELECT system_id FROM mctarchive WHERE branch = '$taget_s' ORDER BY add_date ASC ";
+    WHERE mctarchive.branch = '$taget_s' ORDER BY sec DESC LIMIT $offset, $no_of_records_per_page";
+    $sql_search_2all = "SELECT system_id FROM mctarchive WHERE branch = '$taget_s' ORDER BY sec DESC ";
     $taget_to_find = 'หัวข้อที่เกี่ยวกับสาขา : ' . $taget_n;
-    $taget_nextpage = "?branch=" . "$taget_s";
-} elseif ($_GET["type_doc"] == "1" and empty($_GET["type_doc"]) == 0) {
-    $taget_s = $_GET["type_doc"];
-    $sql_search = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn FROM mctarchive
+    $taget_nextpage = "?branch=" . "$taget_s" . "&bn=" . $taget_n;
+} elseif ($_GET["hmedia"] == "show") {
+    $taget_s = ' ที่มีผลงานวีดีโอ เสียง หรือ อื่นๆ';
+    $tagetNone = $_GET["hmedia"];
+    $sql_search = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn , cT.nameTitle AS TcoTn , mT.nameTitle AS TmainTn FROM mctarchive
     LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
     LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
-    LEFT JOIN branch ON mctarchive.branch = branch.branch_id WHERE type_doc LIKE '1' ORDER BY add_date ASC LIMIT $offset, $no_of_records_per_page";
-    $sql_search_2all = "SELECT system_id FROM mctarchive WHERE type_doc LIKE '1' ORDER BY add_date ASC ";
+    LEFT JOIN branch ON mctarchive.branch = branch.branch_id WHERE video != '' OR fileZip != '' OR audio != '' OR yt_link != '' OR site_url != '' ORDER BY sec DESC LIMIT $offset, $no_of_records_per_page";
+    $sql_search_2all = "SELECT system_id FROM mctarchive WHERE video != '' OR fileZip != '' OR audio != '' OR yt_link != '' OR site_url != '' ORDER BY sec DESC ";
+    $taget_to_find = 'ปริญญานิพนธ์หรืองานวิจัย' . $taget_s;
+    $taget_nextpage = "?hmedia=" . "$tagetNone";
+} elseif ($_GET["type_doc"] == "1" and empty($_GET["type_doc"]) == 0) {
+    $taget_s = $_GET["type_doc"];
+    $sql_search = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn , cT.nameTitle AS TcoTn , mT.nameTitle AS TmainTn FROM mctarchive
+    LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
+    LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
+    LEFT JOIN branch ON mctarchive.branch = branch.branch_id WHERE type_doc LIKE '1' ORDER BY sec DESC LIMIT $offset, $no_of_records_per_page";
+    $sql_search_2all = "SELECT system_id FROM mctarchive WHERE type_doc LIKE '1' ORDER BY sec DESC ";
     $taget_to_find = 'ปริญญานิพนธ์ของ : นักศึกษา';
     $taget_nextpage = "?type_doc=" . "$taget_s";
 } elseif ($_GET["type_doc"] == "2" and empty($_GET["type_doc"]) == 0) {
     $taget_s = $_GET["type_doc"];
-    $sql_search = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn FROM mctarchive
+    $sql_search = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn , cT.nameTitle AS TcoTn , mT.nameTitle AS TmainTn FROM mctarchive
     LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
     LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
-    LEFT JOIN branch ON mctarchive.branch = branch.branch_id WHERE type_doc LIKE '2' ORDER BY add_date ASC LIMIT $offset, $no_of_records_per_page";
-    $sql_search_2all = "SELECT system_id FROM mctarchive WHERE type_doc LIKE '2' ORDER BY add_date ASC ";
+    LEFT JOIN branch ON mctarchive.branch = branch.branch_id WHERE type_doc LIKE '2' ORDER BY sec DESC LIMIT $offset, $no_of_records_per_page";
+    $sql_search_2all = "SELECT system_id FROM mctarchive WHERE type_doc LIKE '2' ORDER BY sec DESC ";
     $taget_to_find = 'งานวิจัยของ : อาจารย์';
     $taget_nextpage = "?type_doc=" . "$taget_s";
+
 } else {
+
     header("location: index.php");
     exit(0);
     //echo strlen($year);
@@ -93,9 +111,9 @@ $total_pages = ceil($row_cnt / $no_of_records_per_page);
     <meta charset="utf-8">
     <title>ระบบสืบค้นปริญญานิพนธ์และงานวิจัย คณะเทคโนโลยีสื่อสารมวลชน มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรีี</title>
     <meta property="og:title"
-        content="<?php echo "$taget_to_find"; ?> | <?php echo $v_websiteName.' '.$v_subName?>" />
+        content="<?php echo "$taget_to_find"; ?> | <?php echo $v_websiteName . ' ' . $v_subName ?>" />
     <meta property="og:description"
-        content="<?php echo $v_websiteName.' '.$v_subName?>" />
+        content="<?php echo $v_websiteName . ' ' . $v_subName ?>" />
     <meta property="og:image" content="favicon.png" />
 </head>
 
@@ -106,10 +124,10 @@ include 'navbar.php';
 
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <div class="jumbotron jumbotron_site mainjum mainvector mt-5">
-                    <h2 class="display-5"><?php echo $v_websiteName;?></h2>
-                    <p class="lead"><?php echo $v_subName;?></p>
+            <div class="col-12 w-100">
+                <div class="jumbotron jumbotron_site mainjum mainvector mt-4">
+                    <h2 class="display-5"><?php echo $v_websiteName; ?></h2>
+                    <p class="lead"><?php echo $v_subName; ?></p>
                     <hr class="my-4" style="max-width:70%">
                     <h2><i class="bi bi-filter-square"></i> แสดงผลเฉพาะ<?php echo $taget_to_find; ?></h2>
                     <h4 class="">จำนวนรายการที่ตรงตามเงื่อนไข <span class="badge bg-dark text-while no-text-outline">
@@ -121,7 +139,7 @@ include 'navbar.php';
             </div>
         </div>
         <?php include 'searchbox.php';?>
-        <div class="row" id="kokodayo" name="kokodayo">
+        <div class="row gy-2 gx-2 mt-2" id="kokodayo" name="kokodayo">
             <?php
 include 'topiccard.php';
 ?>

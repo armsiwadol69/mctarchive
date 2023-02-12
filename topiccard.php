@@ -1,37 +1,37 @@
 <?php
 while($all = mysqli_fetch_array($result_all)) {
-  echo '<div class="col-sm-12 col-md-6 col-lg-4 mt-3">';
+  echo '<div class="col-sm-12 col-md-6 col-lg-4">';
   echo '<div class="card w-100 h-100 card-font-1 shadow" data-aos="fade-up" data-aos-duration="690">';
   echo '<div class="card-header">';
   echo 'ID : '.$all["id"];
   echo '</div>';
   echo '<div class="card-body d-flex flex-column">';
   echo '<h5 class="card-title">'.'เรื่อง : '.$all["thainame"].'</h5>';
-  if (empty($all["engname"] == false)) {
-    echo '<h5 class="text-dark">'.'Title : '.$all["engname"].'</h5>';
-  } else {echo '<h5 class="card-title">'.'Title : - '.'</h5>';}
-  echo '<hr><p class="fw-bold">โดย</p>';
-  echo '<p>'.'1.'.$all["std1"].'</p>';
-  if (empty($all["std2"] == false)) {
-    echo '<p>'.'2.'.$all["std2"].'</p>';
-  }
-  if (empty($all["std3"] == false)) {
-    echo '<p>'.'3.'.$all["std3"].'</p>';
-  }
-  if (empty($all["std4"] == false)) {
-    echo '<p>'.'4.'.$all["std4"].'</p>';
-  }
-  if (empty($all["std5"] == false)) {
-    echo '<p>'.'5.'.$all["std5"].'</p>';
-  }
-  if (empty($all["std6"] == false)) {
-    echo '<p>'.'6.'.$all["std6"].'</p>';
-  }
+  // if (empty($all["engname"] == false)) {
+  //   echo '<h5 class="text-dark">'.'Title : '.$all["engname"].'</h5>';
+  // } else {echo '<h5 class="card-title">'.'Title : - '.'</h5>';}
+  // echo '<hr><p class="fw-bold">โดย</p>';
+  // echo '<p>'.'1.'.$all["std1"].'</p>';
+  // if (empty($all["std2"] == false)) {
+  //   echo '<p>'.'2.'.$all["std2"].'</p>';
+  // }
+  // if (empty($all["std3"] == false)) {
+  //   echo '<p>'.'3.'.$all["std3"].'</p>';
+  // }
+  // if (empty($all["std4"] == false)) {
+  //   echo '<p>'.'4.'.$all["std4"].'</p>';
+  // }
+  // if (empty($all["std5"] == false)) {
+  //   echo '<p>'.'5.'.$all["std5"].'</p>';
+  // }
+  // if (empty($all["std6"] == false)) {
+  //   echo '<p>'.'6.'.$all["std6"].'</p>';
+  // }
   echo '<hr class="mt-auto">';
   if ($all["type_doc"] == "1") {
-    echo '<p class="card-text">อาจารย์ที่ปรึกษา : '.$all["mainTn"].'</p>';
+    echo '<p class="card-text">อาจารย์ที่ปรึกษา : '.$all["TmainTn"]. $all["mainTn"] .'</p>';
     if(!empty($all["co_teacher"])){
-    echo '<p class="card-text">อาจารย์ที่ปรึกษาร่วม : '.$all["coTn"].'</p>';
+    echo '<p class="card-text">อาจารย์ที่ปรึกษาร่วม : '.$all["TcoTn"]. $all["coTn"].'</p>';
     }
     echo '<p class="card-text">ประเภท : ปริญญานิพนธ์นักศึกษา</p>';
   }else {

@@ -26,6 +26,7 @@ if (time() - $_SESSION["timeout"] > 3600) {
 
 ////
 include '../conn.php';
+include 'lineNotify.php';
 $conn = mysqli_connect($serverName, $userName, $userPassword, $dbName);
 
 /////
@@ -130,7 +131,10 @@ echo $thainame;
 ///
 
 if ($_GET["preview"] == 1) {
-    $taget_table = "mctarchive_pre";} else {
+    $textResultLINE = 'อยู่ในรายการรอการตรวจสอบ';
+    $taget_table = "mctarchive_pre";
+} else {
+    $textResultLINE = 'แสดงผลอยู่';
     $taget_table = "mctarchive";
 }
 
@@ -339,6 +343,8 @@ echo $query_updatetopic;
 
 if ($query_updatetopic == 1) {
     echo "!OK!";
+    $message = 'มีการแก้ไขข้อมูลปริญญานิพนธ์หรืองานวิจัย ('.$textResultLINE.') ID : '.$id.' หัวข้อ : '.$thainame.' | เมื่อ '.date('Y-m-d H:i:s').' โดย '.$_SESSION["name"];
+     sendLineNotify($message);
     Header("Location: dashboard.php?update_topic=1");
 } else {
     echo "!FAIL!";

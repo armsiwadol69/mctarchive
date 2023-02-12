@@ -29,6 +29,7 @@ if (time() - $_SESSION["timeout"] > 3600) {
 ////
 include '../conn.php';
 include 'commonf.php';
+include 'lineNotify.php';
 $userID = $_SESSION["user_id"];
 
 $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
@@ -225,9 +226,11 @@ if($IDisExitst){
 
 
 if ($_POST["skip_pass"] == "1") {
+  $textResultLINE = 'ถูกนำไปแสดงผลแล้ว';
   $sql_addtopic = "INSERT INTO mctarchive(system_id,id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,co_teacher,sec,branch,video,pdf,fileZip,audio,type_doc,add_by,yt_link,site_url)
   VALUES('$system_id','$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$co_teacher','$year','$branch','$video','$pdf','$fileZip','$audio','$type_doc','$add_by','$yt_link','$site_url')";
 }else {
+  $textResultLINE = 'อยู่ในรายการรอตรวจสอบ';
   $sql_addtopic = "INSERT INTO mctarchive_pre(system_id,id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,co_teacher,sec,branch,video,pdf,fileZip,audio,type_doc,add_by,yt_link,site_url)
   VALUES('$system_id','$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$co_teacher','$year','$branch','$video','$pdf','$fileZip','$audio','$type_doc','$add_by','$yt_link','$site_url')";
 }
@@ -312,6 +315,10 @@ $pdf->Output('F', $pdfWarmarkOutput);
 if ($query_addtopic == 1 AND $pdf_upload == 1) {
   echo "!OK!";
   unlink($old_file);
+
+  $message = 'มีการเพิ่มข้อมูลปริญญานิพนธ์หรืองานวิจัย ('.$textResultLINE.') | ID : '.$id.' | หัวข้อ : '.$thainame.' | เมื่อ '.date('Y-m-d H:i:s').' โดย '.$_SESSION["name"];
+  sendLineNotify($message);
+  
   Header("Location: dashboard.php?upload_topic=1");
 }else {
   function rrmdir($mypath)

@@ -5,6 +5,7 @@ ob_start();
 ////
 include 'conn.php';
 include 'adminside/commonf.php';
+include 'adminside/lineNotify.php';
 
 $sql_setting = "SELECT * FROM setting WHERE var = 'free2uplaod'";
 $query_setting = mysqli_query($conn,$sql_setting);
@@ -240,7 +241,7 @@ $gsCmd = "GSWIN64 -sDEVICE=pdfwrite -dCompatibilityLevel=$pdfVersion -dNOPAUSE -
 //Run it using PHP's exec function.
 exec($gsCmd);
 
-unlink($old_file);
+
 
 
 // Source file and watermark config 
@@ -290,6 +291,10 @@ $pdf->Output('F', $pdfWarmarkOutput);
 
 if ($query_addtopic == 1 AND $pdf_upload == 1) {
   echo "!OK!";
+  unlink($old_file);
+  $textResultLINE = 'อยู่ในรายการรอการตรวจสอบ';
+  $message = 'มีการเพิ่มข้อมูลปริญญานิพนธ์หรืองานวิจัย ('.$textResultLINE.') | ID : '.$id.' | หัวข้อ : '.$thainame.' | เมื่อ '.date('Y-m-d H:i:s').' โดย : ผู้ใช้งานภายนอก (เปิดเพิ่มข้อมูล)';
+  sendLineNotify($message);
   Header("Location: index.php?add=1");
 }else {
   function rrmdir($mypath)

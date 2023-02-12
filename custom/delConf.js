@@ -1,8 +1,18 @@
-function delDataOfTopic(system_id) {
+function delDataOfTopic(system_id,id,topicName) {
     let text = "ยืนยันการลบข้อมูลหรือไม่? \nเมื่อลบแล้วจะไม่สามารถกู้คืนได้";
     if (confirm(text) == true) {
       text = "You pressed OK!";
-      window.location = "del_topic.php?idtodel="+system_id;
+      window.location = "del_topic.php?idtodel="+system_id+"&nid="+id+"&topicName="+topicName;
+    } else {
+      //text = "You canceled!";
+    }
+  }
+
+  function delDataPreOfTopic(system_id,id,topicName) {
+    let text = "ยืนยันการลบข้อมูลหรือไม่? \nเมื่อลบแล้วจะไม่สามารถกู้คืนได้";
+    if (confirm(text) == true) {
+      text = "You pressed OK!";
+      window.location = "del_topic.php?preview=1&idtodel="+system_id+"&nid="+id+"&topicName="+topicName;
     } else {
       //text = "You canceled!";
     }
