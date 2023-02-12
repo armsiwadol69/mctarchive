@@ -78,14 +78,14 @@ include 'modal.php';
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
                     href="dashboard.php"><i class="bi bi-table"></i> รายการแสดงผลทั้งหมด</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
-                    href="dashboard.php"> <i class="bi bi-table"></i> รายการรอการตรวจสอบ</a>
+                    href="dashboard.php?viewPreview=1"> <i class="bi bi-table"></i> รายการรอการตรวจสอบ</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center pe-none"
                     href="add_topic.php"><i class="bi bi-file-plus"></i> เพิ่มข้อมูลปริญญานิพนธ์<br>งานวิจัย</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
                     data-bs-toggle="modal" data-bs-target="#add_teacher" href="#"><i class="bi bi-file-person"></i>
                     จัดการรายชื่ออาจารย์</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
-                    data-bs-toggle="modal" data-bs-target="#add_year" href="#"><i class="bi bi-file-plus"></i>
+                    data-bs-toggle="modal" data-bs-target="#add_year" href="#"><i class="bi bi-calendar-event"></i>
                     จัดการปีการศึกษา</a>
                 <a class="list-group-item list-group-item-action p-4 text-center <?php onlySadmin();?>"
                     data-bs-toggle="modal" data-bs-target="#add_branch" href="#"><i class="bi bi-list-stars"></i>
@@ -95,7 +95,7 @@ include 'modal.php';
                     จัดการบัญชีผู้ใช้งาน</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active <?php onlySadmin();?>"
                     href="setting.php"><i class="bi bi-gear"></i> ตั้งค่า</a>
-                <a class="list-group-item list-group-item-action list-group-item-secondary p-1 mt-5 text-center active">VERSION
+                <a class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-5 text-center active">VERSION
                     : <?php echo $c_version; ?></a>
                 <a class="list-group-item list-group-item-action list-group-item-danger p-1 mt-5 text-center active"
                     href="logout.php">ออกจากระบบ</a>
@@ -168,7 +168,7 @@ include 'modal.php';
                                                 required readonly>
                                         </div>
                                         <div class="col-lg-8 col-sm-8 mt-1">
-                                            <label for="text">รหัสประจําเล่ม, รหัสริญญานิพนธ์และงานวิจัย<span
+                                            <label for="text">รหัสประจําเล่ม, รหัสปริญญานิพนธ์และงานวิจัย<span
                                                     class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="id"
                                                 placeholder="รหัสประจําเล่มข้างสัน" maxlength="69"

@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Bangkok');
 //check time out logout if afk more than 1 hr(3600sec).
 function checkTimeout()
 {

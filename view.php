@@ -52,9 +52,6 @@ $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
     <link rel="stylesheet" href="custom\sicustom.css">
     <link rel="stylesheet" href="custom\aos.css">
     <script type="text/javascript" src="custom\aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.5/pdfobject.min.js"
-        integrity="sha512-K4UtqDEi6MR5oZo0YJieEqqsPMsrWa9rGDWMK2ygySdRQ+DtwmuBXAllehaopjKpbxrmXmeBo77vjA2ylTYhRA=="
-        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     <meta charset="utf-8">
     <title><?php ?><?php echo $result["thainame"]; ?> | <?php echo $v_websiteName.' '.$v_subName?></title>
@@ -163,13 +160,18 @@ if (empty($result["fileZip"]) == false) {
                         <h4><i class="bi bi-file-earmark-check"></i> <strong>เอกสาร</strong></h4>
                         <?php if (empty($result["pdf"])) {echo '<h4>ไม่มีเอกสารให้แสดง</h4>';}?>
                         <div style="width: 100%; height: 100%" <?php if (empty($result["pdf"])) {echo "hidden";}?>>
-                            <object class="rounded" style="height:100vh;"
+                            <!-- <object class="rounded" style="height:100vh;"
                                 data="storage\<?php echo $id . '\\' . $result["pdf"]; ?>" type="application/pdf"
-                                width="100%">
+                                width="100%" hidden>
                                 <p>อุปกรณ์ของคุณไม่รองรับการดูไฟล์ .pdf <a
                                         href="storage\<?php echo $id . '\\' . $result["pdf"]; ?>">คลิกที่นี้เพื่อดูหรือดาวน์โหลด!</a>
                                 </p>
-                            </object>
+                            </object> -->
+
+                            <!-- <iframe style="height:100vh;" src="storage\<?php echo $id . '\\' . $result["pdf"]; ?>" width="100%" height="100%">
+                                This browser does not support PDFs. Please download the PDF to view it:
+                                <a href="storage\<?php echo $id . '\\' . $result["pdf"]; ?>">Download PDF</a></iframe> -->
+                            <div id="pdfViewer"></div>
                         </div>
                         <div>
                             <?php
@@ -219,6 +221,15 @@ if (empty($result["add_by"] == false)) {
     </script>
     <script type="text/javascript" src="bootstrap5\js\bootstrap.min.js"></script>
     <script type="text/javascript" src="custom\tooltips.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js"
+        integrity="sha512-MoP2OErV7Mtk4VL893VYBFq8yJHWQtqJxTyIAsCVKzILrvHyKQpAwJf9noILczN6psvXUxTr19T5h+ndywCoVw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+    var options = {
+    pdfOpenParams: {toolbar: '0'}, fallbackLink: '<p>อุปกรณ์ของคุณไม่รองรับการดูไฟล์ .pdf หากต้องการดูผ่านหน้าเว็บให้เปิดเว็บผ่านคอมพิวเตอร์. หรือ: <a href="[url]">กดที่นี้</a> เพื่อเปิดแยกแท็บ</p>'};
+    PDFObject.embed(<?php echo '"'.'.\\\storage'.'\\'.'\\'.$id.'\\'.'\\'.$result["pdf"].'#toolbar=0"'; ?>, "#pdfViewer", options); 
+    
+    </script>
 </body>
 
 </html>

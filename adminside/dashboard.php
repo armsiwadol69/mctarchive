@@ -46,6 +46,9 @@ $no_of_records_per_page_pre = 20;
 $offse_pre = ($page_pre_default - 1) * $no_of_records_per_page_pre;
 $total_pages_pre = ceil($row_cnt_page_pre / $no_of_records_per_page_pre);
 
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -90,7 +93,7 @@ include 'modal.php';
                     data-bs-toggle="modal" data-bs-target="#add_teacher" href="#"><i class="bi bi-file-person"></i>
                     จัดการรายชื่ออาจารย์</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
-                    data-bs-toggle="modal" data-bs-target="#add_year" href="#"><i class="bi bi-file-plus"></i>
+                    data-bs-toggle="modal" data-bs-target="#add_year" href="#"><i class="bi bi-calendar-event"></i>
                     จัดการปีการศึกษา</a>
                 <a class="list-group-item list-group-item-action p-4 text-center <?php onlySadmin();?>"
                     data-bs-toggle="modal" data-bs-target="#add_branch" href="#"><i class="bi bi-list-stars"></i>
@@ -100,7 +103,7 @@ include 'modal.php';
                     จัดการบัญชีผู้ใช้งาน</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active <?php onlySadmin();?>"
                     href="setting.php"><i class="bi bi-gear"></i> ตั้งค่า</a>
-                <a class="list-group-item list-group-item-action list-group-item-secondary p-1 mt-5 text-center active">VERSION
+                <a class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-5 text-center active">VERSION
                     : <?php echo $c_version; ?></a>
                 <a class="list-group-item list-group-item-action list-group-item-danger p-1 mt-5 text-center active"
                     href="logout.php">ออกจากระบบ</a>
@@ -191,7 +194,7 @@ while ($all = mysqli_fetch_array($result_all)) {
     echo "<td>" . '<a type="button" class="btn btn-info" target="_blank" href="../view.php?id=' . $all["system_id"] . '"><i class="bi bi-eye"></i></a>' . "</td> ";
     echo "<td>" . '<a type="button" class="btn btn-success' . $permission . '" onclick="changeStatus2C(' . "'" . $all["system_id"] . '#preview' . "'" . ')"><i class="bi bi-arrow-left-right"></i></a>' . "</td> ";
     echo "<td>" . '<a type="button" class="btn btn-warning' . $permission . '" href="edit_topic.php?id=' . $all["system_id"] . '"><i class="bi bi-pencil-square"></i></a>' . "</td> ";
-    echo "<td>" . '<button type="button" class="btn btn-danger' . $permission . '" onclick="delDataOfTopic(' . $all["system_id"] . ')"><i class="bi bi-trash"></i></button>' . "</td> " . "</tr>";
+    echo "<td>" . '<button type="button" class="btn btn-danger' . $permission . '" onclick="delDataOfTopic(' ."'". $all["system_id"] ."','".$all["id"]."','".$all["thainame"]."'".')"><i class="bi bi-trash"></i></button>' . "</td> " . "</tr>";
 }
 ;
 ?>
@@ -244,8 +247,8 @@ while ($all = mysqli_fetch_array($result_all_wait)) {
     echo "<td hidden>" . $all["name"] . "</td> ";
     echo "<td>" . '<a type="button" class="btn btn-info" target="_blank" href="../view.php?preview=1&id=' . $all["system_id"] . '"><i class="bi bi-eye"></i></a>' . "</td> ";
     echo "<td>" . '<a type="button" class="btn btn-success' . $permission . '" onclick="changeStatus2D(' . "'" . $all["system_id"] . '#displayed' . "'" . ')"><i class="bi bi-arrow-left-right"></i></a>' . "</td> ";
-    echo "<td>" . '<a type="button" class="btn btn-warning" href="edit_topic.php?preview=1&id=' . $all["system_id"] . '"><i class="bi bi-pencil-square"></i></a>' . "</td> ";
-    echo "<td>" . '<a type="button" class="btn btn-danger" href="del_topic.php?preview=1&idtodel=' . $all["system_id"] . '"><i class="bi bi-trash"></i></a>' . "</td> " . "</tr>";
+    echo "<td>" . '<a type="button" class="btn btn-warning' . $permission . '" href="edit_topic.php?preview=1&id=' . $all["system_id"] . '"><i class="bi bi-pencil-square"></i></a>' . "</td> ";
+    echo "<td>" . '<button type="button" class="btn btn-danger' . $permission . '" onclick="delDataPreOfTopic(' ."'". $all["system_id"] ."','".$all["id"]."','".$all["thainame"]."'".')"><i class="bi bi-trash"></i></button>' . "</td> " . "</tr>";
 }
 ;
 ?>
@@ -266,7 +269,7 @@ while ($all = mysqli_fetch_array($result_all_wait)) {
     <script type="text/javascript" src="..\custom\menuA2.js"></script>
     <script type="text/javascript" src="..\bootstrap5\js\bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="..\custom\tooltips.js"></script>
-    <script type="text/javascript" src="..\custom\delConf.js"></script>
+    <script type="text/javascript" src="..\custom\delConf.js?v=4"></script>
     <script src="https://code.jquery.com/jquery-3.6.2.min.js"
         integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../custom/DataTables/datatables.min.js"></script>
@@ -311,8 +314,15 @@ while ($all = mysqli_fetch_array($result_all_wait)) {
     
     $(document).ready(function() {
         document.getElementById("mctArchive_pre").setAttribute("hidden", "");
+
+        <?php
+        if(isset($_GET["viewPreview"]) AND !empty($_GET["viewPreview"])){
+            echo 'showMctPre();';
+            }
+        ?>
 });
     </script>
+  
 </body>
 
 </html>

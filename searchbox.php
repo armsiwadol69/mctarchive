@@ -23,7 +23,7 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 ตัวกรองแสดงผล
                             </button>
-                            <ul class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton1">
+                            <ul class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton1" style="max-height: 50vh;overflow-y: auto;">
                                 <!--<li><a class="dropdown-item disabled">อาจารย์ที่ปรึกษา</a></li> -->
                                 <?php //$result_teacher2 = mysqli_query($conn, $sql_teacher);
 //while($name_teacher2 = mysqli_fetch_array($result_teacher2)) {
@@ -38,24 +38,29 @@
  echo '<li><a class="dropdown-item" href="filter.php?branch='.$name_branch["branch_id"].'&bn='.$name_branch["branchName"].'">'.$name_branch["branchName"].'</a></li>';
  };
   ?>
+<hr>
+<li><a class="dropdown-item disabled">ประเภท</a></li>
+                                <li><a class="dropdown-item" href="filter.php?type_doc=1">ปริญญานิพนธ์นักศึกษา</a></li>
+                                <li><a class="dropdown-item" href="filter.php?type_doc=2">งานวิจัยอาจารย์</a></li>
                                 <hr>
                                 <li><a class="dropdown-item disabled">ปีการศึกษา</a></li>
                                 <?php
 $sql_allyearshow = mysqli_query($conn, $sql_allyear);
 while($yaer_sec = mysqli_fetch_array($sql_allyearshow)) {
 echo '<li><a class="dropdown-item" href="filter.php?year='.$yaer_sec["year"].'">'.$yaer_sec["year"].'</a></li>';} ?>
-                                <hr>
-                                <li><a class="dropdown-item disabled">ประเภท</a></li>
-                                <li><a class="dropdown-item" href="filter.php?type_doc=1">ปริญญานิพนธ์นักศึกษา</a></li>
-                                <li><a class="dropdown-item" href="filter.php?type_doc=2">วิจัยอาจารย์</a></li>
+                              
+                                
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 my-2">
-                        <a href="filter.php?type_doc=1" class="btn btn-dark  w-100">ปริญญานิพนธ์นักศึกษา</a>
+                    <div class="col-lg-4 col-md-4 col-sm-12 my-2">
+                        <button type="button" onclick="location.href='filter.php?type_doc=1';" class="btn btn-dark h-100 w-100">ปริญญานิพนธ์นักศึกษา</button>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 my-2">
-                        <a href="filter.php?type_doc=2" class="btn btn-dark  w-100">วิจัยอาจารย์</a>
+                    <div class="col-lg-4 col-md-4 col-sm-12 my-2">
+                        <button type="button" onclick="location.href='filter.php?type_doc=2';" class="btn btn-dark h-100 w-100"></button>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 my-2">
+                        <button type="button" onclick="location.href='filter.php?hmedia=show';" class="btn btn-dark h-100 w-100">หัวข้อที่มีผลงานนอกจากเอกสาร</button>
                     </div>
                     <?php
 $sql_setting = "SELECT * FROM setting WHERE var = 'free2uplaod'";

@@ -38,8 +38,14 @@ include '../conn.php';
 </head>
 
 <body>
-    <video id="bgVid" class="background-video" autoplay loop>
-        <source src="../img/pv4_t.mp4" type="video/mp4">
+    <?php
+    $randomNumber = random_int(0, 3);
+    $videoArray = array("pv4_t.mp4","Kyokansarenakutemoiijanai.mp4","momosu_esoa.mp4","lukpaiwa.mp4");
+   
+    
+    ?>
+    <video id="bgVid" class="background-video" poster="../img/BG_Library.jpg" loop>
+        <source src="../video/<?php echo $videoArray[$randomNumber];?>" type="video/mp4">
     </video>
 
     <div class="container-fluid px-0">
@@ -48,7 +54,13 @@ include '../conn.php';
                 <div class="card noBorder loginLeftImage w-100 vh-100">
                     <div class="card-body d-flex flex-column p-0">
                         <h5 class="mt-auto mx-3 text-white"
-                            style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.7));"><?php echo $shortNameEng; ?> Version <?php echo $c_version;?> | SiWADOL X MCT Library <button class="btn btn-outline-info" onclick="turnUpVol();"><i class="bi bi-music-note-beamed"></i></button></h5>
+                            style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.7));"><?php echo $shortNameEng; ?>
+                            Version <?php echo $c_version;?> | SiWADOL X MCT Library <button
+                                class="btn btn-outline-info" onclick="turnUpVol();"><i
+                                    class="bi bi-music-note-beamed"></i></button>
+                                    <br>
+                                    ยังไม่ได้ถ่ายวีดีโอสำหรับหน้าเข้าสู่ระบบ เพราะฉนั้น เอาเพลงดีๆไปฟังก่อนนะ</h5>
+                                    
                     </div>
                 </div>
             </div>
@@ -58,16 +70,19 @@ include '../conn.php';
                         <form method="POST" action="login.php">
                             <div class="row d-flex justify-content-center">
                                 <div class="col-12 d-flex flex-column justify-content-center text-white text-center">
-                                <h1 class="d-flex display-4 justify-content-center fw-bold"><?php echo $v_websiteName; ?></h1>
-                                <h4 class="d-flex justify-content-center fw-bold"><?php echo $v_subName; ?></h5>
-                                    <img class="img-fluid" style=" filter: drop-shadow(7px 7px 7px rgba(0, 0, 0, 0.5));"
-                                        src="../img/Blue_Archive_logo_JP.png" alt="" hidden>
+                                    <h1 class="d-flex display-4 justify-content-center fw-bold">
+                                        <?php echo $v_websiteName; ?></h1>
+                                    <h4 class="d-flex justify-content-center fw-bold"><?php echo $v_subName; ?></h5>
+                                        <img class="img-fluid"
+                                            style=" filter: drop-shadow(7px 7px 7px rgba(0, 0, 0, 0.5));"
+                                            src="../img/Blue_Archive_logo_JP.png" alt="" hidden>
                                 </div>
                                 <div class="col-0 col-xl-3 offest-3"></div>
                                 <div class="col-8 col-md-8 col-xl-6 offest-3">
                                     <div class="form-group mt-4">
                                         <label for="name" class="text-white font-weight-bold">Username</label>
-                                        <input type="username" class="form-control" name="username" aria-describedby="username" placeholder="Username" required>
+                                        <input type="username" class="form-control" name="username"
+                                            aria-describedby="username" placeholder="Username" required>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 offest-4"></div>
@@ -75,13 +90,14 @@ include '../conn.php';
                                 <div class="col-8 col-md-8 col-xl-6">
                                     <div class="form-group">
                                         <label for="password" class="text-white font-weight-bold">Password</label>
-                                        <input type="password" class="form-control" name="password" placeholder="Password" required>
+                                        <input type="password" class="form-control" name="password"
+                                            placeholder="Password" required>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 offest-3"></div>
                                 <div class="col-8 col-md-8 col-xl-6">
                                     <div class="form-group">
-                                        
+
                                     </div>
 
                                     <div class="form-group mt-3">
@@ -95,7 +111,7 @@ include '../conn.php';
                                                 class="bi bi-box-arrow-in-left"></i> หน้าหลัก</a>
                                     </div>
                                     <div class="mt-4 text-center">
-                                    <?php
+                                        <?php
                                     if (isset($_GET["login"]) == 1) {
                                     $status = $_GET["login"];
                                       }else {
@@ -122,13 +138,17 @@ include '../conn.php';
                                       ';
                                     }
                                     ?>
-                                    <div class="mt-2 text-center d-block d-sm-block d-md-block d-lg-block d-xl-none">
-                                        <h6 class="mt-3 text-dark"
-                                            style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));"><?php echo $shortNameEng; ?> Version <?php echo $c_version;?> | SiWADOL X MCT Library <button class="btn btn-outline-info" onclick="turnUpVol();"><i class="bi bi-music-note-beamed"></i></button></h6>
                                     </div>
-                                </div>
                         </form>
-
+                        <div class="mt-2 text-center d-block d-sm-block d-md-block d-lg-block d-xl-none">
+                            <h6 class="mt-3 text-white" style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));">
+                                <?php echo $shortNameEng; ?> Version <?php echo $c_version;?> | SiWADOL X MCT Library
+                                <button class="btn btn-outline-info" type="button" onclick="turnUpVol();"><i
+                                        class="bi bi-music-note-beamed"></i></button>
+                                    <br>
+                                    ยังไม่ได้ถ่ายวีดีโอสำหรับหน้าเข้าสู่ระบบ เพราะฉนั้น เอาเพลงดีๆไปฟังก่อนนะ
+                                    </h6>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -136,19 +156,33 @@ include '../conn.php';
 
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script>
-    var vid = document.getElementById("bgVid");
-    vid.volume = 0;
-    vid.play();
-    
-    function turnUpVol(){
-        vid.removeAttribute("muted");
-        vid.volume = 0.1;
-    }
+    var vid = document.getElementById("bgVid")
+    vid.volume = 0
+    vid.play()
+    document.getElementById("bgVid").setAttribute("autoplay", "")
+    let soundPlay = 0
 
+    function turnUpVol() {
+        if (soundPlay == 0) {
+            vid.removeAttribute("muted");
+            vid.volume = 0.1;
+            soundPlay = 1
+            console.log("Play");
+            console.log(soundPlay);
+        }else{
+            vid.setAttribute("muted","");
+             vid.volume = 0;
+             soundPlay = 0;
+             console.log("muted");
+             console.log(soundPlay);
+        }
+        
+    }
     </script>
-    
+
 </body>
 
 </html>

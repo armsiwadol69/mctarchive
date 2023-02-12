@@ -50,14 +50,14 @@ include 'modal.php';
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
                     href="dashboard.php"><i class="bi bi-table"></i> รายการแสดงผลทั้งหมด</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
-                    href="dashboard.php"> <i class="bi bi-table"></i> รายการรอการตรวจสอบ</a>
+                    href="dashboard.php?viewPreview=1"> <i class="bi bi-table"></i> รายการรอการตรวจสอบ</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
                     href="add_topic.php"><i class="bi bi-file-plus"></i> เพิ่มข้อมูลปริญญานิพนธ์<br>งานวิจัย</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
                     data-bs-toggle="modal" data-bs-target="#add_teacher" href="#"><i class="bi bi-file-person"></i>
                     จัดการรายชื่ออาจารย์</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
-                    data-bs-toggle="modal" data-bs-target="#add_year" href="#"><i class="bi bi-file-plus"></i>
+                    data-bs-toggle="modal" data-bs-target="#add_year" href="#"><i class="bi bi-calendar-event"></i>
                     จัดการปีการศึกษา</a>
                 <a class="list-group-item list-group-item-action p-4 text-center <?php onlySadmin();?>"
                     data-bs-toggle="modal" data-bs-target="#add_branch" href="#"><i class="bi bi-list-stars"></i>
@@ -67,7 +67,7 @@ include 'modal.php';
                     จัดการบัญชีผู้ใช้งาน</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active <?php onlySadmin();?>"
                     href="setting.php"><i class="bi bi-gear"></i> ตั้งค่า</a>
-                <a class="list-group-item list-group-item-action list-group-item-secondary p-1 mt-5 text-center active">VERSION
+                <a class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-5 text-center active">VERSION
                     : <?php echo $c_version; ?></a>
                 <a class="list-group-item list-group-item-action list-group-item-danger p-1 mt-5 text-center active"
                     href="logout.php">ออกจากระบบ</a>
@@ -114,7 +114,7 @@ include 'modal.php';
                     <div class="col-12">
                         <?php include 'nofbox.php';?>
                     </div>
-                    <div class="col-lg-5 col-md-12 col-sm-12" data-aos="fade-up" data-aos-duration="500">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12" data-aos="fade-up" data-aos-duration="500">
                         <div class="card shadow-sm">
                             <h5 class="card-header">ตั้งค่า</h5>
                             <div class="card-body">

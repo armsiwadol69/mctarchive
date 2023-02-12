@@ -69,7 +69,7 @@ if ($result_setting['setting'] == "0") {
                                                 value="<?php echo time();?>" maxlength="10" required readonly>
                                         </div>
                                         <div class="col-lg-8 col-sm-8 mt-1">
-                                            <label for="text">รหัสประจําเล่ม, รหัสริญญานิพนธ์และงานวิจัย<span
+                                            <label for="text">รหัสประจําเล่ม, รหัสปริญญานิพนธ์และงานวิจัย<span
                                                     class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="id"
                                                 placeholder="รหัสประจําเล่มข้างสัน" maxlength="69"
