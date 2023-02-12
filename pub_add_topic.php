@@ -252,7 +252,7 @@ if ($result_setting['setting'] == "0") {
                                         data-bs-toggle="modal" data-bs-target="#add_topic"><i
                                             class="bi bi-file-plus"></i> เพิ่มข้อมูล</button>
                                     <a type="button" class="btn btn-block btn-secondary w-100 mt-2"
-                                        href="dashboard.php"><i class="bi bi-arrow-bar-left"></i> กลับหน้าหลัก</a>
+                                        href="index.php"><i class="bi bi-arrow-bar-left"></i> กลับหน้าหลัก</a>
                                 </form>
 
 

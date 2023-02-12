@@ -119,3 +119,7 @@ table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, ta
   #outerContainer #mainContainer #viewerContainer {
     top: 0 !important; /* move doc up into empty bar space */
   }
+
+  .text-left {
+    text-align: left !important;
+  }

@@ -71,31 +71,32 @@ include 'modal.php';
 ?>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar-->
-        <div class="border-end bg-dark text-white text-center" id="sidebar-wrapper">
-            <div class="sidebar-heading border-bottom bg-dark mt-3"><a class="navbar-brand" href="dashboard.php"><img
-                        src="../favicon.png" class="d-inline-block align-top" width="25" height="25" alt=""> <?php echo $shortNameEng?></div>
+        <div class="border-end bg-dark text-white" id="sidebar-wrapper">
+            <div class="sidebar-heading border-bottom bg-dark mt-3 text-center"><a class="navbar-brand" href="dashboard.php"><img
+                        src="../favicon.png" class="d-inline-block align-top" width="25" height="25" alt=""> <?php echo $shortNameEng?></a></div>
             <div class="list-group list-group-flush mt-3">
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4 active"
                     href="dashboard.php"><i class="bi bi-table"></i> รายการแสดงผลทั้งหมด</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4active"
                     href="dashboard.php?viewPreview=1"> <i class="bi bi-table"></i> รายการรอการตรวจสอบ</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center pe-none"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4 pe-none"
                     href="add_topic.php"><i class="bi bi-file-plus"></i> เพิ่มข้อมูลปริญญานิพนธ์<br>งานวิจัย</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4  active"
                     data-bs-toggle="modal" data-bs-target="#add_teacher" href="#"><i class="bi bi-file-person"></i>
                     จัดการรายชื่ออาจารย์</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4 active"
                     data-bs-toggle="modal" data-bs-target="#add_year" href="#"><i class="bi bi-calendar-event"></i>
                     จัดการปีการศึกษา</a>
-                <a class="list-group-item list-group-item-action p-4 text-center <?php onlySadmin();?>"
-                    data-bs-toggle="modal" data-bs-target="#add_branch" href="#"><i class="bi bi-list-stars"></i>
+                <a class="list-group-item list-group-item-action p-4  <?php onlySadmin();?>" data-bs-toggle="modal"
+                    data-bs-target="#add_branch" href="#"><i class="bi bi-list-stars"></i>
                     จัดการรายชื่อสาขา</a>
-                <a class="list-group-item list-group-item-action p-4 text-center <?php onlySadmin();?>"
-                    data-bs-toggle="modal" data-bs-target="#add_admin" href="#"><i class="bi bi-file-plus"></i>
+                <a class="list-group-item list-group-item-action p-4  <?php onlySadmin();?>" data-bs-toggle="modal"
+                    data-bs-target="#add_admin" href="#"><i class="bi bi-file-plus"></i>
                     จัดการบัญชีผู้ใช้งาน</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active <?php onlySadmin();?>"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4 active <?php onlySadmin();?>"
                     href="setting.php"><i class="bi bi-gear"></i> ตั้งค่า</a>
-                <a class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-5 text-center active">VERSION
+                <a
+                    class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-5 text-center active">VERSION
                     : <?php echo $c_version; ?></a>
                 <a class="list-group-item list-group-item-action list-group-item-danger p-1 mt-5 text-center active"
                     href="logout.php">ออกจากระบบ</a>
@@ -229,10 +230,10 @@ include 'modal.php';
                                                     <?php echo $result_display["mainTn"];?></option>
                                                 <?php
                                                 $hideMainT = $result_display["mainTid"];
-      $sql_allid = "SELECT * FROM teacher WHERE teacher_id != '$hideMainT' ORDER BY teacher_id ASC";
+      $sql_allid = "SELECT * FROM teacher WHERE teacher_id != '$hideMainT' ORDER BY CONVERT(teacherName USING tis620) ASC";
       $result_allid = mysqli_query($conn, $sql_allid);
       while($row2 = mysqli_fetch_array($result_allid)) {
-      echo '<option value="'.$row2["teacher_id"].'">'.$row2["teacherName"].'      (ID: '.$row2["teacher_id"].')'.'</option>';
+      echo '<option value="'.$row2["teacher_id"].'">'.$row2["teacherName"].'</option>';
       };
              ?>
                                             </select>
@@ -244,10 +245,10 @@ include 'modal.php';
                                                     <?php echo $result_display["coTn"];?></option>
                                                 <?php
                                                 $hideCoT = $result_display["coTid"];
-      $sql_allid = "SELECT * FROM teacher WHERE teacher_id != '$hideCoT' ORDER BY teacher_id ASC";
+      $sql_allid = "SELECT * FROM teacher WHERE teacher_id != '$hideCoT' ORDER BY CONVERT(teacherName USING tis620) ASC";
       $result_allid = mysqli_query($conn, $sql_allid);
       while($row2 = mysqli_fetch_array($result_allid)) {
-      echo '<option value="'.$row2["teacher_id"].'">'.$row2["teacherName"].'      (ID :'.$row2["teacher_id"].')'.'</option>';
+      echo '<option value="'.$row2["teacher_id"].'">'.$row2["teacherName"].'</option>';
       };
              ?>
                                             </select>
@@ -329,12 +330,14 @@ include 'modal.php';
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
                                             <label for="text">Youtube Video</span></label>
                                             <input type="text" class="form-control" name="yt_link"
-                                                placeholder="https://www.youtube.com/embed/VideoID" value="<?php echo $result_display["yt_link"];?>">
+                                                placeholder="https://www.youtube.com/embed/VideoID"
+                                                value="<?php echo $result_display["yt_link"];?>">
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
                                             <label for="text">Website URL</span></label>
                                             <input type="text" class="form-control" name="site_url"
-                                                placeholder="Website URL" value="<?php echo $result_display["site_url"];?>">
+                                                placeholder="Website URL"
+                                                value="<?php echo $result_display["site_url"];?>">
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1" hidden>
                                             <label for="text">ผลงานเป็นเว็บไซต์</label>

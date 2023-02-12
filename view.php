@@ -22,14 +22,14 @@ if (isset($_GET["preview"]) and $_GET["preview"] == "1") {
 }
 
 if (!isset($_GET["preview"])) {
-    $sql = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn FROM mctarchive
+    $sql = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn , cT.nameTitle AS TcoTn , mT.nameTitle AS TmainTn FROM mctarchive
   LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
   LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
   LEFT JOIN branch ON mctarchive.branch = branch.branch_id
   LEFT JOIN login ON mctarchive.add_by = login.user_id
   WHERE system_id = '$id'";
 }else{
-    $sql = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn FROM mctarchive_pre
+    $sql = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn , cT.nameTitle AS TcoTn , mT.nameTitle AS TmainTn FROM mctarchive_pre
   LEFT JOIN teacher AS mT ON mctarchive_pre.teacher = mT.teacher_id
   LEFT JOIN teacher AS cT ON mctarchive_pre.co_teacher = cT.teacher_id
   LEFT JOIN branch ON mctarchive_pre.branch = branch.branch_id
@@ -80,7 +80,7 @@ if (empty($result)) {
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="jumbotron jumbotron_site mainjum mainvector mt-5">
+                <div class="jumbotron jumbotron_site mainjum mainvector mt-4">
                     <h2 class="display-5"><?php echo $v_websiteName;?></h2>
                     <p class="lead"><?php echo $v_subName;?></p>
                     <hr class="my-4" style="max-width:70%">
@@ -126,13 +126,13 @@ if (empty($result["std6"] == false)) {
                             <?php echo $result["branchName"]?></h4>
                         <?php
 if ($result["type_doc"] == "1") {
-    echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษา :</strong> ' . $result["mainTn"] . '</h4>';
+    echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษา :</strong> ' .$result["TmainTn"]. $result["mainTn"] . '</h4>';
     if ($result["co_teacher"] != "0") {
-        echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษาร่วม :</strong> ' . $result["coTn"] . '</h4>';
+        echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษาร่วม :</strong> ' .$result["TcoTn"]. $result["coTn"] . '</h4>';
     } else {}
-    echo '<h4 class="card-text"><strong>ประเภท :</strong> ปริญญานิพนธ์นักศึกษา</h4>';
+    echo '<h4 class="card-text"><strong><i class="bi bi-list-ul"></i> ประเภท :</strong> ปริญญานิพนธ์นักศึกษา</h4>';
 } else {
-    echo '<h4 class="card-text"><strong>ประเภท :</strong> วิจัยอาจารย์</h4>';
+    echo '<h4 class="card-text"><strong><i class="bi bi-list-ul"></i> ประเภท :</strong> วิจัยอาจารย์</h4>';
 }
 ?>
 
@@ -151,7 +151,7 @@ if (empty($result["site_url"]) == false) {
                                 <?php
 if (empty($result["fileZip"]) == false) {
     echo '<a href="storage/'.$result["system_id"].'/'. $result["fileZip"] . '"class="btn btn-primary w-100" target="_blank"><i class="bi bi-download"></i> ดาวน์โหลดไฟล์ผลงาน</a>';
-} else {echo "<h5>ไม่มีไฟล์ผลงาน</h5>";
+} else {echo "<h5>ไม่มีไฟล์ผลงานอื่นๆ</h5>";
 }
 ?>
                             </div>
@@ -208,6 +208,16 @@ if (empty($result["add_by"] == false)) {
                     </div>
                 </div>
             </div>
+            <div class="col-12">
+                <div class="card text-center fixed-bottom">
+                    <div class="card-header">
+                        เปลี่ยนสถานะ ลบ
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <?php include 'footer.php';?>
@@ -226,9 +236,13 @@ if (empty($result["add_by"] == false)) {
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
     var options = {
-    pdfOpenParams: {toolbar: '0'}, fallbackLink: '<p>อุปกรณ์ของคุณไม่รองรับการดูไฟล์ .pdf หากต้องการดูผ่านหน้าเว็บให้เปิดเว็บผ่านคอมพิวเตอร์. หรือ: <a href="[url]">กดที่นี้</a> เพื่อเปิดแยกแท็บ</p>'};
-    PDFObject.embed(<?php echo '"'.'.\\\storage'.'\\'.'\\'.$id.'\\'.'\\'.$result["pdf"].'#toolbar=0"'; ?>, "#pdfViewer", options); 
-    
+        pdfOpenParams: {
+            toolbar: '1'
+        },
+        fallbackLink: '<p>อุปกรณ์ของคุณไม่รองรับการดูไฟล์ .pdf หากต้องการดูผ่านหน้าเว็บให้เปิดเว็บผ่านคอมพิวเตอร์. หรือ: <a href="[url]">กดที่นี้</a> เพื่อเปิดแยกแท็บ</p>'
+    };
+    PDFObject.embed(<?php echo '"'.'.\\\storage'.'\\'.'\\'.$id.'\\'.'\\'.$result["pdf"].'#toolbar=0"'; ?>, "#pdfViewer",
+        options);
     </script>
 </body>
 

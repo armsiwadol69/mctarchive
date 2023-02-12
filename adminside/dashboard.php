@@ -77,31 +77,31 @@ include 'modal.php';
 ?>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar-->
-        <div class="border-end bg-dark text-white text-center" id="sidebar-wrapper">
-            <div class="sidebar-heading border-bottom bg-dark mt-3"><a class="navbar-brand" href="dashboard.php"><img
+        <div class="border-end bg-dark text-white" id="sidebar-wrapper">
+            <div class="sidebar-heading border-bottom bg-dark mt-3 text-center"><a class="navbar-brand" href="dashboard.php"><img
                         src="../favicon.png" class="d-inline-block align-top" width="25" height="25" alt=""> <?php echo $shortNameEng?></a></div>
             <div class="list-group list-group-flush mt-3">
-                <button id="mctMAIN"
-                    class="list-group-item list-group-item-action list-group-item-dark p-4 text-center pe-none"
-                    onclick="showMctMain();"><i class="bi bi-table"></i> รายการแสดงผลทั้งหมด</button>
+                <a id="mctMAIN"
+                    class="list-group-item list-group-item-action list-group-item-dark p-4 pe-none text-left"
+                    onclick="showMctMain();"><i class="bi bi-table"></i> รายการแสดงผลทั้งหมด</a>
                 <button id="mctPRE"
-                    class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
+                    class="list-group-item list-group-item-action list-group-item-dark p-4  active"
                     onclick="showMctPre();"> <i class="bi bi-table"></i> รายการรอการตรวจสอบ</button>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4  active"
                     href="add_topic.php"><i class="bi bi-file-plus"></i> เพิ่มข้อมูลปริญญานิพนธ์<br>งานวิจัย</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
-                    data-bs-toggle="modal" data-bs-target="#add_teacher" href="#"><i class="bi bi-file-person"></i>
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4  active"
+                    href="teacher.php"><i class="bi bi-file-person"></i>
                     จัดการรายชื่ออาจารย์</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4  active"
                     data-bs-toggle="modal" data-bs-target="#add_year" href="#"><i class="bi bi-calendar-event"></i>
                     จัดการปีการศึกษา</a>
-                <a class="list-group-item list-group-item-action p-4 text-center <?php onlySadmin();?>"
+                <a class="list-group-item list-group-item-action p-4  <?php onlySadmin();?>"
                     data-bs-toggle="modal" data-bs-target="#add_branch" href="#"><i class="bi bi-list-stars"></i>
                     จัดการรายชื่อสาขา</a>
-                <a class="list-group-item list-group-item-action p-4 text-center <?php onlySadmin();?>"
+                <a class="list-group-item list-group-item-action p-4  <?php onlySadmin();?>"
                     data-bs-toggle="modal" data-bs-target="#add_admin" href="#"><i class="bi bi-file-plus"></i>
                     จัดการบัญชีผู้ใช้งาน</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 text-center active <?php onlySadmin();?>"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4  active <?php onlySadmin();?>"
                     href="setting.php"><i class="bi bi-gear"></i> ตั้งค่า</a>
                 <a class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-5 text-center active">VERSION
                     : <?php echo $c_version; ?></a>

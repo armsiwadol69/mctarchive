@@ -45,7 +45,7 @@ include '../conn.php';
     
     ?>
     <video id="bgVid" class="background-video" poster="../img/BG_Library.jpg" loop>
-        <source src="../video/<?php echo $videoArray[$randomNumber];?>" type="video/mp4">
+        <source src="#<?php //echo $videoArray[$randomNumber];?>" type="video/mp4">
     </video>
 
     <div class="container-fluid px-0">
@@ -55,12 +55,12 @@ include '../conn.php';
                     <div class="card-body d-flex flex-column p-0">
                         <h5 class="mt-auto mx-3 text-white"
                             style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.7));"><?php echo $shortNameEng; ?>
-                            Version <?php echo $c_version;?> | SiWADOL X MCT Library <button
-                                class="btn btn-outline-info" onclick="turnUpVol();"><i
-                                    class="bi bi-music-note-beamed"></i></button>
-                                    <br>
-                                    ยังไม่ได้ถ่ายวีดีโอสำหรับหน้าเข้าสู่ระบบ เพราะฉนั้น เอาเพลงดีๆไปฟังก่อนนะ</h5>
-                                    
+                            Version <?php echo $c_version;?> | MCT Library <button
+                                class="btn btn-outline-info" onclick="turnUpVol();" hidden><i
+                                    class="bi bi-music-note-beamed" ></i></button>
+                                    <!-- <br>
+                                    ยังไม่ได้ถ่ายวีดีโอสำหรับหน้าเข้าสู่ระบบ เพราะฉนั้น เอาเพลงดีๆไปฟังก่อนนะ-->
+                                </h5> 
                     </div>
                 </div>
             </div>
@@ -142,11 +142,11 @@ include '../conn.php';
                         </form>
                         <div class="mt-2 text-center d-block d-sm-block d-md-block d-lg-block d-xl-none">
                             <h6 class="mt-3 text-white" style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));">
-                                <?php echo $shortNameEng; ?> Version <?php echo $c_version;?> | SiWADOL X MCT Library
-                                <button class="btn btn-outline-info" type="button" onclick="turnUpVol();"><i
+                                <?php echo $shortNameEng; ?> Version <?php echo $c_version;?> | MCT Library
+                                <button class="btn btn-outline-info" type="button" onclick="turnUpVol();" hidden><i
                                         class="bi bi-music-note-beamed"></i></button>
-                                    <br>
-                                    ยังไม่ได้ถ่ายวีดีโอสำหรับหน้าเข้าสู่ระบบ เพราะฉนั้น เอาเพลงดีๆไปฟังก่อนนะ
+                                    <!-- <br>
+                                    ยังไม่ได้ถ่ายวีดีโอสำหรับหน้าเข้าสู่ระบบ เพราะฉนั้น เอาเพลงดีๆไปฟังก่อนนะ -->
                                     </h6>
                         </div>
                     </div>
