@@ -89,21 +89,42 @@ function delDataOfTopic(system_id,id,topicName) {
   }
 
   //To Hide
-  function changeStatus2C(t_system_id) {
+  function changeStatus2C(t_system_id,name) {
     let text = "คุณแน่ใจที่จะเปลี่ยนสถานะการแสดงผลข้อมูลนี้หรือไม่?";
     if (confirm(text) == true) {
       text = "You pressed OK!";
-      window.location = href="change_status.php?id="+t_system_id;
+      window.location = href="change_status.php?id="+t_system_id+"&topicName="+name;
     } else {
       //text = "You canceled!";
     }
   }
  //To Show
-  function changeStatus2D(t_system_id) {
+  function changeStatus2D(t_system_id,name) {
     let text = "คุณแน่ใจที่จะเปลี่ยนสถานะการแสดงผลข้อมูลนี้หรือไม่?";
     if (confirm(text) == true) {
       text = "You pressed OK!";
-      window.location = href="change_status.php?preview=1&id="+t_system_id;
+      window.location = href="change_status.php?preview=1&id="+t_system_id+"&topicName="+name;
+    } else {
+      //text = "You canceled!";
+    }
+  }
+
+ 
+  function AUserStatus(user_id) {
+    let text = "เปิดการใช้งานบัญชีผู้ใช้นี้หรือไม่?";
+    if (confirm(text) == true) {
+      text = "You pressed OK!";
+      window.location = href="add_admin.php?user_id="+user_id+"&setS=active";
+    } else {
+      //text = "You canceled!";
+    }
+  }
+
+  function DAUserStatus(user_id) {
+    let text = "ปิดการใช้งานบัญชีผู้ใช้นี้หรือไม่?";
+    if (confirm(text) == true) {
+      text = "You pressed OK!";
+      window.location = href="add_admin.php?user_id="+user_id+"&setS=inactive";
     } else {
       //text = "You canceled!";
     }
@@ -116,9 +137,12 @@ function delDataOfTopic(system_id,id,topicName) {
     //
   
     form.submit_button.disabled = true;
-    form.submit_button.value = "กำลังอัพโหลดและบันทึกข้อมูลโปรดรอซักครู่...";
+    form.submit_button.value = "กำลังอัปโหลดและบันทึกข้อมูลโปรดรอซักครู่...";
     return true;
   }
 
   //del alert
+
+
+
   

@@ -81,7 +81,7 @@ function getThisPage()
 //onlySadmin
 function onlySadmin()
 {
-    if ($_SESSION["level"] != "ADMIN") {echo "list-group-item pe-none";} else {echo "list-group-item-dark active";}
+    if ($_SESSION["level"] != "ADMIN") {echo "list-group-item-secondary active text-muted pe-none disabled";} else {echo "list-group-item-dark active";}
 }
 
 //check2delFile
@@ -190,4 +190,12 @@ function readSettingJSON2MainPage()
     // v_websiteName v_subName
     return $json_data;
 
+}
+
+function echoUserLevel($lvs){
+    if($lvs == 'ADMIN'){
+        echo 'ผู้ดูแลระบบ';
+    }else{
+        echo 'ผู้เพิ่มข้อมูล';
+    }
 }

@@ -1,16 +1,32 @@
 <?php
 $sql_allyear = "SELECT * FROM year ORDER BY year DESC";
 $sql_allyearshow = mysqli_query($conn, $sql_allyear);
-$sql_teacher = "SELECT * FROM teacher LEFT JOIN branch ON teacher.branch = branch.branch_id WHERE teacher_id != 0 ORDER BY CONVERT(teacherName USING tis620) ASC";
+$sql_teacher = "SELECT teacher.*,MIN(teacherName), branch.branchName, mctarchive.system_id FROM teacher
+LEFT JOIN branch ON teacher.branch = branch.branch_id 
+LEFT JOIN mctarchive ON mctarchive.teacher = teacher_id OR mctarchive.co_teacher = teacher_id
+WHERE teacher_id != 0 
+GROUP BY teacher_id
+ORDER BY CONVERT(MIN(teacherName) USING tis620) ASC";
 $result_teacher = mysqli_query($conn, $sql_teacher);
-$sql_username = "SELECT * FROM login ORDER BY user_id ASC";
+$sql_username = "SELECT login.* , MIN(user_id) , mctarchive.system_id FROM login 
+LEFT JOIN mctarchive ON mctarchive.add_by = user_id
+GROUP BY user_id
+ORDER BY MIN(user_id) ASC";
 $result_username = mysqli_query($conn, $sql_username);
-$sql_branch = "SELECT * FROM branch WHERE branch_id != 0 ORDER BY branch_id ASC";
+$sql_branch = "SELECT branch.* , MIN(branch_id) , mctarchive.system_id FROM branch 
+LEFT JOIN mctarchive ON mctarchive.branch = branch_id
+WHERE branch_id != 0 
+GROUP BY branch_id
+ORDER BY MIN(branch_id) ASC";
 $result_branch = mysqli_query($conn, $sql_branch);
 
 $sql_setting = "SELECT setting FROM setting WHERE var = 'free2uplaod'";
 $query_setting = mysqli_query($conn,$sql_setting);
 $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
+
+if ($_SESSION["level"] !== "ADMIN") {$permission = " disabled";} else {
+    $permission = "";
+};
  ?>
 
 <div class="modal fade" id="add_year" tabindex="-1" role="dialog" aria-labelledby="changlog" aria-hidden="true">
@@ -32,7 +48,7 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
           $sql_allyearshow = mysqli_query($conn, $sql_allyear);
           while($yaer_sec = mysqli_fetch_array($sql_allyearshow)) {
           echo '<tr><td>'.$yaer_sec["year"].'</td>';
-          echo "<td>" . '<a type="button" class="btn btn-danger" onclick="delYear('.$yaer_sec["year"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+          echo "<td>" . '<a type="button" class="btn btn-danger'.$permission.'" onclick="delYear('.$yaer_sec["year"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
         }; ?>
                     </table>
                 </div>
@@ -78,7 +94,11 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
             }else {
               echo '<td class="text-secondary">ผู้เพิ่มข้อมูล</td>';
             }
+            if(empty($name_username["system_id"])){
             echo "<td>" . '<a type="button" class="btn btn-danger" onclick="delUser('.$name_username["user_id"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+            }else{
+            echo '<td data-bs-toggle="tooltip" data-bs-placement="top" title="ลบไม่ได้ มีรายการที่เกี่ยวข้อง">' . '<a type="button" class="btn btn-danger disabled" onclick="delUser('.$name_username["user_id"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+            }
         }; ?>
                     </table>
                 </div>
@@ -107,7 +127,7 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
                         </div>
                     </div>
                     <br>
-                    <input type="submit" class="btn btn-primary btn-block w-100" value="สร้างบัญชีผู้ใช้งาน" id="btnSubmitUser">
+                    <input type="submit" class="btn btn-primary btn-block w-100" value="สร้างบัญชีผู้ใช้งาน" id="btnSubmitUser_old">
                 </form>
             </div>
         </div>
@@ -139,11 +159,16 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
             echo '<tr><td>'.$name_teacher2["nameTitle"].'</td>';
             echo '<td>'.$name_teacher2["teacherName"].'</td>';
             echo '<td>'.$name_teacher2["branchName"].'</td>';
-            echo "<td>" . '<a type="button" class="btn btn-warning"  href="teacher.php?edit=1&Tid='.$name_teacher2["teacher_id"].'""><i class="bi bi-pencil"></i></a>' .   "</td> ";
-            echo "<td>" . '<a type="button" class="btn btn-danger" onclick="delTeacher('.$name_teacher2["teacher_id"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+            echo "<td>" . '<a type="button" class="btn btn-warning '.'"  href="teacher.php?edit=1&Tid='.$name_teacher2["teacher_id"].'""><i class="bi bi-pencil"></i></a>' .   "</td> ";
+            if(empty($name_teacher2["system_id"])){
+                echo "<td>" . '<a type="button" class="btn btn-danger '. $permission.'" onclick="delTeacher('.$name_teacher2["teacher_id"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+                }else{
+                echo '<td  data-bs-toggle="tooltip" data-bs-placement="top" title="ลบไม่ได้ มีรายการที่เกี่ยวข้อง">' . '<a type="button" class="btn btn-danger disabled'. $permission.'" onclick="delTeacher('.$name_teacher2["teacher_id"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;    
+                }
         }; ?>
                                         </table>
                 </div>
+                <p class="mt-2">ชื่ออาจารย์ที่ปรึกษาที่ลบไม่ได้ เนื่องจาก อาจารย์ที่ปรึกษาเกี่ยวข้องกับข้อมูลข้อมูลปริญญานิพนธ์หรืองานวิจัย อย่างน้อย 1 หัวข้อ เช่น เป็นที่ปรึกษา หรือ ที่ปรึกษาร่วม</p>
                 <hr>
                 <form method="post" action="add_teacher.php" onsubmit="return checkForm(this);">
                                         <div class="row gap-0">
@@ -201,10 +226,15 @@ $result_setting = mysqli_fetch_array($query_setting,MYSQLI_ASSOC);
           $result_branch = mysqli_query($conn, $sql_branch);
           while($name_branch = mysqli_fetch_array($result_branch)) {
             echo '<tr><td>'.$name_branch["branchName"].'</td>';
+            if(empty($name_branch["system_id"])){
             echo "<td>" . '<a type="button" class="btn btn-danger" onclick="delBranch('.$name_branch["branch_id"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+            }else{
+            echo '<td data-bs-toggle="tooltip" data-bs-placement="top" title="ลบไม่ได้ มีรายการที่เกี่ยวข้อง">' . '<a type="button" class="btn btn-danger disabled" onclick="delBranch('.$name_branch["branch_id"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;    
+            }
         }; ?>
                     </table>
                 </div>
+                <p class="mt-2">สาขาที่ลบไม่ได้ เนื่องจากสาขานั้นมีข้อมูลข้อมูลปริญญานิพนธ์หรืองานวิจัย ที่เกี่ยวข้องอย่างน้อย 1 ราย</p>
                 <hr>
                 <form method="post" action="add_branch.php" onsubmit="return checkForm(this);">
                     <div class="form-row">

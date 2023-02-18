@@ -54,7 +54,7 @@ include 'modal.php';
                     href="dashboard.php?viewPreview=1"> <i class="bi bi-table"></i> รายการรอการตรวจสอบ</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 active"
                     href="add_topic.php"><i class="bi bi-file-plus"></i> เพิ่มข้อมูลปริญญานิพนธ์<br>งานวิจัย</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 active" data-bs-toggle="modal"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4 pe-none" data-bs-toggle="modal"
                     data-bs-target="#add_teacher" href="#"><i class="bi bi-file-person"></i>
                     จัดการรายชื่ออาจารย์</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 active" data-bs-toggle="modal"
@@ -63,16 +63,16 @@ include 'modal.php';
                 <a class="list-group-item list-group-item-action p-4  <?php onlySadmin();?>" data-bs-toggle="modal"
                     data-bs-target="#add_branch" href="#"><i class="bi bi-list-stars"></i>
                     จัดการรายชื่อสาขา</a>
-                <a class="list-group-item list-group-item-action p-4  <?php onlySadmin();?>" data-bs-toggle="modal"
-                    data-bs-target="#add_admin" href="#"><i class="bi bi-file-plus"></i>
+                <a class="list-group-item list-group-item-action p-4  <?php onlySadmin();?>"
+                    href="userManage.php"><i class="bi bi-file-plus"></i>
                     จัดการบัญชีผู้ใช้งาน</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 active <?php onlySadmin();?>"
+                <a class="list-group-item list-group-item-action p-4 <?php onlySadmin();?>"
                     href="setting.php"><i class="bi bi-gear"></i> ตั้งค่า</a>
-                <a
-                    class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-5 text-center active">VERSION
-                    : <?php echo $c_version; ?></a>
-                <a class="list-group-item list-group-item-action list-group-item-danger p-1 mt-5 text-center active"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4 mt-2 active user-select-none"><?php echo 'ผู้ใช้ : '.$_SESSION["name"].'<br>'.'ระดับผู้ใช้งาน : '; echoUserLevel($_SESSION["level"])?></a>
+                <a class="list-group-item list-group-item-action list-group-item-danger p-1 mt-3 text-center active"
                     href="logout.php">ออกจากระบบ</a>
+                <a class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-3 text-center active">VERSION
+                    : <?php echo $c_version; ?></a>
             </div>
         </div>
         <!-- Page content wrapper-->
@@ -112,16 +112,16 @@ include 'modal.php';
             </nav>
             <!-- Page content-->
             <div class=" container-fluid">
-                <div class="row mt-2">
+                <div class="row gx-2 gy-2">
                     <div class="col-12">
                         <?php include 'nofbox.php';?>
                     </div>
                     <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12" data-aos="fade-up" data-aos-duration="500">
-                        <div class="card shadow-sm my-1">
+                        <div class="card shadow-sm">
                             <h5 class="card-header">รายชื่ออาจารย์ที่ปรึกษา</h5>
                             <div class="card-body">
                                 <div class="modal-body">
-                                    <div class="table-responsive" style="max-height : 70vh;overflow-y: auto;">
+                                    <div class="table-responsive" style="max-height : 65vh;overflow-y: auto;">
                                         <table
                                             class="table text-dark table-hover table-striped mx-auto my-auto align-middle text-center">
                                             <tr>
@@ -132,17 +132,34 @@ include 'modal.php';
                                                 <td>ลบ</td>
                                             </tr>
                                             <?php
+        if ($_SESSION["level"] !== "ADMIN") {$permission = " disabled";} else {
+            $permission = "";
+        };
+
           $result_teacher2 = mysqli_query($conn, $sql_teacher);
           while($name_teacher2 = mysqli_fetch_array($result_teacher2)) {
             echo '<tr><td>'.$name_teacher2["nameTitle"].'</td>';
             echo '<td>'.$name_teacher2["teacherName"].'</td>';
             echo '<td>'.$name_teacher2["branchName"].'</td>';
-            echo "<td>" . '<a type="button" class="btn btn-warning"  href="teacher.php?edit=1&Tid='.$name_teacher2["teacher_id"].'""><i class="bi bi-pencil"></i></a>' .   "</td> ";
-            echo "<td>" . '<a type="button" class="btn btn-danger" onclick="delTeacher('.$name_teacher2["teacher_id"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+            echo "<td>" . '<a type="button" class="btn btn-warning '.'"  href="teacher.php?edit=1&Tid='.$name_teacher2["teacher_id"].'""><i class="bi bi-pencil"></i></a>' .   "</td> ";
+            
+            if(empty($name_teacher2["system_id"])){
+            echo "<td>" . '<a type="button" class="btn btn-danger '. $permission.'" onclick="delTeacher('.$name_teacher2["teacher_id"].')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;
+            }else{
+            echo '<td  data-bs-toggle="tooltip" data-bs-placement="top" title="ลบไม่ได้ มีรายการที่เกี่ยวข้อง">' . '<a type="button" class="btn btn-danger disabled'. $permission.'"'.')"><i class="bi bi-trash"></i></a>' .   "</td> " ."</tr>" ;    
+            }
         }; ?>
                                         </table>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="card shadow-sm mt-1">
+                            <h5 class="card-header">โปรดทราบ</h5>
+                            <div class="card-body">
+                               
+                                    <p>ชื่ออาจารย์ที่ปรึกษาที่ลบไม่ได้ เนื่องจาก อาจารย์ที่ปรึกษาเกี่ยวข้องกับข้อมูลข้อมูลปริญญานิพนธ์หรืองานวิจัย อย่างน้อย 1 หัวข้อ เช่น เป็นที่ปรึกษา หรือ ที่ปรึกษาร่วม</p>
+                               
                             </div>
                         </div>
                     </div>
@@ -154,10 +171,12 @@ include 'modal.php';
                         $hideEditBox = '';
                     }else{
                         $hideEditBox = 'hidden';
+                        $sql_TRE = "SELECT * FROM teacher LEFT JOIN branch ON teacher.branch = branch.branch_id WHERE teacher_id = 'NONE'";
+                        $resultTedit = mysqli_fetch_array(mysqli_query($conn, $sql_TRE));
                     }
                     ?>
                     <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12" data-aos="fade-up" data-aos-duration="500">
-                        <div class="card shadow-sm my-1 mb-3 border-warning" <?php echo $hideEditBox;?>>
+                        <div class="card shadow-sm mb-3 border-warning" <?php echo $hideEditBox;?>>
                             <h5 class="card-header">แก้ไขข้อมูล ชื่ออาจารย์ที่ปรึกษา</h5>
                             <div class="card-body">
                                 <div class="modal-body">
@@ -202,7 +221,7 @@ include 'modal.php';
                                             value="บันทึกข้อมูล" id="btnSubmitTeacher">
                                             </div>
                                             <div class="col-6">
-                                            <button type="button" onclick="history.back()" class="btn btn-secondary btn-block w-100"
+                                            <button type="button" onclick="window.location.href='teacher.php'" class="btn btn-secondary btn-block w-100"
                                             >ยกเลิก</button>
                                             </div>
                                         </div>
@@ -210,7 +229,7 @@ include 'modal.php';
                                 </div>
                             </div>
                         </div>
-                        <div class="card shadow-sm my-1">
+                        <div class="card shadow-sm">
                             <h5 class="card-header">เพิ่มชื่ออาจารย์ที่ปรึกษา</h5>
                             <div class="card-body">
                                 <div class="modal-body">

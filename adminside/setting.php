@@ -53,8 +53,8 @@ include 'modal.php';
                     href="dashboard.php?viewPreview=1"> <i class="bi bi-table"></i> รายการรอการตรวจสอบ</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 active"
                     href="add_topic.php"><i class="bi bi-file-plus"></i> เพิ่มข้อมูลปริญญานิพนธ์<br>งานวิจัย</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 active"
-                    data-bs-toggle="modal" data-bs-target="#add_teacher" href="#"><i class="bi bi-file-person"></i>
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4  active"
+                    href="teacher.php"><i class="bi bi-file-person"></i>
                     จัดการรายชื่ออาจารย์</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 active"
                     data-bs-toggle="modal" data-bs-target="#add_year" href="#"><i class="bi bi-calendar-event"></i>
@@ -62,16 +62,16 @@ include 'modal.php';
                 <a class="list-group-item list-group-item-action p-4  <?php onlySadmin();?>" data-bs-toggle="modal"
                     data-bs-target="#add_branch" href="#"><i class="bi bi-list-stars"></i>
                     จัดการรายชื่อสาขา</a>
-                <a class="list-group-item list-group-item-action p-4  <?php onlySadmin();?>" data-bs-toggle="modal"
-                    data-bs-target="#add_admin" href="#"><i class="bi bi-file-plus"></i>
+                <a class="list-group-item list-group-item-action p-4  <?php onlySadmin();?>"
+                    href="userManage.php"><i class="bi bi-file-plus"></i>
                     จัดการบัญชีผู้ใช้งาน</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 pe-none"
                     href="setting.php"><i class="bi bi-gear"></i> ตั้งค่า</a>
-                <a
-                    class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-5 text-center active">VERSION
-                    : <?php echo $c_version; ?></a>
-                <a class="list-group-item list-group-item-action list-group-item-danger p-1 mt-5 text-center active"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4 mt-2 active user-select-none"><?php echo 'ผู้ใช้ : '.$_SESSION["name"].'<br>'.'ระดับผู้ใช้งาน : '; echoUserLevel($_SESSION["level"])?></a>
+                <a class="list-group-item list-group-item-action list-group-item-danger p-1 mt-3 text-center active"
                     href="logout.php">ออกจากระบบ</a>
+                <a class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-3 text-center active">VERSION
+                    : <?php echo $c_version; ?></a>
             </div>
         </div>
         <!-- Page content wrapper-->

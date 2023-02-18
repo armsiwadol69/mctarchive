@@ -77,29 +77,29 @@ include 'modal.php';
             <div class="list-group list-group-flush mt-3">
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 active"
                     href="dashboard.php"><i class="bi bi-table"></i> รายการแสดงผลทั้งหมด</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4active"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4 active"
                     href="dashboard.php?viewPreview=1"> <i class="bi bi-table"></i> รายการรอการตรวจสอบ</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 pe-none"
                     href="add_topic.php"><i class="bi bi-file-plus"></i> เพิ่มข้อมูลปริญญานิพนธ์<br>งานวิจัย</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4  active"
                     data-bs-toggle="modal" data-bs-target="#add_teacher" href="#"><i class="bi bi-file-person"></i>
-                    จัดการรายชื่ออาจารย์</a>
+                    จัดการรายชื่ออาจารย์ <span class="badge bg-info">Qiuck</span></a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 active"
                     data-bs-toggle="modal" data-bs-target="#add_year" href="#"><i class="bi bi-calendar-event"></i>
                     จัดการปีการศึกษา</a>
                 <a class="list-group-item list-group-item-action p-4  <?php onlySadmin();?>" data-bs-toggle="modal"
                     data-bs-target="#add_branch" href="#"><i class="bi bi-list-stars"></i>
                     จัดการรายชื่อสาขา</a>
-                <a class="list-group-item list-group-item-action p-4  <?php onlySadmin();?>" data-bs-toggle="modal"
-                    data-bs-target="#add_admin" href="#"><i class="bi bi-file-plus"></i>
+                <a class="list-group-item list-group-item-action p-4  <?php onlySadmin();?>"
+                    href="userManage.php"><i class="bi bi-file-plus"></i>
                     จัดการบัญชีผู้ใช้งาน</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4 active <?php onlySadmin();?>"
+                <a class="list-group-item list-group-item-action p-4 <?php onlySadmin();?>
                     href="setting.php"><i class="bi bi-gear"></i> ตั้งค่า</a>
-                <a
-                    class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-5 text-center active">VERSION
-                    : <?php echo $c_version; ?></a>
-                <a class="list-group-item list-group-item-action list-group-item-danger p-1 mt-5 text-center active"
+                    <a class="list-group-item list-group-item-action list-group-item-dark p-4 mt-2 active user-select-none"><?php echo 'ผู้ใช้ : '.$_SESSION["name"].'<br>'.'ระดับผู้ใช้งาน : '; echoUserLevel($_SESSION["level"])?></a>
+                <a class="list-group-item list-group-item-action list-group-item-danger p-1 mt-3 text-center active"
                     href="logout.php">ออกจากระบบ</a>
+                <a class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-3 text-center active">VERSION
+                    : <?php echo $c_version; ?></a>
             </div>
         </div>
         <!-- Page content wrapper-->
@@ -150,7 +150,7 @@ include 'modal.php';
                             สามารถค้นหาชื่ออาจารย์ได้ในช่อง "อาจารย์ที่ปรึกษา" เพื่อตรวจสอบได้
                             <hr>
                             <h6>ข้อแนะนำ 2 : หากมีไฟล์ผลงานหรือไฟล์ใดๆก็ตาม
-                                ในการบันทึกข้อมูลแต่ละครั้งไฟล์ทั้งหมดที่จะอัพโหลดไปด้วย <span
+                                ในการบันทึกข้อมูลแต่ละครั้งไฟล์ทั้งหมดที่จะอัปโหลดไปด้วย <span
                                     class="badge bg-warning text-dark">ห้ามเกิน 24 GB</span> ต่อครั้ง</h6>
                         </div>
                     </div>
@@ -243,9 +243,14 @@ include 'modal.php';
                                             <select name="co_teacher" id="teacher_sb2" class="form-select">
                                                 <option value="<?php echo $result_display["coTid"];?>" selected>
                                                     <?php echo $result_display["coTn"];?></option>
+                                                    
                                                 <?php
+                                                if($result_display["coTid"] != '0'){
+                                                    echo '<option value="0">ไม่มี</option>';
+                                                }
+                                                
                                                 $hideCoT = $result_display["coTid"];
-      $sql_allid = "SELECT * FROM teacher WHERE teacher_id != '$hideCoT' ORDER BY CONVERT(teacherName USING tis620) ASC";
+      $sql_allid = "SELECT * FROM teacher WHERE teacher_id != '$hideCoT' AND teacher_id != '0' ORDER BY CONVERT(teacherName USING tis620) ASC";
       $result_allid = mysqli_query($conn, $sql_allid);
       while($row2 = mysqli_fetch_array($result_allid)) {
       echo '<option value="'.$row2["teacher_id"].'">'.$row2["teacherName"].'</option>';
@@ -297,13 +302,13 @@ include 'modal.php';
                                             </select>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                            <label class="text" for="customFile">เอกสาร .pdf<span
+                                            <label class="text" for="customFile">เอกสารรูปเล่มฉบับเต็ม<span
                                                     class="text-danger">*</span></label>
                                             <input type="file" class="form-control" name="file_pdf" id="file_pdf"
                                                 accept="application/pdf" />
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                            <label class="text" for="customFile">วีดีโอผลงาน</label>
+                                            <label class="text" for="customFile">วีดีโอผลงาน  (ถ้ามี)</label>
                                             <div class="input-group">
                                                 <input type="file" class="form-control" name="file_video"
                                                     id="file_video" accept=".mp4" />
@@ -312,7 +317,7 @@ include 'modal.php';
                                         </div>
 
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                            <label class="text" for="customFile">ไฟล์เสียง</label>
+                                            <label class="text" for="customFile">ไฟล์เสียง (ถ้ามี)</label>
                                             <div class="input-group">
                                                 <input type="file" class="form-control" name="audio" id="audio"
                                                     accept="audio/*" />
@@ -320,7 +325,7 @@ include 'modal.php';
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                            <label class="text" for="customFile">ไฟล์ผลงานอื่นๆ (.Zip)</label>
+                                            <label class="text" for="customFile">ไฟล์ผลงานอื่นๆ (.Zip ถ้ามี)</label>
                                             <div class="input-group">
                                                 <input type="file" class="form-control" name="file_zip" id="file_zip"
                                                     accept=".zip" />
@@ -328,13 +333,13 @@ include 'modal.php';
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                            <label for="text">Youtube Video</span></label>
+                                            <label for="text">Youtube Video  (ถ้ามี)</label>
                                             <input type="text" class="form-control" name="yt_link"
                                                 placeholder="https://www.youtube.com/embed/VideoID"
                                                 value="<?php echo $result_display["yt_link"];?>">
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                            <label for="text">Website URL</span></label>
+                                            <label for="text">Website URL (ถ้ามี)</label>
                                             <input type="text" class="form-control" name="site_url"
                                                 placeholder="Website URL"
                                                 value="<?php echo $result_display["site_url"];?>">
@@ -345,6 +350,11 @@ include 'modal.php';
                                                 <option value="0" selected>ไม่ใช่</option>
                                                 <option value="1">ใช่</option>
                                             </select>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-6 mt-1">
+                                            <label for="text">เกรด (แนะนำ)</label>
+                                            <input type="text" class="form-control" name="grade" maxlength="1" data-bs-toggle="tooltip" data-bs-placement="top" title="หากได้ A จะถูกนำไปแสดงในหมวดรายการแนะนำ"
+                                                placeholder="เช่น A หรือไม่ระบุก็ได้" value="<?php echo $result_display["grade"];?>" oninput="this.value = this.value.toUpperCase()">
                                         </div>
                                         <!-- <div class="col-lg-4 col-md-12 col-sm-12 mt-1"
                                             <?php //if ($_SESSION["level"] !== "ADMIN") {echo "hidden";} ?>>

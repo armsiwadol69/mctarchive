@@ -34,7 +34,7 @@ extract($json_data);
         <div class="jumbotron jumbotron_site mainjum mainvector mt-4">
   <h2 class="display-5"><?php echo $v_websiteName;?></h2>
   <p class="lead"><?php echo $v_subName;?></p>
-  <hr class="my-4" style="max-width:70%" >
+  <hr class="my-4" style="max-width:60%" >
   <h4 class="">มีปริญญานิพนธ์และงานวิจัยที่ถูกจัดเก็บเป็นจำนวน <span class="badge bg-dark text-while no-text-outline"> <?php echo "$row_cnt"; ?></span> รายการ</h4>
 </div>
       </div>

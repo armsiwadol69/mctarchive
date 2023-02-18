@@ -12,7 +12,6 @@ extract($json_data);
 checkTimeout();
 checkAdminUser();
 
-getThisPage();
 
 $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
  ?>
@@ -57,23 +56,23 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                     href="add_topic.php"><i class="bi bi-file-plus"></i> เพิ่มข้อมูลปริญญานิพนธ์<br>งานวิจัย</a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 active"
                     data-bs-toggle="modal" data-bs-target="#add_teacher" href="#"><i class="bi bi-file-person"></i>
-                    จัดการรายชื่ออาจารย์</a>
+                    จัดการรายชื่ออาจารย์ <span class="badge bg-info">Qiuck</span></a>
                 <a class="list-group-item list-group-item-action list-group-item-dark p-4 active"
                     data-bs-toggle="modal" data-bs-target="#add_year" href="#"><i class="bi bi-calendar-event"></i>
                     จัดการปีการศึกษา</a>
                 <a class="list-group-item list-group-item-action p-4 <?php onlySadmin();?>" data-bs-toggle="modal"
                     data-bs-target="#add_branch" href="#"><i class="bi bi-list-stars"></i>
                     จัดการรายชื่อสาขา</a>
-                <a class="list-group-item list-group-item-action p-4 <?php onlySadmin();?>" data-bs-toggle="modal"
-                    data-bs-target="#add_admin" href="#"><i class="bi bi-file-plus"></i>
+                <a class="list-group-item list-group-item-action p-4  <?php onlySadmin();?>"
+                    href="userManage.php"><i class="bi bi-file-plus"></i>
                     จัดการบัญชีผู้ใช้งาน</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4  active <?php onlySadmin();?>"
+                    <a class="list-group-item list-group-item-action p-4 <?php onlySadmin();?>"
                     href="setting.php"><i class="bi bi-gear"></i> ตั้งค่า</a>
-                <a
-                    class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-5 text-center active">VERSION
-                    : <?php echo $c_version; ?></a>
-                <a class="list-group-item list-group-item-action list-group-item-danger p-1 mt-5 text-center active"
+                    <a class="list-group-item list-group-item-action list-group-item-dark p-4 mt-2 active user-select-none"><?php echo 'ผู้ใช้ : '.$_SESSION["name"].'<br>'.'ระดับผู้ใช้งาน : '; echoUserLevel($_SESSION["level"])?></a>
+                <a class="list-group-item list-group-item-action list-group-item-danger p-1 mt-3 text-center active"
                     href="logout.php">ออกจากระบบ</a>
+                <a class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-3 text-center active">VERSION
+                    : <?php echo $c_version; ?></a>
             </div>
         </div>
         <!-- Page content wrapper-->
@@ -125,8 +124,9 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                             <span class="fw-bold">ไม่ต้องใส่คำนำหน้าตอนค้นหา</span>
                             <hr>
                             <h6>ข้อแนะนำ 2 : หากมีไฟล์ผลงานหรือไฟล์ใดๆก็ตาม
-                                ในการบันทึกข้อมูลแต่ละครั้งไฟล์ทั้งหมดที่จะอัพโหลดไปด้วย <span
+                                ในการบันทึกข้อมูลแต่ละครั้งไฟล์ทั้งหมดที่จะอัปโหลดไปด้วย <span
                                     class="badge bg-warning text-dark">ห้ามเกิน 24 GB</span> ต่อครั้ง</h6>
+                            <p>ค่าที่กรอกในช่องที่พิมพ์ (Text Input) <span class="fw-bold">จำค่าแล้ว</span> ค่าต่างๆ จะถูกลบหลังจากกดอัปโหลดข้อมูล</p>
                         </div>
                     </div>
                     <div class="col-12">
@@ -135,7 +135,7 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                             <div class="card-body">
 
                                 <form method="post" action="upload_topic.php" enctype="multipart/form-data"
-                                    onsubmit="return checkForm(this);">
+                                    onsubmit="return checkForm(this);removeItemAll();">
                                     <div class="row">
                                         <div class="col-lg-4 col-sm-4 mt-1">
                                             <label for="text">System ID</label>
@@ -145,47 +145,48 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                                         <div class="col-lg-8 col-sm-8 mt-1">
                                             <label for="text">รหัสประจําเล่ม, รหัสปริญญานิพนธ์และงานวิจัย<span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="id"
+                                            <input type="text" class="form-control" name="id" id="bookNo"
                                                 placeholder="รหัสประจําเล่มข้างสัน" maxlength="69"
                                                 oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);this.value=removeSpaces(this.value);"
+                                                onkeyup='saveValue(this);'
                                                 required>
                                         </div>
                                         <div class="col-12 mt-1">
                                             <label for="text">ชื่อภาษาไทย<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="thainame"
-                                                placeholder="ชื่อภาษาไทย" required>
+                                            <input type="text" class="form-control" name="thainame" id="thainame"
+                                                placeholder="ชื่อภาษาไทย" onkeyup='saveValue(this);' required>
                                         </div>
                                         <div class="col-12 mt-1">
                                             <label for="text">ชื่อภาษาอังกฤษ<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="engname"
-                                                placeholder="ชื่อภาษาอังกฤษ" required>
+                                            <input type="text" class="form-control" name="engname" id="engname"
+                                                placeholder="ชื่อภาษาอังกฤษ" onkeyup='saveValue(this);' required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
                                             <label for="text">ผู้วิจัย 1<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="std1" placeholder="(ต้องกรอก)"
+                                            <input type="text" class="form-control" name="std1" id="std1" placeholder="(ต้องกรอก)" onkeyup='saveValue(this);'
                                                 required>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
                                             <label for="text">ผู้วิจัย 2</label>
-                                            <input type="text" class="form-control" name="std2" placeholder="">
+                                            <input type="text" class="form-control" name="std2" id="std2" placeholder="" onkeyup='saveValue(this);'>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
                                             <label for="text">ผู้วิจัย 3</label>
-                                            <input type="text" class="form-control" name="std3" placeholder="">
+                                            <input type="text" class="form-control" name="std3" id="std3" placeholder="" onkeyup='saveValue(this);'>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
                                             <label for="text">ผู้วิจัย 4</label>
-                                            <input type="text" class="form-control" name="std4" placeholder="">
+                                            <input type="text" class="form-control" name="std4" id="std4" placeholder="" onkeyup='saveValue(this);'>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
                                             <label for="text">ผู้วิจัย 5</label>
-                                            <input type="text" class="form-control" name="std5" placeholder="">
+                                            <input type="text" class="form-control" name="std5" id="std5" placeholder="" onkeyup='saveValue(this);'>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
                                             <label for="text">ผู้วิจัย 6</label>
-                                            <input type="text" class="form-control" name="std6" placeholder="">
+                                            <input type="text" class="form-control" name="std6" id="std6" placeholder="" onkeyup='saveValue(this);'>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -250,35 +251,35 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                                             </select>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                            <label class="text" for="customFile">เอกสาร .pdf<span
+                                            <label class="text" for="customFile">เอกสารรูปเล่มฉบับเต็ม (.pdf)<span
                                                     class="text-danger">*</span></label>
                                             <input type="file" class="form-control" name="file_pdf" id="file_pdf"
-                                                accept="application/pdf" required="true" />
+                                                accept="application/pdf" required="true" onkeyup='saveValue(this);' />
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                            <label class="text" for="customFile">วีดีโอผลงาน</label>
+                                            <label class="text" for="customFile">วีดีโอผลงาน (ถ้ามี)</label>
                                             <input type="file" class="form-control" name="file_video" id="file_video"
                                                 accept=".mp4" />
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                            <label class="text" for="customFile">ไฟล์เสียง</label>
+                                            <label class="text" for="customFile">ไฟล์เสียง  (ถ้ามี)</label>
                                             <input type="file" class="form-control" name="audio" id="audio"
                                                 accept="audio/*" />
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                            <label class="text" for="customFile">ไฟล์ผลงานอื่นๆ (.Zip)</label>
+                                            <label class="text" for="customFile">ไฟล์ผลงานอื่นๆ (ถ้ามี)</label>
                                             <input type="file" class="form-control" name="file_zip" id="file_zip"
                                                 accept=".zip" />
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                            <label for="text">Youtube Video</span></label>
-                                            <input type="text" class="form-control" name="yt_link"
-                                                placeholder="https://www.youtube.com/embed/VideoID">
+                                            <label for="text">Youtube Video  (ถ้ามี)</label>
+                                            <input type="text" class="form-control" name="yt_link" id="yt_link" 
+                                                placeholder="https://www.youtube.com/embed/VideoID" onkeyup='saveValue(this);'>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1">
-                                            <label for="text">Website URL</span></label>
-                                            <input type="text" class="form-control" name="site_url"
-                                                placeholder="Website URL">
+                                            <label for="text">Website URL (ถ้ามี)</label>
+                                            <input type="text" class="form-control" name="site_url" id="site_url"
+                                                placeholder="Website URL" onkeyup='saveValue(this);'>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1" hidden>
                                             <label for="text">ผลงานเป็นเว็บไซต์</label>
@@ -287,7 +288,12 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
                                                 <option value="1">ใช่</option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-4 col-md-12 col-sm-12 mt-1"
+                                        <div class="col-lg-2 col-md-6 col-sm-6 mt-1">
+                                            <label for="text">เกรดปริญญานิพนธ์ (ถ้ามี)</label>
+                                            <input type="text" class="form-control" name="grade" id="grade" maxlength="1" data-bs-toggle="tooltip" data-bs-placement="top" title="หากได้ A จะถูกนำไปแสดงในหมวดรายการแนะนำ"
+                                                placeholder="เช่น A หรือไม่ระบุก็ได้" oninput="this.value = this.value.toUpperCase()" onkeyup='saveValue(this);'>
+                                        </div>
+                                        <div class="col-lg-2 col-md-6 col-sm-6 mt-1"
                                             <?php if ($_SESSION["level"] !== "ADMIN") {echo "hidden";} ?>>
                                             <label for="text">ข้ามการตรวจสอบ</label>
                                             <select name="skip_pass" class="form-control form-select">
@@ -361,17 +367,15 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
         });
     });
 
-
     $(document).ready(function() {
 
-        window.setTimeout(function() {
-            $(".alert").fadeTo(500, 0).slideUp(500, function() {
-                $(this).remove();
-            });
-        }, 10000);
-
+window.setTimeout(function() {
+    $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
+        $(this).remove();
     });
+}, 4200);
 
+});
 
     function removeSpaces(string) {
         return string.split(' ').join('');
@@ -384,6 +388,38 @@ $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
     dselect(document.querySelector('#teacher_sb'), config)
     dselect(document.querySelector('#teacher_sb2'), config)
     dselect(document.querySelector('#branch_sb'), config)
+
+    document.getElementById("bookNo").value = getSavedValue("bookNo");    // set the value to this input
+    document.getElementById("thainame").value = getSavedValue("thainame");   // set the value to this input
+    document.getElementById("engname").value = getSavedValue("engname");   // set the value to this input
+    document.getElementById("std1").value = getSavedValue("std1");   // set the value to this input
+    document.getElementById("std2").value = getSavedValue("std2");   // set the value to this input
+    document.getElementById("std3").value = getSavedValue("std3");   // set the value to this input
+    document.getElementById("std4").value = getSavedValue("std4");   // set the value to this input
+    document.getElementById("std5").value = getSavedValue("std5");   // set the value to this input
+    document.getElementById("std6").value = getSavedValue("std6");   // set the value to this input
+    document.getElementById("std6").value = getSavedValue("std6");   // set the value to this input
+    document.getElementById("yt_link").value = getSavedValue("yt_link");   // set the value to this input
+    document.getElementById("site_url").value = getSavedValue("site_url");   // set the value to this input
+    document.getElementById("grade").value = getSavedValue("grade");   // set the value to this input
+        /* Here you can add more inputs to set value. if it's saved */
+
+        //Save the value function - save it to localStorage as (ID, VALUE)
+        function saveValue(e){
+            var id = e.id;  // get the sender's id to save it . 
+            var val = e.value; // get the value. 
+            localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
+        }
+
+        //get the saved value function - return the value of "v" from localStorage. 
+        function getSavedValue  (v){
+            if (!localStorage.getItem(v)) {
+                return "";// You can change this to your defualt value. 
+            }
+            return localStorage.getItem(v);
+        }
+
+        
     </script>
 </body>
 

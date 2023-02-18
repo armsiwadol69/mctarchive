@@ -38,7 +38,7 @@ extract($json_data);
         <div class="jumbotron jumbotron_site mainjum mainvector mt-4">
   <h2 class="display-5"><?php echo $v_websiteName;?></h2>
   <p class="lead"><?php echo $v_subName;?></p>
-  <hr class="my-4" style="max-width:70%" >
+  <hr class="my-4" style="max-width:60%" >
   <h4 class="">มีปริญญานิพนธ์และงานวิจัยที่ถูกจัดเก็บเป็นจำนวน <span class="badge bg-dark text-while no-text-outline"> <?php echo "$row_cnt"; ?></span> รายการ</h4>
 </div>
       </div>
@@ -78,6 +78,7 @@ extract($json_data);
                                             <tr>
                                                 <td>รหัสประจําเล่ม</td>
                                                 <td>หัวข้อ</td>
+                                                <!-- <td>ผู้ศึกษา</td> -->
                                                 <td>อาจารย์ที่ปรึกษา</td>
                                                 <td>สาขา</td>
                                                 <td>ปีการศึกษา</td>
@@ -97,8 +98,8 @@ $query = mysqli_query($conn,$sql_all);
 $result_all = mysqli_query($conn, $sql_all);
 while ($all = mysqli_fetch_array($result_all)) {
     echo "<tr>" . "<td>" . $all["id"] . "</td> ";
-    echo '<td><a class="text-decoration-none" href="view.php?id='.$all["system_id"].'">' . $all["thainame"] . "</a></td> ";
-    //echo "<td>" .$all["teacher"] .   "</td> ";
+    echo '<td><a class="text-decoration-none text-success fw-bold" href="view.php?id='.$all["system_id"].'">' . $all["thainame"] . "</a></td> ";
+   // echo "<td>" .$all["std1"] . '<br>'.$all["std2"] . '<br>'.$all["std3"] . '<br>'.$all["std4"] . '<br>'.$all["std5"] . '<br>'.$all["std6"] .  "</td> ";
     echo "<td>" . $all["TmainTn"].$all["mainTn"] . "</td> ";
     echo "<td>" . $all["branchName"] . "</td> ";
     echo "<td>" . $all["sec"] . "</td> ";
@@ -133,7 +134,8 @@ while ($all = mysqli_fetch_array($result_all)) {
     <script type="text/javascript">
        $(document).ready(function() {
         $('#table_1').DataTable({
-            "ordering": false,
+            //"ordering": false,
+            order: [[4, 'desc']],
             pageLength: 10
         });
     });

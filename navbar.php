@@ -62,6 +62,9 @@
          ?>
        </ul>
      </li>
+     <li class="nav-item">
+       <a class="nav-link active" aria-current="page" href="contract.php">เกี่ยวกับและติดต่อ</a>
+     </li>
      <li class="nav-item dropdown">
        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         วิธีใช้งานและอื่นๆ
@@ -76,7 +79,7 @@
      </li>
    </ul>
    <form class="d-flex" method="GET" action="search.php">
-     <input class="form-control me-2" type="search" name="search" placeholder="รหัสประจำเล่ม,ชื่อหรือนามสกุล ผู้ศึกษา" aria-label="Search">
+     <input class="form-control me-2" type="search" name="search" placeholder="รหัสประจำเล่ม(ID),ชื่อหัวข้อภาษาไทยหรืออังกฤษ,ชื่อหรือนามสกุลผู้ศึกษา" aria-label="Search">
      <button class="btn btn-outline-dark" type="submit"><i class="bi bi-search"></i></button>
    </form>
  </div>

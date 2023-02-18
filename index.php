@@ -11,7 +11,7 @@ extract($json_data);
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="bootstrap5\css\bootstrap.min.css">
-    <link rel="stylesheet" href="custom\sicustom.css">
+    <link rel="stylesheet" href="custom\sicustom.css?v=1.3">
     <link rel="stylesheet" href="custom\loginPage.css">
     <link rel="stylesheet" href="custom\aos.css">
     <script type="text/javascript" src="custom\aos.js"></script>
@@ -36,7 +36,7 @@ $row_cnt = $result->num_rows;
                 <div class="jumbotron jumbotron_site mainjum mainvector mt-4">
                     <h2 class="display-5"><?php echo $v_websiteName; ?></h2>
                     <p class="lead"><?php echo $v_subName; ?></p>
-                    <hr class="my-4" style="max-width:70%">
+                    <hr class="my-4" style="max-width:60%">
                     <h4 class="">มีปริญญานิพนธ์และงานวิจัยที่ถูกจัดเก็บเป็นจำนวน <span
                             class="badge bg-dark text-while no-text-outline"> <?php echo "$row_cnt"; ?></span> รายการ
                     </h4>
@@ -75,8 +75,8 @@ $offset = ($page_default - 1) * $no_of_records_per_page;
 $total_pages = ceil($row_cnt / $no_of_records_per_page);
 ?>
         <div class="row gy-2 gx-2" id="kokodayo" name="kokodayo">
-            <div class="col-12 mt-5">
-                <h4 class="ms-1"><i class="bi bi-clock"></i> รายการที่ถูกเพิ่มล่าสุด</h4>
+            <div class="col-12 mt-4">
+                <h4 class="ms-1"><i class="bi bi-star-fill"></i> รายการแนะนำ</h4>
                 <hr>
             </div>
             <?php
@@ -85,7 +85,26 @@ $sql_all = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn , cT.na
       LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
       LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
       LEFT JOIN branch ON mctarchive.branch = branch.branch_id
-      ORDER BY add_date DESC LIMIT $offset, $no_of_records_per_page";
+      WHERE grade = 'A'
+      ORDER BY RAND () LIMIT $offset, $no_of_records_per_page";
+
+//$sql_all = "SELECT * FROM mctarchive ORDER BY id ASC";
+$query = mysqli_query($conn, $sql_all);
+$result_all = mysqli_query($conn, $sql_all);
+include 'topiccardShort.php'; // card
+?>
+
+<div class="col-12 mt-3">
+                <h4 class="ms-1"><i class="bi bi-bar-chart-fill"></i> รายการที่ได้รับความนิยม</h4>
+                <hr>
+            </div>
+            <?php
+
+$sql_all = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn , cT.nameTitle AS TcoTn , mT.nameTitle AS TmainTn FROM mctarchive
+      LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
+      LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
+      LEFT JOIN branch ON mctarchive.branch = branch.branch_id
+      ORDER BY viewCount DESC LIMIT $offset, $no_of_records_per_page";
 
 //$sql_all = "SELECT * FROM mctarchive ORDER BY id ASC";
 $query = mysqli_query($conn, $sql_all);

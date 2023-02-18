@@ -1,8 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    function removeExistingItem(key) {
+    if (localStorage.getItem(key) === null)
+        return false;
+    localStorage.removeItem(key);
+    return true;
+}
+function removeItemAll(){
+  console.log("starting remove Item");
+  removeExistingItem('bookNo');
+  removeExistingItem('thainame');
+  removeExistingItem('engname');
+  removeExistingItem('std1');
+  removeExistingItem('std2');
+  removeExistingItem('std3');
+  removeExistingItem('std4');
+  removeExistingItem('std5');
+  removeExistingItem('std6');
+  removeExistingItem('yt_link');
+  removeExistingItem('site_url');
+  removeExistingItem('grade');
+  console.log("Item Removed")
+}
+removeItemAll();
+  </script>
+</head>
+</html>
+
 <?php
 ob_start();
 ////
-session_start();
-
+session_start(); 
 //echo $_SESSION["level"];
 if (isset($_SESSION["level"]) == 0) {
   if ($_SESSION["level"] !== "ADMIN" OR $_SESSION["level"] !== "USER") {
@@ -183,6 +213,7 @@ $audio = mysqli_real_escape_string($conn,$file_audio);
 $add_by = mysqli_real_escape_string($conn,$_SESSION["user_id"]);
 $yt_link = mysqli_real_escape_string($conn,$_POST["yt_link"]);
 $site_url = mysqli_real_escape_string($conn,$_POST["site_url"]);
+$grade = mysqli_real_escape_string($conn,$_POST["grade"]);
 ///
 
 
@@ -227,12 +258,12 @@ if($IDisExitst){
 
 if ($_POST["skip_pass"] == "1") {
   $textResultLINE = 'ถูกนำไปแสดงผลแล้ว';
-  $sql_addtopic = "INSERT INTO mctarchive(system_id,id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,co_teacher,sec,branch,video,pdf,fileZip,audio,type_doc,add_by,yt_link,site_url)
-  VALUES('$system_id','$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$co_teacher','$year','$branch','$video','$pdf','$fileZip','$audio','$type_doc','$add_by','$yt_link','$site_url')";
+  $sql_addtopic = "INSERT INTO mctarchive(system_id,id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,co_teacher,sec,branch,video,pdf,fileZip,audio,type_doc,add_by,yt_link,site_url,grade)
+  VALUES('$system_id','$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$co_teacher','$year','$branch','$video','$pdf','$fileZip','$audio','$type_doc','$add_by','$yt_link','$site_url','$grade')";
 }else {
   $textResultLINE = 'อยู่ในรายการรอตรวจสอบ';
-  $sql_addtopic = "INSERT INTO mctarchive_pre(system_id,id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,co_teacher,sec,branch,video,pdf,fileZip,audio,type_doc,add_by,yt_link,site_url)
-  VALUES('$system_id','$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$co_teacher','$year','$branch','$video','$pdf','$fileZip','$audio','$type_doc','$add_by','$yt_link','$site_url')";
+  $sql_addtopic = "INSERT INTO mctarchive_pre(system_id,id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,co_teacher,sec,branch,video,pdf,fileZip,audio,type_doc,add_by,yt_link,site_url,grade)
+  VALUES('$system_id','$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$co_teacher','$year','$branch','$video','$pdf','$fileZip','$audio','$type_doc','$add_by','$yt_link','$site_url','$grade')";
 }
 
 echo  $sql_addtopic;

@@ -39,13 +39,13 @@ include '../conn.php';
 
 <body>
     <?php
-    $randomNumber = random_int(0, 3);
-    $videoArray = array("pv4_t.mp4","Kyokansarenakutemoiijanai.mp4","momosu_esoa.mp4","lukpaiwa.mp4");
+    //$randomNumber = random_int(0, 0);
+    //$videoArray = array("pv4_t.mp4","Kyokansarenakutemoiijanai.mp4","momosu_esoa.mp4","lukpaiwa.mp4");
    
     
     ?>
     <video id="bgVid" class="background-video" poster="../img/BG_Library.jpg" loop>
-        <source src="#<?php //echo $videoArray[$randomNumber];?>" type="video/mp4">
+        <source src="../video/notOsuGameTrustMe.mp4<?php //echo $videoArray[$randomNumber];?>" type="video/mp4">
     </video>
 
     <div class="container-fluid px-0">
@@ -56,7 +56,7 @@ include '../conn.php';
                         <h5 class="mt-auto mx-3 text-white"
                             style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.7));"><?php echo $shortNameEng; ?>
                             Version <?php echo $c_version;?> | MCT Library <button
-                                class="btn btn-outline-info" onclick="turnUpVol();" hidden><i
+                                class="btn btn-outline-info" onclick="turnUpVol();"><i
                                     class="bi bi-music-note-beamed" ></i></button>
                                     <!-- <br>
                                     ยังไม่ได้ถ่ายวีดีโอสำหรับหน้าเข้าสู่ระบบ เพราะฉนั้น เอาเพลงดีๆไปฟังก่อนนะ-->
@@ -137,13 +137,20 @@ include '../conn.php';
                                       </div>
                                       ';
                                     }
+                                    elseif ($status == "NotActive") {
+                                        echo '
+                                        <div class="alert alert-warning w-100 shadow-sm" role="alert">
+                                        บัญชีผู้ใช้นี้ไม่ได้ถูกเปิดใช้งาน ติดต่อผู้ดูแลระบบ
+                                        </div>
+                                        ';
+                                      }
                                     ?>
                                     </div>
                         </form>
                         <div class="mt-2 text-center d-block d-sm-block d-md-block d-lg-block d-xl-none">
                             <h6 class="mt-3 text-white" style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));">
                                 <?php echo $shortNameEng; ?> Version <?php echo $c_version;?> | MCT Library
-                                <button class="btn btn-outline-info" type="button" onclick="turnUpVol();" hidden><i
+                                <button class="btn btn-outline-info" type="button" onclick="turnUpVol();"><i
                                         class="bi bi-music-note-beamed"></i></button>
                                     <!-- <br>
                                     ยังไม่ได้ถ่ายวีดีโอสำหรับหน้าเข้าสู่ระบบ เพราะฉนั้น เอาเพลงดีๆไปฟังก่อนนะ -->

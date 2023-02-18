@@ -18,6 +18,14 @@ if(isset($_GET["hmedia"])){
    $_GET["hmedia"] = NULL;
 }
 
+if(isset($_GET["recommend"])){
+    $hmedia = $_GET["recommend"];
+ }else{
+    $_GET["recommend"] = NULL;
+ }
+
+ $introText = 'แสดงผลเฉพาะ';
+
 $no_of_records_per_page = 12;
 $offset = ($page_default - 1) * $no_of_records_per_page;
 
@@ -63,14 +71,36 @@ if (isset($_GET["year"]) == 1 and empty($_GET["year"]) == 0) {
     $sql_search_2all = "SELECT system_id FROM mctarchive WHERE video != '' OR fileZip != '' OR audio != '' OR yt_link != '' OR site_url != '' ORDER BY sec DESC ";
     $taget_to_find = 'ปริญญานิพนธ์หรืองานวิจัย' . $taget_s;
     $taget_nextpage = "?hmedia=" . "$tagetNone";
-} elseif ($_GET["type_doc"] == "1" and empty($_GET["type_doc"]) == 0) {
+}elseif ($_GET["recommend"] == "1") {
+    $taget_s = 'แนะนำ';
+    $tagetNone = $_GET["recommend"];
+    $sql_search = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn , cT.nameTitle AS TcoTn , mT.nameTitle AS TmainTn FROM mctarchive
+    LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
+    LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
+    LEFT JOIN branch ON mctarchive.branch = branch.branch_id WHERE grade = 'A' ORDER BY sec DESC LIMIT $offset, $no_of_records_per_page";
+    $sql_search_2all = "SELECT system_id FROM mctarchive WHERE grade = 'A' ORDER BY sec DESC ";
+    $taget_to_find = 'ปริญญานิพนธ์หรืองานวิจัย' . $taget_s;
+    $taget_nextpage = "?recommend=" . "$tagetNone";
+}elseif ($_GET["viewCount"] == "1") {
+    $taget_s = 'เรียงลำดับตามความนิยม';
+    $tagetNone = $_GET["viewCount"];
+    $sql_search = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn , cT.nameTitle AS TcoTn , mT.nameTitle AS TmainTn FROM mctarchive
+    LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
+    LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
+    LEFT JOIN branch ON mctarchive.branch = branch.branch_id ORDER BY viewCount DESC LIMIT $offset, $no_of_records_per_page";
+    $sql_search_2all = "SELECT system_id FROM mctarchive ORDER BY viewCount DESC ";
+    $taget_to_find = 'ปริญญานิพนธ์หรืองานวิจัย' . $taget_s;
+    $taget_nextpage = "?recommend=" . "$tagetNone";
+    $introText = '';
+}
+ elseif ($_GET["type_doc"] == "1" and empty($_GET["type_doc"]) == 0) {
     $taget_s = $_GET["type_doc"];
     $sql_search = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn , cT.nameTitle AS TcoTn , mT.nameTitle AS TmainTn FROM mctarchive
     LEFT JOIN teacher AS mT ON mctarchive.teacher = mT.teacher_id
     LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
     LEFT JOIN branch ON mctarchive.branch = branch.branch_id WHERE type_doc LIKE '1' ORDER BY sec DESC LIMIT $offset, $no_of_records_per_page";
     $sql_search_2all = "SELECT system_id FROM mctarchive WHERE type_doc LIKE '1' ORDER BY sec DESC ";
-    $taget_to_find = 'ปริญญานิพนธ์ของ : นักศึกษา';
+    $taget_to_find = ' : ปริญญานิพนธ์นักศึกษา';
     $taget_nextpage = "?type_doc=" . "$taget_s";
 } elseif ($_GET["type_doc"] == "2" and empty($_GET["type_doc"]) == 0) {
     $taget_s = $_GET["type_doc"];
@@ -79,7 +109,7 @@ if (isset($_GET["year"]) == 1 and empty($_GET["year"]) == 0) {
     LEFT JOIN teacher AS cT ON mctarchive.co_teacher = cT.teacher_id
     LEFT JOIN branch ON mctarchive.branch = branch.branch_id WHERE type_doc LIKE '2' ORDER BY sec DESC LIMIT $offset, $no_of_records_per_page";
     $sql_search_2all = "SELECT system_id FROM mctarchive WHERE type_doc LIKE '2' ORDER BY sec DESC ";
-    $taget_to_find = 'งานวิจัยของ : อาจารย์';
+    $taget_to_find = ' : งานวิจัยอาจารย์';
     $taget_nextpage = "?type_doc=" . "$taget_s";
 
 } else {
@@ -128,8 +158,8 @@ include 'navbar.php';
                 <div class="jumbotron jumbotron_site mainjum mainvector mt-4">
                     <h2 class="display-5"><?php echo $v_websiteName; ?></h2>
                     <p class="lead"><?php echo $v_subName; ?></p>
-                    <hr class="my-4" style="max-width:70%">
-                    <h2><i class="bi bi-filter-square"></i> แสดงผลเฉพาะ<?php echo $taget_to_find; ?></h2>
+                    <hr class="my-4" style="max-width:60%">
+                    <h2><i class="bi bi-filter-square"></i><?php echo ' '.$introText.$taget_to_find; ?></h2>
                     <h4 class="">จำนวนรายการที่ตรงตามเงื่อนไข <span class="badge bg-dark text-while no-text-outline">
                             <?php echo "$row_cnt"; ?></span> รายการ</h4>
                     <?php if ($row_cnt == 0) {

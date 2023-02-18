@@ -124,6 +124,7 @@ $year = mysqli_real_escape_string($conn, $_POST["year"]);
 $branch = mysqli_real_escape_string($conn, $_POST["branch"]);
 $yt_link = mysqli_real_escape_string($conn, $_POST["yt_link"]);
 $site_url = mysqli_real_escape_string($conn, $_POST["site_url"]);
+$grade = mysqli_real_escape_string($conn, $_POST["grade"]);
 //$video = $_FILES["file_video"]["name"];
 //$pdf = $_FILES["file_pdf"]["name"];
 echo $thainame;
@@ -332,7 +333,8 @@ $sql_update = "UPDATE $taget_table SET
                  branch = '$branch',
                  type_doc = '$type_doc',
                  yt_link = '$yt_link',
-                 site_url = '$site_url'
+                 site_url = '$site_url',
+                 grade = '$grade'
                  WHERE system_id = '$system_id'";
 
 echo $sql_update;

@@ -81,9 +81,9 @@ include 'modal.php';
             <div class="sidebar-heading border-bottom bg-dark mt-3 text-center"><a class="navbar-brand" href="dashboard.php"><img
                         src="../favicon.png" class="d-inline-block align-top" width="25" height="25" alt=""> <?php echo $shortNameEng?></a></div>
             <div class="list-group list-group-flush mt-3">
-                <a id="mctMAIN"
+                <button id="mctMAIN"
                     class="list-group-item list-group-item-action list-group-item-dark p-4 pe-none text-left"
-                    onclick="showMctMain();"><i class="bi bi-table"></i> รายการแสดงผลทั้งหมด</a>
+                    onclick="showMctMain();"><i class="bi bi-table"></i> รายการแสดงผลทั้งหมด</button>
                 <button id="mctPRE"
                     class="list-group-item list-group-item-action list-group-item-dark p-4  active"
                     onclick="showMctPre();"> <i class="bi bi-table"></i> รายการรอการตรวจสอบ</button>
@@ -99,14 +99,16 @@ include 'modal.php';
                     data-bs-toggle="modal" data-bs-target="#add_branch" href="#"><i class="bi bi-list-stars"></i>
                     จัดการรายชื่อสาขา</a>
                 <a class="list-group-item list-group-item-action p-4  <?php onlySadmin();?>"
-                    data-bs-toggle="modal" data-bs-target="#add_admin" href="#"><i class="bi bi-file-plus"></i>
+                    href="userManage.php"><i class="bi bi-file-plus"></i>
                     จัดการบัญชีผู้ใช้งาน</a>
-                <a class="list-group-item list-group-item-action list-group-item-dark p-4  active <?php onlySadmin();?>"
+                <a class="list-group-item list-group-item-action p-4 <?php onlySadmin();?>"
                     href="setting.php"><i class="bi bi-gear"></i> ตั้งค่า</a>
-                <a class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-5 text-center active">VERSION
-                    : <?php echo $c_version; ?></a>
-                <a class="list-group-item list-group-item-action list-group-item-danger p-1 mt-5 text-center active"
+                <a class="list-group-item list-group-item-action list-group-item-dark p-4 mt-2 active user-select-none"><?php echo 'ผู้ใช้ : '.$_SESSION["name"].'<br>'.'ระดับผู้ใช้งาน : '; echoUserLevel($_SESSION["level"])?></a>
+                <a class="list-group-item list-group-item-action list-group-item-danger p-1 mt-3 text-center active"
                     href="logout.php">ออกจากระบบ</a>
+                <a class="list-group-item list-group-item-action list-group-item-secondary user-select-none p-1 mt-3 text-center active">VERSION
+                    : <?php echo $c_version; ?></a>
+                
             </div>
         </div>
         <!-- Page content wrapper-->
@@ -119,7 +121,7 @@ include 'modal.php';
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <button class="btn btn-outline-primary" id="sidebarToggle">MENU</button>
+                    <!-- <button class="btn btn-outline-primary" id="sidebarToggle">MENU</button> -->
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
@@ -138,9 +140,10 @@ include 'modal.php';
                                     <?php echo $c_version ?></a>
                             </li>
                         </ul>
-                        <form class="d-flex">
-                            <a class="btn btn-danger" href="logout.php">ออกจากระบบ</a>
-                        </form>
+                        <div class="d-flex">
+                            <button class="btn btn-outline-primary d-block d-xl-block d-xxl-block d-xxl-none me-2" id="sidebarToggle">MENU</button>
+                            <a class="btn btn-danger" href="logout.php">ออกจากระบบ</a> 
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -175,8 +178,7 @@ include 'modal.php';
                                         <?php
 if ($_SESSION["level"] !== "ADMIN") {$permission = " disabled";} else {
     $permission = "";
-}
-;
+};
 //$sql_all = "SELECT * FROM mctarchive LEFT JOIN branch ON mctarchive.branch = branch.branch_id ORDER BY add_date DESC LIMIT $offset, $no_of_records_per_page";
 $sql_all = "SELECT * FROM mctarchive LEFT JOIN branch ON mctarchive.branch = branch.branch_id ORDER BY add_date DESC";
 $query = mysqli_query($conn, $sql_all);
@@ -192,7 +194,7 @@ while ($all = mysqli_fetch_array($result_all)) {
     echo "<td>" . $all["branchName"] . "</td> ";
     echo "<td>" . $all["sec"] . "</td> ";
     echo "<td>" . '<a type="button" class="btn btn-info" target="_blank" href="../view.php?id=' . $all["system_id"] . '"><i class="bi bi-eye"></i></a>' . "</td> ";
-    echo "<td>" . '<a type="button" class="btn btn-success' . $permission . '" onclick="changeStatus2C(' . "'" . $all["system_id"] . '#preview' . "'" . ')"><i class="bi bi-arrow-left-right"></i></a>' . "</td> ";
+    echo "<td>" . '<a type="button" class="btn btn-success' . $permission . '" onclick="changeStatus2C(' . "'" . $all["system_id"] . "','".$all["thainame"]."'". ')"><i class="bi bi-arrow-left-right"></i></a>' . "</td> ";
     echo "<td>" . '<a type="button" class="btn btn-warning' . $permission . '" href="edit_topic.php?id=' . $all["system_id"] . '"><i class="bi bi-pencil-square"></i></a>' . "</td> ";
     echo "<td>" . '<button type="button" class="btn btn-danger' . $permission . '" onclick="delDataOfTopic(' ."'". $all["system_id"] ."','".$all["id"]."','".$all["thainame"]."'".')"><i class="bi bi-trash"></i></button>' . "</td> " . "</tr>";
 }
@@ -205,7 +207,7 @@ while ($all = mysqli_fetch_array($result_all)) {
                     </div>
                     <div class="col-12 mt-4" id="mctArchive_pre">
                         <div class="card shadow-sm" id="preview" name="preview">
-                            <h5 class="card-header">รายการตรวจสอบ / ยังไม่ถูกไปนำไปแสดงผล</h5>
+                            <h5 class="card-header">รายการรอตรวจสอบและยังไม่ถูกไปนำไปแสดงผล</h5>
                             <div class="card-body">
                                 <div class="table-responsive px-1 py-1">
                                     <table
@@ -219,7 +221,7 @@ while ($all = mysqli_fetch_array($result_all)) {
                                                 <td>ประเภท</td>
                                                 <td>สาขา</td>
                                                 <td>ปีการศึกษา</td>
-                                                <td hidden>เพิ่มโดย</td>
+                                                <td hidden>เพิ่มโดย</td> 
                                                 <td>ดู</td>
                                                 <td>แสดงผล</td>
                                                 <td>แก้ไข</td>
@@ -246,8 +248,8 @@ while ($all = mysqli_fetch_array($result_all_wait)) {
     echo "<td>" . $all["sec"] . "</td> ";
     echo "<td hidden>" . $all["name"] . "</td> ";
     echo "<td>" . '<a type="button" class="btn btn-info" target="_blank" href="../view.php?preview=1&id=' . $all["system_id"] . '"><i class="bi bi-eye"></i></a>' . "</td> ";
-    echo "<td>" . '<a type="button" class="btn btn-success' . $permission . '" onclick="changeStatus2D(' . "'" . $all["system_id"] . '#displayed' . "'" . ')"><i class="bi bi-arrow-left-right"></i></a>' . "</td> ";
-    echo "<td>" . '<a type="button" class="btn btn-warning' . $permission . '" href="edit_topic.php?preview=1&id=' . $all["system_id"] . '"><i class="bi bi-pencil-square"></i></a>' . "</td> ";
+    echo "<td>" . '<a type="button" class="btn btn-success' . $permission . '" onclick="changeStatus2D(' . "'" . $all["system_id"] ."','".$all["thainame"]."'" . ')"><i class="bi bi-arrow-left-right"></i></a>' . "</td> ";
+    echo "<td>" . '<a type="button" class="btn btn-warning' . '" href="edit_topic.php?preview=1&id=' . $all["system_id"] . '"><i class="bi bi-pencil-square"></i></a>' . "</td> ";
     echo "<td>" . '<button type="button" class="btn btn-danger' . $permission . '" onclick="delDataPreOfTopic(' ."'". $all["system_id"] ."','".$all["id"]."','".$all["thainame"]."'".')"><i class="bi bi-trash"></i></button>' . "</td> " . "</tr>";
 }
 ;
@@ -269,7 +271,7 @@ while ($all = mysqli_fetch_array($result_all_wait)) {
     <script type="text/javascript" src="..\custom\menuA2.js"></script>
     <script type="text/javascript" src="..\bootstrap5\js\bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="..\custom\tooltips.js"></script>
-    <script type="text/javascript" src="..\custom\delConf.js?v=4"></script>
+    <script type="text/javascript" src="..\custom\delConf.js?v=5"></script>
     <script src="https://code.jquery.com/jquery-3.6.2.min.js"
         integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../custom/DataTables/datatables.min.js"></script>
@@ -290,7 +292,7 @@ while ($all = mysqli_fetch_array($result_all_wait)) {
             $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
                 $(this).remove();
             });
-        }, 4200);
+        }, 10000);
 
     });
 

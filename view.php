@@ -13,12 +13,13 @@ extract($json_data);
 include 'conn.php';
 $conn = mysqli_connect($serverName, $userName, $userPassword, $dbName);
 $conn = mysqli_connect($serverName, $userName, $userPassword, $dbName);
-
+$adminView = false;
 if (isset($_GET["preview"]) and $_GET["preview"] == "1") {
 
     if (!isset($_SESSION["level"]) and ($_SESSION["level"] !== "ADMIN" or $_SESSION["level"] !== "USER")) {
         header('location: admin/index.php?login=notlogin');
-    } 
+    }
+    $adminView = true;
 }
 
 if (!isset($_GET["preview"])) {
@@ -28,7 +29,10 @@ if (!isset($_GET["preview"])) {
   LEFT JOIN branch ON mctarchive.branch = branch.branch_id
   LEFT JOIN login ON mctarchive.add_by = login.user_id
   WHERE system_id = '$id'";
-}else{
+
+  $sqlViewCount = "UPDATE mctarchive SET viewCount = viewCount+1 WHERE system_id = '$id'";
+  $queryViewCount = mysqli_query($conn, $sqlViewCount) or die("error");
+} else {
     $sql = "SELECT * , mT.teacherName AS mainTn , cT.teacherName AS coTn , cT.nameTitle AS TcoTn , mT.nameTitle AS TmainTn FROM mctarchive_pre
   LEFT JOIN teacher AS mT ON mctarchive_pre.teacher = mT.teacher_id
   LEFT JOIN teacher AS cT ON mctarchive_pre.co_teacher = cT.teacher_id
@@ -39,6 +43,7 @@ if (!isset($_GET["preview"])) {
 
 $query = mysqli_query($conn, $sql) or die("error");
 $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
+
 
 ?>
 <!DOCTYPE html>
@@ -54,10 +59,10 @@ $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
     <script type="text/javascript" src="custom\aos.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     <meta charset="utf-8">
-    <title><?php ?><?php echo $result["thainame"]; ?> | <?php echo $v_websiteName.' '.$v_subName?></title>
+    <title><?php ?><?php echo $result["thainame"]; ?> | <?php echo $v_websiteName . ' ' . $v_subName ?></title>
     <meta property="og:title"
-        content="<?php echo $result["thainame"]; ?> | <?php echo $v_websiteName.' '.$v_subName?>" />
-    <meta property="og:description" content="<?php echo $v_websiteName.' '.$v_subName?>" />
+        content="<?php echo $result["thainame"]; ?> | <?php echo $v_websiteName . ' ' . $v_subName ?>" />
+    <meta property="og:description" content="<?php echo $v_websiteName . ' ' . $v_subName ?>" />
     <meta property="og:image" content="favicon.png" />
 </head>
 
@@ -81,9 +86,9 @@ if (empty($result)) {
         <div class="row">
             <div class="col-12">
                 <div class="jumbotron jumbotron_site mainjum mainvector mt-4">
-                    <h2 class="display-5"><?php echo $v_websiteName;?></h2>
-                    <p class="lead"><?php echo $v_subName;?></p>
-                    <hr class="my-4" style="max-width:70%">
+                    <h2 class="display-5"><?php echo $v_websiteName; ?></h2>
+                    <p class="lead"><?php echo $v_subName; ?></p>
+                    <hr class="my-4" style="max-width:60%">
                 </div>
             </div>
         </div>
@@ -123,12 +128,12 @@ if (empty($result["std6"] == false)) {
 ?>
                         <hr>
                         <h4 class="card-text"><strong><i class="bi bi-view-list"></i> สาขา :</strong>
-                            <?php echo $result["branchName"]?></h4>
+                            <?php echo $result["branchName"] ?></h4>
                         <?php
 if ($result["type_doc"] == "1") {
-    echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษา :</strong> ' .$result["TmainTn"]. $result["mainTn"] . '</h4>';
+    echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษา :</strong> ' . $result["TmainTn"] . $result["mainTn"] . '</h4>';
     if ($result["co_teacher"] != "0") {
-        echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษาร่วม :</strong> ' .$result["TcoTn"]. $result["coTn"] . '</h4>';
+        echo '<h4 class="card-text"><i class="bi bi-person-check"></i> <strong>อาจารย์ที่ปรึกษาร่วม :</strong> ' . $result["TcoTn"] . $result["coTn"] . '</h4>';
     } else {}
     echo '<h4 class="card-text"><strong><i class="bi bi-list-ul"></i> ประเภท :</strong> ปริญญานิพนธ์นักศึกษา</h4>';
 } else {
@@ -150,7 +155,7 @@ if (empty($result["site_url"]) == false) {
                             <div class="col-sm-12 col-sm-12 col-lg-6 mt-3">
                                 <?php
 if (empty($result["fileZip"]) == false) {
-    echo '<a href="storage/'.$result["system_id"].'/'. $result["fileZip"] . '"class="btn btn-primary w-100" target="_blank"><i class="bi bi-download"></i> ดาวน์โหลดไฟล์ผลงาน</a>';
+    echo '<a href="storage/' . $result["system_id"] . '/' . $result["fileZip"] . '"class="btn btn-primary w-100" target="_blank"><i class="bi bi-download"></i> ดาวน์โหลดไฟล์ผลงาน</a>';
 } else {echo "<h5>ไม่มีไฟล์ผลงานอื่นๆ</h5>";
 }
 ?>
@@ -202,22 +207,34 @@ if (empty($result["audio"]) == false) {
 if (empty($result["add_by"] == false)) {
     echo "<hr>";
     echo '<h7>' . 'เพิ่มข้อมูลโดย : ' . $result["name"] . ' เมื่อ : ' . $result["add_date"] . '</h7>';
+    echo '<h7>' . ' | การเข้าชม : '. $result["viewCount"] . ' ครั้ง</h7>';
 }
 ?>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12">
-                <div class="card text-center fixed-bottom">
+            <?php
+            if($adminView){
+
+            
+            if ($_SESSION["level"] !== "ADMIN") {$permission = " disabled";} else {
+                $permission = "";
+            }
+echo '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="card text-center fixed-bottom bottom-0 start-50 translate-middle-x">
                     <div class="card-header">
-                        เปลี่ยนสถานะ ลบ
+                    หัวข้อนี้อยู่ในสถานะรอตรวจสอบ และยังไม่ถูกไปนำไปแสดงผล
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                    </div>
+                    <div class="card-body"><div class="row gx-2">';
+echo '<div class="col-4"><button type="button" class="btn btn-success w-100 h-100' . $permission . '" onclick="changeStatus2D(' . "'" . $result["system_id"] ."','".$result["thainame"]."'". ')"><i class="bi bi-check-circle"></i> อนุมัติและนำไปแสดงผล</button></div>';
+echo '<div class="col-4"><button type="button" class="btn btn-warning w-100 h-100' . $permission . '" onclick="window.location.href=\'adminside\\\edit_topic.php?preview=1&id=' . $result["system_id"] ."'".'"><i class="bi bi-pencil-square"></i> แก้ไข</button></div>';
+echo '<div class="col-4"><button type="button" class="btn btn-danger w-100 h-100' . $permission . '" onclick="delDataPreOfTopic(' . "'" . $result["system_id"] . "','" . $result["id"] . "','" . $result["thainame"] . "'" . ')"><i class="bi bi-trash"></i> ลบ</button></div>';
+
+echo '</div>
                 </div>
-            </div>
+            </div>';}
+?>
         </div>
 
         <?php include 'footer.php';?>
@@ -234,14 +251,15 @@ if (empty($result["add_by"] == false)) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js"
         integrity="sha512-MoP2OErV7Mtk4VL893VYBFq8yJHWQtqJxTyIAsCVKzILrvHyKQpAwJf9noILczN6psvXUxTr19T5h+ndywCoVw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="custom\delConfView.js?v=2"></script>
     <script>
     var options = {
         pdfOpenParams: {
             toolbar: '1'
         },
-        fallbackLink: '<p>อุปกรณ์ของคุณไม่รองรับการดูไฟล์ .pdf หากต้องการดูผ่านหน้าเว็บให้เปิดเว็บผ่านคอมพิวเตอร์. หรือ: <a href="[url]">กดที่นี้</a> เพื่อเปิดแยกแท็บ</p>'
+        fallbackLink: '<p>อุปกรณ์ของคุณไม่รองรับการดูไฟล์ .pdf หากต้องการดูผ่านหน้าเว็บให้เปิดเว็บผ่านคอมพิวเตอร์. หรือ: <a href="[url]">กดที่นี้</a> เพื่อเปิดในแท็บใหม่</p>'
     };
-    PDFObject.embed(<?php echo '"'.'.\\\storage'.'\\'.'\\'.$id.'\\'.'\\'.$result["pdf"].'#toolbar=0"'; ?>, "#pdfViewer",
+    PDFObject.embed(<?php echo '"' . '.\\\storage' . '\\' . '\\' . $id . '\\' . '\\' . $result["pdf"] . '#toolbar=0"'; ?>, "#pdfViewer",
         options);
     </script>
 </body>

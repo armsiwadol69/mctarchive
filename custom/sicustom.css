@@ -5,14 +5,63 @@ body{font-family: 'Prompt', sans-serif !important;}
 .mainjum {background:rgba(0,0,0,0);
   background-size: cover;
 }
-.jumbotron_site {
+/* .jumbotron_site {
 background-image: url(../img/GVector.png);
 background-size: contain !important;
 background-repeat : no-repeat;
 background-position : right;
 height: 100%;
 text-shadow: rgb(255, 255, 255) 1px 0px 0px, rgb(255, 255, 255) 0.540302px 0.841471px 0px, rgb(255, 255, 255) -0.416147px 0.909297px 0px, rgb(255, 255, 255) -0.989992px 0.14112px 0px, rgb(255, 255, 255) -0.653644px -0.756802px 0px, rgb(255, 255, 255) 0.283662px -0.958924px 0px, rgb(255, 255, 255) 0.96017px -0.279415px 0px;
+} */
+
+@media only screen and (max-width: 600px) {
+  .jumbotron_site {
+    background-size: contain !important;
+    background-repeat : no-repeat;
+    background-position : right bottom;
+    height: 100%;
+    text-shadow: rgb(255, 255, 255) 1px 0px 0px, rgb(255, 255, 255) 0.540302px 0.841471px 0px, rgb(255, 255, 255) -0.416147px 0.909297px 0px, rgb(255, 255, 255) -0.989992px 0.14112px 0px, rgb(255, 255, 255) -0.653644px -0.756802px 0px, rgb(255, 255, 255) 0.283662px -0.958924px 0px, rgb(255, 255, 255) 0.96017px -0.279415px 0px;
+    }
 }
+
+@media only screen and (min-width: 768px) {
+  .jumbotron_site {
+    background-image: url(../img/GVector.png);
+    /* background-size: contain !important; */
+    background-size : 40% !important;
+    background-repeat : no-repeat;
+    background-position : right bottom;
+    height: 100%;
+    text-shadow: rgb(255, 255, 255) 1px 0px 0px, rgb(255, 255, 255) 0.540302px 0.841471px 0px, rgb(255, 255, 255) -0.416147px 0.909297px 0px, rgb(255, 255, 255) -0.989992px 0.14112px 0px, rgb(255, 255, 255) -0.653644px -0.756802px 0px, rgb(255, 255, 255) 0.283662px -0.958924px 0px, rgb(255, 255, 255) 0.96017px -0.279415px 0px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+  .jumbotron_site {
+    background-image: url(../img/GVector.png);
+    /* background-size: contain !important; */
+    background-size : 40% !important;
+    background-repeat : no-repeat;
+    background-position : right bottom;
+    height: 100%;
+    text-shadow: rgb(255, 255, 255) 1px 0px 0px, rgb(255, 255, 255) 0.540302px 0.841471px 0px, rgb(255, 255, 255) -0.416147px 0.909297px 0px, rgb(255, 255, 255) -0.989992px 0.14112px 0px, rgb(255, 255, 255) -0.653644px -0.756802px 0px, rgb(255, 255, 255) 0.283662px -0.958924px 0px, rgb(255, 255, 255) 0.96017px -0.279415px 0px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .jumbotron_site {
+    background-image: url(../img/GVector.png);
+    background-size: contain !important;
+    background-repeat : no-repeat;
+    background-position : right;
+    height: 100%;
+    text-shadow: rgb(255, 255, 255) 1px 0px 0px, rgb(255, 255, 255) 0.540302px 0.841471px 0px, rgb(255, 255, 255) -0.416147px 0.909297px 0px, rgb(255, 255, 255) -0.989992px 0.14112px 0px, rgb(255, 255, 255) -0.653644px -0.756802px 0px, rgb(255, 255, 255) 0.283662px -0.958924px 0px, rgb(255, 255, 255) 0.96017px -0.279415px 0px;
+    }
+}
+
+
+
 .pdfobject-container{height: 100vh;}
 .video{max-width: auto;}
 .jumbotron_admin {

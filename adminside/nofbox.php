@@ -5,7 +5,7 @@ if (isset($_GET["add_admin"]) == "1") {
     if ($admin_set_ok == "1") {
         echo '
        <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
-       เพิ่มบัญชีผู้ใช้งานระบบเรียบร้อย
+       เพิ่มบัญชีผู้ใช้งานระบบสำเร็จ
        </div>
        ';
     } elseif ($admin_set_ok == "0") {
@@ -22,6 +22,21 @@ if (isset($_GET["add_admin"]) == "1") {
        </div>
        '
         ;
+    } elseif ($admin_set_ok == "3") {
+        echo '
+       <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
+       บันทึกการแก้ไขข้อมูลบัญชีผู้ใช้สำเร็จ
+       </div>
+       '
+        ;
+    }
+     elseif ($admin_set_ok == "4") {
+        echo '
+       <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
+       เปลี่ยนสถานะบัญชีสำเร็จ
+       </div>
+       '
+        ;
     }
 }
 
@@ -30,7 +45,7 @@ if (isset($_GET["add_teacher"]) == 1) {
     if ($teacher_set_ok == "1") {
         echo '
        <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
-       เพิ่มชื่ออาจารย์ที่ปรึกษาเรียบร้อย
+       เพิ่มชื่ออาจารย์ที่ปรึกษาสำเร็จ
        </div>
        ';
     } elseif ($teacher_set_ok == "0") {
@@ -49,7 +64,7 @@ if (isset($_GET["add_teacher"]) == 1) {
     } elseif ($teacher_set_ok == "4") {
         echo '
        <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
-       บันทึกการแก้ไขข้อมูลอาจารย์ที่ปรึกษาเรียบร้อย
+       บันทึกการแก้ไขข้อมูลอาจารย์ที่ปรึกษาสำเร็จ
        </div>
        '
         ;
@@ -61,7 +76,7 @@ if (isset($_GET["add_year"]) == 1) {
     if ($year_set_ok == "1") {
         echo '
          <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
-         เพิ่มปีการศึกษาเรียบร้อย
+         เพิ่มปีการศึกษาสำเร็จ
          </div>
          ';
     } elseif ($year_set_ok == "0") {
@@ -85,7 +100,7 @@ if (isset($_GET["add_branch"]) == 1) {
     if ($add_branch == "1") {
         echo '
            <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
-           เพิ่มสาขาเรียบร้อย
+           เพิ่มสาขาสำเร็จ
            </div>
            ';
     } elseif ($add_branch == "0") {
@@ -109,7 +124,7 @@ if (isset($_GET["del_topic"]) == 1) {
     if ($del_topic == "1") {
         echo '
          <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
-         ลบข้อมูลเรียบร้อย
+         ลบข้อมูลสำเร็จ
          </div>
          ';
     } elseif ($del_topic == "0") {
@@ -126,7 +141,7 @@ if (isset($_GET["del_files"]) == 1) {
     if ($del_files == "1") {
         echo '
           <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
-          ลบข้อมูลเรียบร้อย
+          ลบข้อมูลสำเร็จ
           </div>
           ';
     } elseif ($del_files == "0") {
@@ -149,7 +164,7 @@ if (isset($_GET["upload_topic"]) == 1) {
     } elseif ($upload_topic_ok == "1") {
         echo '
            <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
-           เพิ่มข้อมูล ปริญญานิพนธ์หรืองานวิจัย เรียบร้อย
+           เพิ่มข้อมูล ปริญญานิพนธ์หรืองานวิจัย สำเร็จ
            </div>
            '
         ;
@@ -167,7 +182,7 @@ if (isset($_GET["update_topic"]) == 1) {
     } elseif ($update_topic_ok == "1") {
         echo '
              <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
-             แก้ไขข้อมูลเรียบร้อย
+             แก้ไขข้อมูลสำเร็จ
              </div>
              '
         ;
@@ -184,7 +199,7 @@ if (isset($_GET["del_year"]) == 1) {
     } elseif ($del_year == "1") {
         echo '
                <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
-               ลบปีการศึกษาเรียบร้อย
+               ลบปีการศึกษาสำเร็จ
                </div>
                '
         ;
@@ -201,7 +216,7 @@ if (isset($_GET["del_teacher"]) == 1) {
     } elseif ($del_teacher == "1") {
         echo '
                  <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
-                 ลบชื่ออาจารย์ที่ปรึกษาเรียบร้อย
+                 ลบชื่ออาจารย์ที่ปรึกษาสำเร็จ
                  </div>
                  '
         ;
@@ -218,7 +233,7 @@ if (isset($_GET["del_admin"]) == 1) {
     } elseif ($del_admin == "1") {
         echo '
                    <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
-                   ลบผู้ดูแลระบบเรียบร้อย
+                   ลบผู้ดูแลระบบสำเร็จ
                    </div>
                    '
         ;
@@ -235,7 +250,7 @@ if (isset($_GET["cs"]) == 1) {
     } elseif ($cs == "1") {
         echo '
                      <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
-                     ปรับเปลี่ยนการแสดงผลข้อมูลเรียบร้อย
+                     ปรับเปลี่ยนการแสดงผลข้อมูลสำเร็จ
                      </div>
                      '
         ;
@@ -252,7 +267,7 @@ if (isset($_GET["del_branch"]) == 1) {
     } elseif ($del_branch == "1") {
         echo '
                        <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
-                       ลบสาขาเรียบร้อย
+                       ลบสาขาสำเร็จ
                        </div>
                        '
         ;
@@ -264,7 +279,7 @@ if (isset($_GET["savesetting"]) == "1") {
     if ($savesetting == "1") {
         echo '
     <div class="alert alert-success alert-dismissible w-100 shadow-sm" role="alert">
-    บันทึกการตั้งค่าเรียบร้อย
+    บันทึกการตั้งค่าสำเร็จ
     </div>
     ';
     } elseif ($savesetting == "0") {
