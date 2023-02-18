@@ -1,21 +1,16 @@
 <?php
 session_start();
-if (isset($_SESSION["level"]) == 0 and $_SESSION["level"] !== "ADMIN") {
-    Header("Location: index.php?login=notlogin");
-    exit(0);
-}
+
 include '../conn.php';
+include 'commonf.php';
+
+checkTimeout();
+checkAdminUser();
+
 $conn = mysqli_connect($serverName, $userName, $userPassword, $dbName);
 
-//////////////////////////////////////////////
-if (time() - $_SESSION["timeout"] > 3600) {
-    unset($_SESSION["username"], $_SESSION["level"], $_SESSION["timeout"]);
-    session_destroy();
-    Header("Location: index.php?login=afk");
-} else {
-    //echo time() - $_SESSION["timeout"];
-    $_SESSION["timeout"] = time();
-}
+
+
 //////////////////////////////////////////////
 if (isset($_GET["edit"]) and $_GET["edit"] == '1') {
     $targetID = mysqli_real_escape_string($conn, $_POST["teacher_ID"]);

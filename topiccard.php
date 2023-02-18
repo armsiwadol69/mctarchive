@@ -6,7 +6,7 @@ while($all = mysqli_fetch_array($result_all)) {
   echo 'ID : '.$all["id"];
   echo '</div>';
   echo '<div class="card-body d-flex flex-column">';
-  echo '<h5 class="card-title">'.'เรื่อง : '.$all["thainame"].'</h5>';
+  echo '<h5 class="card-title">'.''.$all["thainame"].'</h5>';
   // if (empty($all["engname"] == false)) {
   //   echo '<h5 class="text-dark">'.'Title : '.$all["engname"].'</h5>';
   // } else {echo '<h5 class="card-title">'.'Title : - '.'</h5>';}
@@ -29,9 +29,9 @@ while($all = mysqli_fetch_array($result_all)) {
   // }
   echo '<hr class="mt-auto">';
   if ($all["type_doc"] == "1") {
-    echo '<p class="card-text">อาจารย์ที่ปรึกษา : '.$all["TmainTn"]. $all["mainTn"] .'</p>';
+    //echo '<p class="card-text">อาจารย์ที่ปรึกษา : '.$all["TmainTn"]. $all["mainTn"] .'</p>';
     if(!empty($all["co_teacher"])){
-    echo '<p class="card-text">อาจารย์ที่ปรึกษาร่วม : '.$all["TcoTn"]. $all["coTn"].'</p>';
+    //echo '<p class="card-text">อาจารย์ที่ปรึกษาร่วม : '.$all["TcoTn"]. $all["coTn"].'</p>';
     }
     echo '<p class="card-text">ประเภท : ปริญญานิพนธ์นักศึกษา</p>';
   }else {

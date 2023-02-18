@@ -115,7 +115,7 @@ $row_cnt = $row_cut;
         <div class="jumbotron jumbotron_site mainjum mainvector j-search mt-5">
   <h2 class="display-5"><?php echo $v_websiteName; ?></h2>
   <p class="lead"><?php echo $v_subName; ?></p>
-  <hr class="my-4" style="max-width:70%" >
+  <hr class="my-4" style="max-width:60%" >
   <h2><i class="bi bi-search"></i> ระบบค้นหา : ค้นหาด้วยคำว่า "<?php echo $search; ?>"</h2>
   <h4 class="">จำนวนผลการค้นหาที่พบ <span class="badge bg-dark text-while no-text-outline"> <?php echo "$row_cnt"; ?></span> รายการ</h4>
 </div>

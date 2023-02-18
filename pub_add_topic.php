@@ -213,6 +213,11 @@ if ($result_setting['setting'] == "0") {
                                                 <option value="1">ใช่</option>
                                             </select>
                                         </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-6 mt-1">
+                                            <label for="text">เกรด (แนะนำ)</label>
+                                            <input type="text" class="form-control" name="grade" maxlength="1"
+                                                placeholder="เช่น A หรือไม่ระบุก็ได้" oninput="this.value = this.value.toUpperCase()">
+                                        </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 mt-1" hidden>
                                             <label for="text">ข้ามการตรวจสอบ</label>
                                             <select name="skip_pass" class="form-control form-select" readonly>

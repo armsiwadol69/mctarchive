@@ -18,7 +18,7 @@
                             <div class="row gx-2 gy-2">
                                 <div class="col-lg-10 col-sm-12">
                                     <input class="form-control me-2 w-100" type="search" name="search"
-                                        placeholder="รหัสประจำเล่ม,ชื่อหัวข้อภาษาไทยหรืออังกฤษ,ชื่อหรือนามสกุลผู้ศึกษา"
+                                        placeholder="รหัสประจำเล่ม(ID),ชื่อหัวข้อภาษาไทยหรืออังกฤษ,ชื่อหรือนามสกุลผู้ศึกษา"
                                         value="<?php if (isset($_GET["search"])) {echo $_GET["search"];}?>"
                                         aria-label="Search">
                                 </div>
@@ -111,10 +111,10 @@ while ($name_teacher = mysqli_fetch_array($result_teacher)) {
                             data-bs-toggle="dropdown" aria-expanded="false">
                             ตัวกรองแสดงผล
                         </button>
-                        <div class="dropdown">
+                        <div class="dropdown" style="min-width: 1rem !important;">
 
                             <ul class="dropdown-menu scrollable-menu w-100" aria-labelledby="dropdownMenuButton1"
-                                style="max-height: 50vh;overflow-y: auto;">
+                                style="max-height: 55vh;overflow-y: auto;">
                                 <!--<li><a class="dropdown-item disabled">อาจารย์ที่ปรึกษา</a></li> -->
                                 <?php //$result_teacher2 = mysqli_query($conn, $sql_teacher);
 //while($name_teacher2 = mysqli_fetch_array($result_teacher2)) {
@@ -148,7 +148,7 @@ while ($yaer_sec = mysqli_fetch_array($sql_allyearshow)) {
                     <div class="col-lg-3 col-md-6 col-sm-12 my-2">
                         <button class="btn btn-dark dropdown-toggle w-100 h-100" type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            ดูทั้งหมด
+                            ดูทั้งหมดและอื่นๆ
                         </button>
                         <div class="dropdown">
 
@@ -156,6 +156,10 @@ while ($yaer_sec = mysqli_fetch_array($sql_allyearshow)) {
                                 style="max-height: 50vh;overflow-y: auto;">
                                 <li><a class="dropdown-item" href="viewAll.php">รูปแบบการ์ด</a></li>
                                 <li><a class="dropdown-item" href="viewAllTable.php">รูปแบบตาราง</a></li>
+                                <hr>
+                                <li><a class="dropdown-item disabled">อื่นๆ</a></li>
+                                <li><a class="dropdown-item" href="filter.php?recommend=1">รายการแนะนำ</a></li>
+                                <li><a class="dropdown-item" href="filter.php?viewCount=1">รายการที่ได้รับความนิยม</a></li>
                             </ul>
                         </div>
                     </div>

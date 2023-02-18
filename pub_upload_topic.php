@@ -165,6 +165,7 @@ $audio = mysqli_real_escape_string($conn,$file_audio);
 $add_by = mysqli_real_escape_string($conn,$_SESSION["user_id"]);
 $yt_link = mysqli_real_escape_string($conn,$_POST["yt_link"]);
 $site_url = mysqli_real_escape_string($conn,$_POST["site_url"]);
+$grade = mysqli_real_escape_string($conn,$_POST["grade"]);
 ///
 
 
@@ -208,8 +209,8 @@ if($IDisExitst){
 
 
 
-$sql_addtopic = "INSERT INTO mctarchive_pre(system_id,id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,co_teacher,sec,branch,video,pdf,fileZip,audio,type_doc,add_by,yt_link,site_url)
-VALUES('$system_id','$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$co_teacher','$year','$branch','$video','$pdf','$fileZip','$audio','$type_doc','8008','$yt_link','$site_url')";
+$sql_addtopic = "INSERT INTO mctarchive_pre(system_id,id,std1,std2,std3,std4,std5,std6,thainame,engname,teacher,co_teacher,sec,branch,video,pdf,fileZip,audio,type_doc,add_by,yt_link,site_url,grade)
+VALUES('$system_id','$id','$std1','$std2','$std3','$std4','$std5','$std6','$thainame','$engname','$teacher','$co_teacher','$year','$branch','$video','$pdf','$fileZip','$audio','$type_doc','8008','$yt_link','$site_url','$grade')";
 
 
 echo  $sql_addtopic;
